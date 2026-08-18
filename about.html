@@ -4,22 +4,424 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Parth Plasto Pack</title>
+  <title>About Us | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description"
+    content="Learn about Parth Plasto Pack Pvt. Ltd., trusted manufacturers of pharmaceutical-grade plastic packaging, mission, vision, and manufacturing process.">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <style>
+    :root {
+      --about-purple: #7b3fa3;
+      --about-dark: #191426;
+      --about-muted: #64748b;
+      --about-light: #f8f6fb;
+      --about-border: #e8e4ee;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ffffff;
+      color: #334155;
+      overflow-x: hidden;
+    }
+
     .page-header {
-      padding: 160px 0 80px;
-      background: var(--light);
+      padding: 140px 20px 40px;
+      background: radial-gradient(circle at 50% 10%, rgba(123, 63, 163, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
       text-align: center;
+    }
+
+    .about-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(123, 63, 163, 0.1);
+      color: var(--about-purple);
+      border: 1px solid rgba(123, 63, 163, 0.22);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 20px;
+      border-radius: 9999px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.1);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #7b3fa3 0%, #c51f3a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    /* About Hero Split */
+    .about-hero-section {
+      padding: 40px 20px 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img-frame {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      height: 480px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .about-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-floating-exp {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(25, 20, 38, 0.9);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .about-floating-exp .exp-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #f59e0b;
+      line-height: 1;
+    }
+
+    .about-floating-exp .exp-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .about-hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--about-dark);
+      margin: 0 0 16px;
+      letter-spacing: -0.6px;
+      line-height: 1.25;
+    }
+
+    .about-hero-desc {
+      font-size: 1rem;
+      color: var(--about-muted);
+      line-height: 1.7;
+      margin: 0 0 20px;
+    }
+
+    /* 4 Feature Badges */
+    .about-features-4grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .about-feat-pill {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .about-feat-pill:hover {
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--feat-glow, rgba(0, 0, 0, 0.05));
+      border-color: var(--feat-color, #7b3fa3);
+    }
+
+    .about-feat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--feat-bg, #f5f3ff);
+      color: var(--feat-color, #7b3fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .about-feat-info h4 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--about-dark);
+      margin: 0 0 3px;
+    }
+
+    .about-feat-info p {
+      font-size: 0.82rem;
+      color: var(--about-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Mission & Vision Modern Cards */
+    .mv-container-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 20px auto 80px;
+      padding: 0 20px;
+    }
+
+    .mv-modern-card {
+      background: #ffffff;
+      border: 1px solid var(--mv-border, #e2e8f0);
+      border-radius: 24px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      transition: all 0.35s ease;
+    }
+
+    .mv-modern-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--mv-color, #7b3fa3);
+    }
+
+    .mv-modern-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px var(--mv-glow, rgba(123, 63, 163, 0.12));
+      border-color: var(--mv-color, #7b3fa3);
+    }
+
+    .mv-top-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .mv-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: var(--mv-bg, #f5f3ff);
+      color: var(--mv-color, #7b3fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .mv-top-header h3 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--about-dark);
+      margin: 0;
+    }
+
+    .mv-modern-card p {
+      font-size: 0.98rem;
+      color: var(--about-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Process Flow 6-Card Animated Grid */
+    .about-process-section {
+      background: #fbf9fd;
+      padding: 80px 20px;
+      border-top: 1px solid #f1ecf7;
+      border-bottom: 1px solid #f1ecf7;
+    }
+
+    .about-process-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      max-width: 1200px;
+      margin: 40px auto 0;
+    }
+
+    .about-process-tile {
+      background: #ffffff;
+      border: 1px solid var(--p-border, #e2e8f0);
+      border-radius: 20px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+      transition: all 0.35s ease;
+      position: relative;
+    }
+
+    .about-process-tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px var(--p-glow, rgba(0, 0, 0, 0.1));
+      border-color: var(--p-color, #7b3fa3);
+    }
+
+    .about-process-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--p-color, #7b3fa3);
+      background: var(--p-bg, #f5f3ff);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+
+    .about-process-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--p-bg, #f5f3ff);
+      color: var(--p-color, #7b3fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .about-process-tile:hover .about-process-icon {
+      transform: scale(1.15) rotate(6deg);
+    }
+
+    .about-process-tile h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--about-dark);
+      margin: 0 0 6px;
+    }
+
+    .about-process-tile p {
+      font-size: 0.78rem;
+      color: var(--about-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* Process Themes */
+    .p-theme-blue { --p-color: #2563eb; --p-bg: #eff6ff; --p-border: #bfdbfe; --p-glow: rgba(37, 99, 235, 0.2); }
+    .p-theme-cyan { --p-color: #0891b2; --p-bg: #ecfeff; --p-border: #a5f3fc; --p-glow: rgba(8, 145, 178, 0.2); }
+    .p-theme-amber { --p-color: #d97706; --p-bg: #fffbeb; --p-border: #fde68a; --p-glow: rgba(217, 119, 6, 0.2); }
+    .p-theme-purple { --p-color: #7c3aed; --p-bg: #f5f3ff; --p-border: #ddd6fe; --p-glow: rgba(124, 58, 237, 0.2); }
+    .p-theme-green { --p-color: #059669; --p-bg: #ecfdf5; --p-border: #a7f3d0; --p-glow: rgba(5, 150, 105, 0.2); }
+    .p-theme-rose { --p-color: #e11d48; --p-bg: #fff1f2; --p-border: #fecdd3; --p-glow: rgba(225, 29, 72, 0.2); }
+
+    /* CTA Section */
+    .about-cta-section {
+      background: linear-gradient(135deg, #74379B 0%, #8E3A91 50%, #B03A72 100%);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 70px 40px;
+      margin: 40px auto 90px;
+      max-width: 1200px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(116, 55, 155, 0.28);
+    }
+
+    .about-cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .about-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .about-img-frame {
+        height: 320px;
+      }
+      .about-process-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .mv-container-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 130px 16px 30px;
+      }
+      .about-hero-title {
+        font-size: 2.1rem;
+      }
+      .about-img-frame {
+        height: 250px;
+        border-radius: 18px;
+      }
+      .about-features-4grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .about-process-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .about-cta-section {
+        padding: 45px 20px;
+        margin: 30px 16px 60px;
+        border-radius: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <!-- Premium Loader -->
   <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
     <div class="loader-content">
@@ -49,6 +451,7 @@
         <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
         <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
       </div>
+
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
@@ -57,70 +460,78 @@
         <a href="quality.html">Quality</a>
         <a href="contact.html">Contact</a>
       </nav>
+
       <div class="header-actions">
-        <a href="contact.html" class="btn btn-primary">Get Quote</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <a href="products.html" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
+        <a href="tel:+919825626651" class="icon-btn" aria-label="Call"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/919825626651" target="_blank" class="icon-btn" aria-label="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
+        <button type="button" class="btn btn-primary" onclick="openQuoteModal()">Get Quote</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- 1. Hero Section -->
-  <section class="container light-hero fade-up">
-    <div class="light-hero-left fade-right">
-      <div class="factory-img-wrapper">
-        <img src="assets/images/factoryy.webp" alt="Parth Plastopack Facility" class="factory-img">
-        <div class="badge-floating zoom-in delay-300">
-          <span class="badge-num">25+</span>
-          <span class="badge-text">Years of Excellence</span>
+  <section class="about-hero-section">
+    <div class="about-hero-grid">
+      <!-- Left: Factory Image -->
+      <div class="about-img-frame">
+        <img src="assets/images/factoryy.webp" alt="Parth Plasto Pack Facility">
+        <div class="about-floating-exp">
+          <div class="exp-num">25+</div>
+          <div class="exp-text">Years of<br>Excellence</div>
         </div>
       </div>
-    </div>
-    <div class="light-hero-right fade-left delay-200">
-      <div class="badge">ABOUT US</div>
-      <h1 class="hero-title-light">Trusted Manufacturer of<br><span class="text-gradient">Premium Packaging</span></h1>
-      <p class="section-desc" style="margin-left: 0; margin-bottom: 20px;">
-        Parth Plasto Pack Pvt. Ltd. is a
-        t rusted manufacturer of
-        premium plastic packaging
-        solutions tailored for the
-        p h a r m a c e u t i c a l a n d
-        nutraceutical industries. We
-        are committed to delivering
-        quality, innovaction, and
-        customer satisfaction.
-      </p>
-      <p class="section-desc" style="margin-left: 0; margin-bottom: 40px;">
-        Our state-of-the-art cleanroom facility in Ahmedabad, Gujarat produces over 500+ packaging products serving
-        1000+ clients across 20+ states in India and global markets.
-      </p>
 
-      <div class="features-grid-light">
-        <div class="feature-card-light fade-up delay-100">
-          <div class="feature-icon-light"><i class="fas fa-shield-alt"></i></div>
-          <div class="feature-content-light">
-            <h4>ISO Certified</h4>
-            <p>ISO 15378 certified manufacturing with GMP compliance</p>
+      <!-- Right: About Details -->
+      <div>
+        <h1 class="about-hero-title">Trusted Manufacturer of<br><span class="text-gradient">Premium Packaging</span></h1>
+        <p class="about-hero-desc">
+          Parth Plasto Pack Pvt. Ltd. is a trusted manufacturer of premium plastic packaging solutions tailored for the pharmaceutical and nutraceutical industries. We are committed to delivering unmatched quality, continuous innovation, and total customer satisfaction.
+        </p>
+        <p class="about-hero-desc">
+          Our state-of-the-art cleanroom facility in Ahmedabad, Gujarat produces over 500+ specialized packaging items serving 1,000+ brand partners across India and global healthcare markets.
+        </p>
+
+        <!-- 4 Feature Badges with Multicolor Icons -->
+        <div class="about-features-4grid">
+          <!-- 1. ISO -->
+          <div class="about-feat-pill" style="--feat-color: #2563eb; --feat-bg: #eff6ff; --feat-glow: rgba(37, 99, 235, 0.2);">
+            <div class="about-feat-icon"><i class="fa-solid fa-certificate"></i></div>
+            <div class="about-feat-info">
+              <h4>ISO 15378</h4>
+              <p>Certified cleanroom manufacturing with GMP compliance.</p>
+            </div>
           </div>
-        </div>
-        <div class="feature-card-light fade-up delay-200">
-          <div class="feature-icon-light"><i class="fas fa-award"></i></div>
-          <div class="feature-content-light">
-            <h4>Food Grade</h4>
-            <p>100% virgin food-grade FDA compliant polymers</p>
+
+          <!-- 2. Food Grade -->
+          <div class="about-feat-pill" style="--feat-color: #059669; --feat-bg: #ecfdf5; --feat-glow: rgba(5, 150, 105, 0.2);">
+            <div class="about-feat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="about-feat-info">
+              <h4>Food Grade</h4>
+              <p>100% virgin US-FDA & FSSAI compliant polymers.</p>
+            </div>
           </div>
-        </div>
-        <div class="feature-card-light fade-up delay-300">
-          <div class="feature-icon-light"><i class="fas fa-wrench"></i></div>
-          <div class="feature-content-light">
-            <h4>Custom Moulding</h4>
-            <p>Tailored packaging solutions with rapid prototyping</p>
+
+          <!-- 3. Custom Moulding -->
+          <div class="about-feat-pill" style="--feat-color: #7c3aed; --feat-bg: #f5f3ff; --feat-glow: rgba(124, 58, 237, 0.2);">
+            <div class="about-feat-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="about-feat-info">
+              <h4>Custom Tooling</h4>
+              <p>In-house CAD/CAM design with rapid prototyping.</p>
+            </div>
           </div>
-        </div>
-        <div class="feature-card-light fade-up delay-400">
-          <div class="feature-icon-light"><i class="fas fa-globe"></i></div>
-          <div class="feature-content-light">
-            <h4>Export Quality</h4>
-            <p>Meeting international packaging standards globally</p>
+
+          <!-- 4. Export Quality -->
+          <div class="about-feat-pill" style="--feat-color: #0891b2; --feat-bg: #ecfeff; --feat-glow: rgba(8, 145, 178, 0.2);">
+            <div class="about-feat-icon"><i class="fa-solid fa-earth-americas"></i></div>
+            <div class="about-feat-info">
+              <h4>Global Standards</h4>
+              <p>Hermetic barrier packaging delivered worldwide.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -128,183 +539,167 @@
   </section>
 
   <!-- 2. Mission & Vision -->
-  <section class="container mission-vision-section fade-up">
-    <div class="mv-card fade-up delay-100">
-      <div class="mv-header">
-        <span class="mv-icon">🎯</span>
-        <h3 class="mv-title">Our Mission</h3>
+  <section class="mv-container-grid">
+    <!-- Mission -->
+    <div class="mv-modern-card" style="--mv-color: #2563eb; --mv-bg: #eff6ff; --mv-border: #bfdbfe; --mv-glow: rgba(37, 99, 235, 0.18);">
+      <div class="mv-top-header">
+        <div class="mv-icon-box">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <h3>Our Mission</h3>
       </div>
-      <p class="mv-desc">To be India's most trusted manufacturer of pharmaceutical-grade plastic packaging, delivering
-        innovative, compliant, and sustainable solutions that protect and preserve health products worldwide.</p>
+      <p>
+        To be India's most trusted manufacturer of pharmaceutical-grade plastic packaging, delivering innovative, compliant, and sustainable solutions that protect and preserve vital health formulations worldwide.
+      </p>
     </div>
-    <div class="mv-card fade-up delay-200">
-      <div class="mv-header">
-        <span class="mv-icon">🔭</span>
-        <h3 class="mv-title">Our Vision</h3>
+
+    <!-- Vision -->
+    <div class="mv-modern-card" style="--mv-color: #7c3aed; --mv-bg: #f5f3ff; --mv-border: #ddd6fe; --mv-glow: rgba(124, 58, 237, 0.18);">
+      <div class="mv-top-header">
+        <div class="mv-icon-box">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+        <h3>Our Vision</h3>
       </div>
-      <p class="mv-desc">To become a globally recognized packaging partner, setting industry benchmarks in quality,
-        innovation, and sustainability while expanding our footprint across international markets.</p>
+      <p>
+        To become a globally recognized primary packaging innovator, setting benchmarks in cleanroom automation, sustainable resin engineering, and airtight barrier performance across international markets.
+      </p>
     </div>
   </section>
 
   <!-- 3. Our Process -->
-  <section class="container mfg-experience fade-up" style="margin-top: 80px;">
-    <div class="section-header text-center" style="margin-bottom: 80px;">
-      <div class="badge">OUR PROCESS</div>
-      <h2 class="section-title">From Concept to Delivery</h2>
-      <p class="section-desc">A streamlined 6-step manufacturing process ensuring quality at every stage.</p>
+  <section class="about-process-section">
+    <div style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+      <h2 style="font-size: 2.35rem; font-weight: 800; color: var(--about-dark); margin: 0 0 12px;">From Concept to <span class="text-gradient">Delivery</span></h2>
+      <p style="color: var(--about-muted); font-size: 1.05rem; margin: 0;">A streamlined 6-step manufacturing workflow ensuring zero-defect quality at every stage.</p>
     </div>
 
-    <div class="process-journey-container">
-      <div class="process-line-bg"></div>
-      <div class="process-line-fill" id="processLine"></div>
-
-      <div class="process-step-new fade-up delay-100">
-        <div class="process-icon-new">💬</div>
-        <div class="process-step-num">STEP 01</div>
-        <div class="process-name-new">Consultation</div>
-        <p class="process-desc-new">We understand your packaging requirements, product specifications, regulatory needs,
-          and volume projections through detailed consultation.</p>
+    <div class="about-process-grid">
+      <!-- 01 -->
+      <div class="about-process-tile p-theme-blue">
+        <span class="about-process-badge">STEP 01</span>
+        <div class="about-process-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h4>Consultation</h4>
+        <p>Formulation barrier assessment & custom sizing feasibility.</p>
       </div>
 
-      <div class="process-step-new fade-up delay-200">
-        <div class="process-icon-new">✏️</div>
-        <div class="process-step-num">STEP 02</div>
-        <div class="process-name-new">Design & Engineering</div>
-        <p class="process-desc-new">Our engineering team creates precise CAD models and technical drawings tailored to
-          your product, considering material selection and tooling requirements.</p>
+      <!-- 02 -->
+      <div class="about-process-tile p-theme-cyan">
+        <span class="about-process-badge">STEP 02</span>
+        <div class="about-process-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+        <h4>Design & CAD</h4>
+        <p>3D CAD mold modeling & cavity flow simulations.</p>
       </div>
 
-      <div class="process-step-new fade-up delay-300">
-        <div class="process-icon-new">🔬</div>
-        <div class="process-step-num">STEP 03</div>
-        <div class="process-name-new">Prototype Development</div>
-        <p class="process-desc-new">We produce physical prototypes for your evaluation, including stability testing
-          samples and compatibility trials before mass production.</p>
+      <!-- 03 -->
+      <div class="about-process-tile p-theme-amber">
+        <span class="about-process-badge">STEP 03</span>
+        <div class="about-process-icon"><i class="fa-solid fa-cube"></i></div>
+        <h4>Prototyping</h4>
+        <p>Physical sampling & trial run validation testing.</p>
       </div>
 
-      <div class="process-step-new fade-up delay-400">
-        <div class="process-icon-new">🏭</div>
-        <div class="process-step-num">STEP 04</div>
-        <div class="process-name-new">Manufacturing</div>
-        <p class="process-desc-new">State-of-the-art injection blow moulding and extrusion blow moulding in our
-          ISO-certified cleanroom facility ensures zero-defect production.</p>
+      <!-- 04 -->
+      <div class="about-process-tile p-theme-purple">
+        <span class="about-process-badge">STEP 04</span>
+        <div class="about-process-icon"><i class="fa-solid fa-industry"></i></div>
+        <h4>Manufacturing</h4>
+        <p>Class 100k cleanroom high-speed electric moulding.</p>
       </div>
 
-      <div class="process-step-new fade-up delay-500">
-        <div class="process-icon-new">✅</div>
-        <div class="process-step-num">STEP 05</div>
-        <div class="process-name-new">Quality Inspection</div>
-        <p class="process-desc-new">Rigorous multi-point quality checks including dimensional accuracy, leak testing,
-          drop testing, and MVTR analysis on every production batch.</p>
+      <!-- 05 -->
+      <div class="about-process-tile p-theme-green">
+        <span class="about-process-badge">STEP 05</span>
+        <div class="about-process-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h4>Quality QC</h4>
+        <p>Laser dimensions, vacuum leak & torque verification.</p>
       </div>
 
-      <div class="process-step-new fade-up delay-600">
-        <div class="process-icon-new">🚚</div>
-        <div class="process-step-num">STEP 06</div>
-        <div class="process-name-new">Packaging & Delivery</div>
-        <p class="process-desc-new">Secure packaging, batch documentation, and reliable logistics ensuring safe delivery
-          across 20+ states in India and international markets.</p>
+      <!-- 06 -->
+      <div class="about-process-tile p-theme-rose">
+        <span class="about-process-badge">STEP 06</span>
+        <div class="about-process-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+        <h4>Dispatch</h4>
+        <p>Palletized cleanroom packaging & punctual logistics.</p>
       </div>
     </div>
   </section>
 
-  <!-- Trusted By Brands Marquee -->
+  <!-- 4. Trusted By Brands Marquee -->
   <section class="trusted-marquee-section fade-up">
     <div class="container">
       <div class="section-header text-center" style="margin-bottom: 30px;">
-        <div class="badge" style="background: rgba(116,55,155,0.05); color: var(--primary);">TRUSTED BY INDUSTRY LEADERS</div>
-        <h2 class="section-title">1000+ Brands Trust Our Packaging</h2>
+        <h2 class="section-title">Trusted By <span class="text-gradient">Industry Leaders</span></h2>
+        <p class="section-desc">1,000+ Brands Powered by Our Packaging Solutions</p>
       </div>
     </div>
 
     <div class="marquee-container">
       <div class="marquee-track">
-        <!-- Row 1 -->
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
         <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
         <!-- Duplicate for infinite scroll -->
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
         <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
       </div>
     </div>
 
     <div class="marquee-container marquee-reverse" style="margin-top: 20px;">
       <div class="marquee-track-reverse">
-        <!-- Row 2 -->
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro
-            Supplements</span></div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro Supplements</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span></div>
         <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span></div>
         <!-- Duplicate for infinite scroll -->
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro
-            Supplements</span></div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro Supplements</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span></div>
         <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
-        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span>
-        </div>
-        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span>
-        </div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 5. Final Gradient CTA -->
-  <section class="gradient-cta fade-up">
-    <div class="container text-center">
-      <div class="badge">READY TO SCALE YOUR PACKAGING?</div>
-      <h2 class="section-title">Let's Build Your Custom Packaging<br>Solution Today</h2>
-      <p class="section-desc">
-        Get competitive pricing, free samples, and expert consultation for your pharmaceutical and nutraceutical
-        packaging needs.
+  <!-- 5. Interactive Call to Action Banner -->
+  <div class="container">
+    <div class="about-cta-section">
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin: 0 0 16px; color: #ffffff;">
+        Let's Build Your Custom <span class="text-gradient" style="background: linear-gradient(135deg, #ffffff, #f1e6f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Packaging Solution</span>
+      </h2>
+      <p style="color: rgba(255, 255, 255, 0.92); max-width: 680px; margin: 0 auto 36px; font-size: 1.05rem; line-height: 1.65;">
+        Get competitive pricing, complimentary product samples, and expert tooling consultation for your pharmaceutical and nutraceutical packaging needs.
       </p>
-
-      <div class="hero-buttons justify-center"
-        style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;">
-        <a href="contact.html" class="btn cta-btn-white">Get a Free Quote &rarr;</a>
-        <a href="tel:+919876543210" class="btn cta-btn-glass"><i class="fas fa-phone-alt"
-            style="margin-right: 6px;"></i> Call Now</a>
-        <a href="assets/catalog.pdf" class="btn cta-btn-glass"><i class="fas fa-download"
-            style="margin-right: 6px;"></i> Download Catalog</a>
+      <div class="cta-buttons" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <button type="button" class="btn cta-btn-white" onclick="openQuoteModal()" style="padding: 14px 32px; font-size: 1rem; border-radius: 9999px;">
+          Request Custom Packaging Quote &rarr;
+        </button>
+        <a href="contact.html" class="btn cta-btn-glass" style="padding: 14px 28px; font-size: 1rem; border-radius: 9999px;">
+          <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> Call Sales Team
+        </a>
+        <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass" style="padding: 14px 28px; font-size: 1rem; border-radius: 9999px;">
+          <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp
+        </a>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 16px;">Parth Plasto Pack</h3>
-        <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical
-          brands. 25+ years of industrial excellence.</p>
+        <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands. 25+ years of industrial excellence.</p>
         <p>11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
       </div>
 
@@ -321,30 +716,24 @@
       </div>
 
       <div class="footer-col">
-        <h4>Our Products</h4>
+        <h4>Packaging Categories</h4>
         <div class="footer-links">
           <a href="products.html">Protein Powder Containers</a>
-          <a href="products.html">HDPE Containers</a>
-          <a href="products.html">Medicine Jars</a>
-          <a href="products.html">Plastic Caps & Closures</a>
-          <a href="products.html">PET Bottles</a>
+          <a href="products.html">HDPE Pharma Jars</a>
           <a href="products.html">Effervescent Tubes</a>
+          <a href="products.html">Tamper-Evident Caps</a>
+          <a href="products.html">Pharma Dropper Bottles</a>
+          <a href="products.html">Measuring Spoons</a>
         </div>
       </div>
 
       <div class="footer-col">
         <h4>Get In Touch</h4>
         <div class="footer-links" style="margin-bottom: 24px;">
-          <a href="mailto:parthplastopack@gmail.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i>
-            parthplastopack@gmail.com</a>
-          <a href="tel:+919876543210"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98765 43210</a>
-          <a href="#"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
+          <a href="mailto:parthplastopack@gmail.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i> parthplastopack@gmail.com</a>
+          <a href="tel:+919825626651"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98256 26651</a>
+          <a href="https://wa.me/919825626651" target="_blank"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
         </div>
-
-        <form class="footer-newsletter-form">
-          <input type="email" placeholder="Your Email Address" required>
-          <button type="submit">Subscribe</button>
-        </form>
       </div>
     </div>
 
@@ -362,8 +751,8 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/main.js?v=2"></script>
+  <script src="js/animations.js?v=2"></script>
 </body>
 
 </html>
