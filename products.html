@@ -36,6 +36,7 @@
 
     body {
       background-color: #faf9fd;
+      overflow-x: hidden;
     }
 
     /* Page Container */
@@ -624,76 +625,100 @@
 
     @media (max-width: 580px) {
       .catalog-page-container {
-        padding: 0 10px !important;
+        padding: 0 8px !important;
+        overflow-x: hidden !important;
       }
       .products-hero-section {
         padding-top: 100px;
-        padding-bottom: 12px;
+        padding-bottom: 10px;
       }
       .products-hero-card {
         padding: 16px 14px;
         border-radius: 16px;
       }
-      .hero-catalog-title {
-        font-size: 1.5rem;
+      .products-hero-card::before {
+        display: none;
+      }
+      .hero-badge-tag {
+        font-size: 0.65rem;
+        letter-spacing: 1.2px;
         margin-bottom: 6px;
       }
+      .hero-catalog-title {
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
       .hero-catalog-subtitle {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         line-height: 1.4;
       }
       .category-strip-section {
-        padding: 10px 0 8px;
+        padding: 8px 0 6px;
       }
       .category-circle-row {
         gap: 12px;
-        padding-bottom: 8px;
+        padding: 6px 2px 8px;
       }
       .cat-circle-btn {
-        min-width: 68px;
-        max-width: 78px;
+        min-width: 64px;
+        max-width: 74px;
       }
       .cat-circle-icon {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
         margin-bottom: 4px;
         padding: 4px;
+        border-width: 1.5px;
       }
       .cat-circle-label {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         letter-spacing: 0;
+        line-height: 1.2;
       }
       .catalog-sidebar {
-        padding: 12px !important;
-        margin-bottom: 14px !important;
-        border-radius: 14px !important;
+        padding: 10px !important;
+        margin-bottom: 10px !important;
+        border-radius: 12px !important;
+      }
+      .sidebar-heading {
+        font-size: 0.85rem !important;
+        margin-bottom: 10px !important;
       }
       .search-input-field {
-        padding: 10px 14px 10px 38px !important;
-        font-size: 0.85rem !important;
+        padding: 8px 12px 8px 34px !important;
+        font-size: 0.82rem !important;
+        border-radius: 10px !important;
+      }
+      .search-input-wrap {
+        margin-bottom: 10px !important;
       }
       .product-counter-text {
-        margin-bottom: 12px !important;
-        font-size: 0.78rem !important;
+        margin-bottom: 10px !important;
+        font-size: 0.75rem !important;
       }
       .products-catalog-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 8px !important;
         width: 100% !important;
+        overflow: hidden !important;
       }
       .product-catalog-card {
         padding: 8px !important;
         border-radius: 12px !important;
         min-width: 0 !important;
+        max-width: 100% !important;
         box-sizing: border-box !important;
+        overflow: hidden !important;
       }
       .card-image-box {
-        height: 110px !important;
+        height: 100px !important;
         margin-bottom: 6px !important;
         padding: 4px !important;
+        border-radius: 8px !important;
+        background: #faf8fd !important;
       }
       .card-product-title {
-        font-size: 0.82rem !important;
+        font-size: 0.78rem !important;
         margin-bottom: 4px !important;
         line-height: 1.2 !important;
         overflow: hidden !important;
@@ -701,36 +726,57 @@
         white-space: nowrap !important;
       }
       .card-badge-tag {
-        font-size: 0.54rem !important;
+        font-size: 0.5rem !important;
         padding: 1px 4px !important;
-        bottom: 4px !important;
-        left: 4px !important;
-        max-width: 88% !important;
+        bottom: 3px !important;
+        left: 3px !important;
+        max-width: 85% !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         white-space: nowrap !important;
+        border-radius: 4px !important;
       }
       .card-specs-list {
-        padding: 5px 6px !important;
-        gap: 3px !important;
+        padding: 4px 6px !important;
+        gap: 2px !important;
         margin-bottom: 6px !important;
+        border-radius: 6px !important;
+        overflow: hidden !important;
       }
       .spec-row {
-        font-size: 0.64rem !important;
+        font-size: 0.6rem !important;
+        gap: 4px !important;
+      }
+      .spec-row .spec-label {
+        flex-shrink: 0 !important;
+        min-width: 0 !important;
+      }
+      .spec-row .spec-val {
+        max-width: 55% !important;
+        font-size: 0.6rem !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
       }
       .card-actions-row {
         gap: 4px !important;
         flex-direction: column !important;
       }
-      .btn-card-details, .btn-card-quote {
-        padding: 6px 4px !important;
+      .btn-card-details {
+        padding: 7px 4px !important;
         font-size: 0.7rem !important;
-        border-radius: 6px !important;
+        border-radius: 7px !important;
         text-align: center !important;
         justify-content: center !important;
         white-space: nowrap !important;
-        text-overflow: ellipsis !important;
-        overflow: hidden !important;
+      }
+      .btn-card-quote {
+        padding: 7px 4px !important;
+        font-size: 0.7rem !important;
+        border-radius: 7px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
       }
     }
   </style>
