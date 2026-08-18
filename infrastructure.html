@@ -42,23 +42,29 @@
     .infra-pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--infra-purple-light);
-      color: var(--infra-purple);
-      font-size: 0.78rem;
+      gap: 10px;
+      background: linear-gradient(135deg, #f5edfc 0%, #ede0f7 100%);
+      color: var(--infra-purple-dark);
+      font-size: 1.15rem;
       font-weight: 800;
-      padding: 7px 20px;
+      padding: 10px 28px;
       border-radius: 9999px;
-      letter-spacing: 1.2px;
+      border: 1.5px solid #dfcef0;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.1);
+      margin-bottom: 22px;
+      box-shadow: 0 6px 20px rgba(123, 63, 163, 0.12);
       animation: pulseBadge 3s infinite ease-in-out;
+    }
+
+    .infra-pill-badge i {
+      font-size: 1.25rem;
+      color: var(--infra-purple);
     }
 
     @keyframes pulseBadge {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+      50% { transform: scale(1.02); }
     }
 
     .infra-hero-title {
