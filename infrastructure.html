@@ -261,7 +261,7 @@
     }
 
     /* ==========================================================================
-       ANIMATED PROCESS SECTION ("From Concept to Delivery") - VIBRANT COLORFUL
+       ANIMATED PROCESS SECTION ("From Concept to Delivery") - VIBRANT & ANIMATED
        ========================================================================== */
     .process-section {
       background: linear-gradient(180deg, #faf7fd 0%, #ffffff 100%);
@@ -287,26 +287,72 @@
       position: relative;
     }
 
-    /* Connecting Rainbow Glow Line */
+    /* Keyframe Animations for Icons & Energy Beam */
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 var(--step-glow, rgba(123, 63, 163, 0.35)); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+    }
+
+    @keyframes energyBeam {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    @keyframes iconSpinSlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes iconPulseGlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    @keyframes iconWobble {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    @keyframes iconDrive {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    @keyframes iconBounce3D {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.15); }
+    }
+
+    /* Connecting Rainbow Pulsing Glow Line */
     .process-grid-animated::before {
       content: '';
       position: absolute;
       top: 50px;
       left: 5%;
       right: 5%;
-      height: 3px;
-      background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 20%, #f59e0b 40%, #8b5cf6 60%, #10b981 80%, #f43f5e 100%);
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4, #f59e0b, #8b5cf6, #10b981, #f43f5e, #3b82f6);
+      background-size: 200% 100%;
+      animation: energyBeam 4s linear infinite;
       z-index: 0;
       border-radius: 9999px;
+      box-shadow: 0 0 14px rgba(123, 63, 163, 0.35);
     }
 
     /* Individual Distinct Colorful Step Styles */
-    .step-col-1 { --step-color: #2563eb; --step-bg: #eff6ff; --step-border: #bfdbfe; --step-glow: rgba(37, 99, 235, 0.25); }
-    .step-col-2 { --step-color: #0891b2; --step-bg: #ecfeff; --step-border: #a5f3fc; --step-glow: rgba(8, 145, 178, 0.25); }
-    .step-col-3 { --step-color: #d97706; --step-bg: #fffbeb; --step-border: #fde68a; --step-glow: rgba(217, 119, 6, 0.25); }
-    .step-col-4 { --step-color: #7c3aed; --step-bg: #f5f3ff; --step-border: #ddd6fe; --step-glow: rgba(124, 58, 237, 0.25); }
-    .step-col-5 { --step-color: #059669; --step-bg: #ecfdf5; --step-border: #a7f3d0; --step-glow: rgba(5, 150, 105, 0.25); }
-    .step-col-6 { --step-color: #e11d48; --step-bg: #fff1f2; --step-border: #fecdd3; --step-glow: rgba(225, 29, 72, 0.25); }
+    .step-col-1 { --step-color: #2563eb; --step-bg: #eff6ff; --step-border: #bfdbfe; --step-glow: rgba(37, 99, 235, 0.28); }
+    .step-col-2 { --step-color: #0891b2; --step-bg: #ecfeff; --step-border: #a5f3fc; --step-glow: rgba(8, 145, 178, 0.28); }
+    .step-col-3 { --step-color: #d97706; --step-bg: #fffbeb; --step-border: #fde68a; --step-glow: rgba(217, 119, 6, 0.28); }
+    .step-col-4 { --step-color: #7c3aed; --step-bg: #f5f3ff; --step-border: #ddd6fe; --step-glow: rgba(124, 58, 237, 0.28); }
+    .step-col-5 { --step-color: #059669; --step-bg: #ecfdf5; --step-border: #a7f3d0; --step-glow: rgba(5, 150, 105, 0.28); }
+    .step-col-6 { --step-color: #e11d48; --step-bg: #fff1f2; --step-border: #fecdd3; --step-glow: rgba(225, 29, 72, 0.28); }
 
     .process-card-anim {
       background: #ffffff;
@@ -345,6 +391,7 @@
       margin: 0 0 14px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       transition: all 0.35s ease;
+      animation: pulseRing 3.5s infinite ease-in-out;
     }
 
     .process-card-anim:hover .process-badge-circle {
@@ -356,23 +403,40 @@
     }
 
     .process-icon-tile {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       background: var(--step-bg);
       color: var(--step-color);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       margin-bottom: 12px;
-      transition: all 0.35s ease;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: floatIcon 3.6s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
+    .step-col-1 .process-icon-tile { animation-delay: 0s; }
+    .step-col-2 .process-icon-tile { animation-delay: 0.6s; }
+    .step-col-3 .process-icon-tile { animation-delay: 1.2s; }
+    .step-col-4 .process-icon-tile { animation-delay: 1.8s; }
+    .step-col-5 .process-icon-tile { animation-delay: 2.4s; }
+    .step-col-6 .process-icon-tile { animation-delay: 3s; }
+
+    .step-col-1:hover .process-icon-tile i { animation: iconWobble 0.7s ease infinite; }
+    .step-col-2:hover .process-icon-tile i { animation: iconWobble 0.7s ease infinite; }
+    .step-col-3:hover .process-icon-tile i { animation: iconBounce3D 0.7s ease infinite; }
+    .step-col-4:hover .process-icon-tile i { animation: iconSpinSlow 3s linear infinite; }
+    .step-col-5:hover .process-icon-tile i { animation: iconPulseGlow 0.8s ease infinite; }
+    .step-col-6:hover .process-icon-tile i { animation: iconDrive 0.6s ease infinite; }
+
     .process-card-anim:hover .process-icon-tile {
-      transform: scale(1.15) rotate(5deg);
+      transform: scale(1.18) translateY(-3px);
       background: var(--step-color);
       color: #ffffff;
+      box-shadow: 0 10px 24px var(--step-glow);
     }
 
     .process-card-anim h4 {
@@ -391,7 +455,7 @@
     }
 
     /* ==========================================================================
-       INTERACTIVE INFRASTRUCTURE CAPABILITIES TABS - MULTICOLOR
+       INTERACTIVE INFRASTRUCTURE CAPABILITIES TABS - MULTICOLOR & ANIMATED
        ========================================================================== */
     .infra-tabs-section {
       padding: 80px 20px;
@@ -469,23 +533,29 @@
     }
 
     .infra-feature-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
       background: var(--icon-bg, var(--infra-purple-light));
       color: var(--icon-color, var(--infra-purple));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       margin-bottom: 20px;
-      transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease;
+      transition: all 0.35s ease;
+      animation: floatIcon 4s ease-in-out infinite;
     }
 
     .infra-feature-card:hover .infra-feature-icon {
-      transform: scale(1.12) rotate(6deg);
+      transform: scale(1.14) rotate(6deg);
       background: var(--icon-color, var(--infra-purple));
       color: #ffffff;
+      box-shadow: 0 10px 26px var(--card-glow, rgba(123, 63, 163, 0.3));
+    }
+
+    .infra-feature-card:hover .infra-feature-icon i {
+      animation: iconPulseGlow 0.9s infinite ease-in-out;
     }
 
     .infra-feature-card h3 {
