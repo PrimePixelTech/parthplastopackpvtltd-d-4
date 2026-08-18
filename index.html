@@ -181,23 +181,12 @@
       .hero-title br {
         display: none;
       }
-      .hero-live-badge {
-        font-size: 0.72rem !important;
-        padding: 5px 12px !important;
-        white-space: normal !important;
-        line-height: 1.3 !important;
-        margin-bottom: 16px !important;
-      }
-      .hero-pill-highlights {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 8px !important;
-        margin-top: 20px !important;
-      }
-      .hero-pill-item {
-        justify-content: center !important;
-        font-size: 0.78rem !important;
-        padding: 8px 12px !important;
+      .hero-section .badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        white-space: normal;
+        line-height: 1.3;
+        margin-bottom: 16px;
       }
       .card-buttons {
         flex-direction: column;
@@ -278,30 +267,34 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container hero-content fade-up">
-      <div class="hero-live-badge">
-        <span class="live-dot"></span>
-        <span>ISO 15378 & GMP CLEANROOM FACILITY</span>
-      </div>
-      
+      <div class="badge">ISO 15378 & GMP CERTIFIED CLEANROOM FACILITY</div>
       <h1 class="hero-title">
-        Precision Plastic <br>
-        <span class="text-gradient">Packaging Solutions</span> for Global Brands
+        Premium Pharma & <br>
+        <span class="text-gradient">Nutraceutical</span> Packaging Solutions
       </h1>
-      
-      <p class="section-desc" style="margin-left: 0; max-width: 600px; font-size: 1.05rem; line-height: 1.65; color: #475569;">
-        Engineering sterile, leak-proof, and FDA-compliant bottles, jars, and containers for leading pharmaceutical, healthcare, and nutraceutical manufacturers worldwide.
+      <p class="section-desc" style="margin-left: 0;">
+        High-quality, sterile, and compliant plastic packaging engineered for global pharmaceutical and nutraceutical standards. Trusted by 1000+ brands.
       </p>
-      
       <div class="hero-buttons">
-        <a href="products.html" class="btn btn-primary" style="padding: 14px 28px;">Explore Products &rarr;</a>
-        <a href="contact.html" class="btn btn-secondary" style="padding: 14px 28px; background: #ffffff; color: #0f172a; border: 1px solid #e2e8f0; font-weight: 700;">Request Quick Quote</a>
+        <a href="products.html" class="btn btn-primary">Explore Products &rarr;</a>
+        <a href="contact.html" class="btn btn-secondary">Request Quote</a>
+        <a href="contact.html" class="btn btn-text"><i class="fas fa-play"></i> Contact Sales</a>
       </div>
 
-      <!-- Trust Badges Under Buttons -->
-      <div class="hero-pill-highlights">
-        <div class="hero-pill-item"><i class="fas fa-check-circle" style="color: #10B981;"></i> 100% Virgin Food-Grade</div>
-        <div class="hero-pill-item"><i class="fas fa-shield-alt" style="color: #74379B;"></i> US FDA DMF Registered</div>
-        <div class="hero-pill-item"><i class="fas fa-truck-fast" style="color: #EA580C;"></i> Pan-India Dispatch</div>
+      <!-- Trust Highlights Bar (Single Line with Smooth Animation) -->
+      <div class="hero-highlights-track">
+        <div class="hero-highlight-pill pill-green">
+          <i class="fas fa-check-circle"></i>
+          <span>100% Virgin Food-Grade</span>
+        </div>
+        <div class="hero-highlight-pill pill-purple">
+          <i class="fas fa-shield-alt"></i>
+          <span>US FDA DMF Registered</span>
+        </div>
+        <div class="hero-highlight-pill pill-orange">
+          <i class="fas fa-truck-fast"></i>
+          <span>Pan-India Dispatch</span>
+        </div>
       </div>
     </div>
     <div class="floating-images">
