@@ -353,7 +353,7 @@
       background: linear-gradient(135deg, #74379B 0%, #8E3A91 50%, #B03A72 100%);
       color: #ffffff;
       border-radius: 28px;
-      padding: 70px 40px;
+      padding: 60px 30px;
       margin: 40px auto 90px;
       max-width: 1200px;
       text-align: center;
@@ -372,6 +372,65 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
+    }
+
+    .cta-buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .cta-main-btn {
+      width: 100%;
+      padding: 14px 24px !important;
+      font-size: 0.96rem !important;
+      border-radius: 9999px !important;
+      font-weight: 700 !important;
+      white-space: nowrap !important;
+    }
+
+    .cta-sub-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .cta-sub-buttons .btn {
+      width: 100%;
+      padding: 11px 12px !important;
+      font-size: 0.85rem !important;
+      border-radius: 9999px !important;
+      white-space: nowrap !important;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    @media (min-width: 769px) {
+      .cta-buttons-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        max-width: none;
+        gap: 16px;
+      }
+      .cta-main-btn {
+        width: auto;
+        padding: 14px 30px !important;
+      }
+      .cta-sub-buttons {
+        display: flex;
+        width: auto;
+        gap: 14px;
+      }
+      .cta-sub-buttons .btn {
+        width: auto;
+        padding: 14px 24px !important;
+        font-size: 0.95rem !important;
+      }
     }
 
     /* Responsive */
@@ -720,22 +779,24 @@
   <!-- 5. Interactive Call to Action Banner -->
   <div class="container">
     <div class="about-cta-section">
-      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin: 0 0 16px; color: #ffffff;">
-        Let's Build Your Custom <span class="text-gradient" style="background: linear-gradient(135deg, #ffffff, #f1e6f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Packaging Solution</span>
+      <h2 style="font-size: clamp(1.65rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 14px; color: #ffffff;">
+        Let's Build Your Custom <span style="background: linear-gradient(135deg, #ffffff, #fef08a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Packaging Solution</span>
       </h2>
-      <p style="color: rgba(255, 255, 255, 0.92); max-width: 680px; margin: 0 auto 36px; font-size: 1.05rem; line-height: 1.65;">
+      <p style="color: rgba(255, 255, 255, 0.92); max-width: 640px; margin: 0 auto 28px; font-size: 0.96rem; line-height: 1.6;">
         Get competitive pricing, complimentary product samples, and expert tooling consultation for your pharmaceutical and nutraceutical packaging needs.
       </p>
-      <div class="cta-buttons" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <button type="button" class="btn cta-btn-white" onclick="openQuoteModal()" style="padding: 14px 32px; font-size: 1rem; border-radius: 9999px;">
-          Request Custom Packaging Quote &rarr;
+      <div class="cta-buttons-wrapper">
+        <button type="button" class="btn cta-btn-white cta-main-btn" onclick="openQuoteModal()">
+          Request Free Quote &rarr;
         </button>
-        <a href="contact.html" class="btn cta-btn-glass" style="padding: 14px 28px; font-size: 1rem; border-radius: 9999px;">
-          <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> Call Sales Team
-        </a>
-        <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass" style="padding: 14px 28px; font-size: 1rem; border-radius: 9999px;">
-          <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp
-        </a>
+        <div class="cta-sub-buttons">
+          <a href="tel:+919825626651" class="btn cta-btn-glass">
+            <i class="fas fa-phone-alt"></i> Call Now
+          </a>
+          <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </div>
