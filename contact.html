@@ -256,6 +256,31 @@
       position: relative;
     }
 
+    .map-directions-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      background: #7b3fa3;
+      color: #ffffff !important;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .map-directions-btn:hover {
+      background: #58217d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(123, 63, 163, 0.45);
+    }
+
     .contact-map-wrapper iframe {
       width: 100%;
       height: 100%;
@@ -531,16 +556,19 @@
     <div class="contact-info-list">
       <!-- 2x2 Grid of Contact Info Tiles on Mobile -->
       <div class="contact-tiles-grid">
-        <!-- 1. Location -->
-        <div class="contact-tile tile-theme-purple">
+        <!-- 1. Location (Clickable to Google Maps Directions) -->
+        <a href="https://maps.app.goo.gl/aDQiU3mSx11gQ6ZEA" target="_blank" class="contact-tile tile-theme-purple" style="text-decoration: none;">
           <div class="contact-tile-icon">
             <i class="fa-solid fa-location-dot"></i>
           </div>
           <div class="contact-tile-details">
             <h4>Visit Our Factory</h4>
             <p>11, Swagat Ind. Park-2, Indore-Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
+            <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; font-weight: 700; color: #7b3fa3; margin-top: 4px;">
+              Get Directions <i class="fa-solid fa-arrow-trend-up" style="font-size: 0.7rem;"></i>
+            </span>
           </div>
-        </div>
+        </a>
 
         <!-- 2. Call Us -->
         <div class="contact-tile tile-theme-blue">
@@ -590,11 +618,14 @@
         <i class="fa-solid fa-arrow-up-right-from-square" style="color: #16a34a; font-size: 1.1rem;"></i>
       </a>
 
-      <!-- Google Maps Embed -->
+      <!-- Google Maps Embed with Direct Navigation Button -->
       <div class="contact-map-wrapper">
+        <a href="https://maps.app.goo.gl/aDQiU3mSx11gQ6ZEA" target="_blank" class="map-directions-btn" title="Open in Google Maps for Directions">
+          <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+        </a>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.8797828062967!2d72.7483!3d22.9734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDU4JzI0LjIiTiA3MsKwNDQnNTMuOSJF!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Parth Plasto Pack Location">
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.2138!2d72.7659032!3d23.0038511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e7cda805df047%3A0x29327f0e26eb497b!2sSwagat%20Industrial%20Park%202!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Parth Plasto Pack Swagat Industrial Park 2 Location">
         </iframe>
       </div>
     </div>
