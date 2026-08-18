@@ -261,7 +261,7 @@
     }
 
     /* ==========================================================================
-       ANIMATED PROCESS SECTION ("From Concept to Delivery")
+       ANIMATED PROCESS SECTION ("From Concept to Delivery") - VIBRANT COLORFUL
        ========================================================================== */
     .process-section {
       background: linear-gradient(180deg, #faf7fd 0%, #ffffff 100%);
@@ -287,24 +287,32 @@
       position: relative;
     }
 
-    /* Connecting Glow Line */
+    /* Connecting Rainbow Glow Line */
     .process-grid-animated::before {
       content: '';
       position: absolute;
-      top: 48px;
+      top: 50px;
       left: 5%;
       right: 5%;
       height: 3px;
-      background: linear-gradient(90deg, #e9d5ff 0%, var(--infra-purple) 50%, #e9d5ff 100%);
+      background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 20%, #f59e0b 40%, #8b5cf6 60%, #10b981 80%, #f43f5e 100%);
       z-index: 0;
       border-radius: 9999px;
     }
 
+    /* Individual Distinct Colorful Step Styles */
+    .step-col-1 { --step-color: #2563eb; --step-bg: #eff6ff; --step-border: #bfdbfe; --step-glow: rgba(37, 99, 235, 0.25); }
+    .step-col-2 { --step-color: #0891b2; --step-bg: #ecfeff; --step-border: #a5f3fc; --step-glow: rgba(8, 145, 178, 0.25); }
+    .step-col-3 { --step-color: #d97706; --step-bg: #fffbeb; --step-border: #fde68a; --step-glow: rgba(217, 119, 6, 0.25); }
+    .step-col-4 { --step-color: #7c3aed; --step-bg: #f5f3ff; --step-border: #ddd6fe; --step-glow: rgba(124, 58, 237, 0.25); }
+    .step-col-5 { --step-color: #059669; --step-bg: #ecfdf5; --step-border: #a7f3d0; --step-glow: rgba(5, 150, 105, 0.25); }
+    .step-col-6 { --step-color: #e11d48; --step-bg: #fff1f2; --step-border: #fecdd3; --step-glow: rgba(225, 29, 72, 0.25); }
+
     .process-card-anim {
       background: #ffffff;
       border: 1px solid var(--infra-border);
-      border-radius: 20px;
-      padding: 24px 16px 20px;
+      border-radius: 22px;
+      padding: 24px 16px 22px;
       text-align: center;
       position: relative;
       z-index: 1;
@@ -317,50 +325,58 @@
     }
 
     .process-card-anim:hover {
-      transform: translateY(-8px);
-      border-color: var(--infra-purple);
-      box-shadow: 0 16px 36px var(--infra-purple-glow);
+      transform: translateY(-9px);
+      border-color: var(--step-color);
+      box-shadow: 0 18px 38px var(--step-glow);
     }
 
     .process-badge-circle {
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 3px solid var(--infra-purple-light);
-      color: var(--infra-purple);
+      background: var(--step-bg);
+      border: 2px solid var(--step-border);
+      color: var(--step-color);
       font-weight: 800;
       font-size: 1.15rem;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 0 14px;
-      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.15);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       transition: all 0.35s ease;
     }
 
     .process-card-anim:hover .process-badge-circle {
-      background: var(--infra-purple);
+      background: var(--step-color);
       color: #ffffff;
       border-color: #ffffff;
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(123, 63, 163, 0.4);
+      transform: scale(1.12);
+      box-shadow: 0 8px 22px var(--step-glow);
     }
 
-    .process-icon-mini {
-      font-size: 1.3rem;
-      color: #94a3b8;
-      margin-bottom: 10px;
-      transition: color 0.3s ease, transform 0.3s ease;
+    .process-icon-tile {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--step-bg);
+      color: var(--step-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      transition: all 0.35s ease;
     }
 
-    .process-card-anim:hover .process-icon-mini {
-      color: var(--infra-purple);
-      transform: scale(1.15);
+    .process-card-anim:hover .process-icon-tile {
+      transform: scale(1.15) rotate(5deg);
+      background: var(--step-color);
+      color: #ffffff;
     }
 
     .process-card-anim h4 {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       font-weight: 800;
       margin: 0 0 8px;
       color: var(--infra-dark);
@@ -375,7 +391,7 @@
     }
 
     /* ==========================================================================
-       INTERACTIVE INFRASTRUCTURE CAPABILITIES TABS
+       INTERACTIVE INFRASTRUCTURE CAPABILITIES TABS - MULTICOLOR
        ========================================================================== */
     .infra-tabs-section {
       padding: 80px 20px;
@@ -386,7 +402,7 @@
     .infra-tab-nav {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
@@ -397,26 +413,28 @@
       color: var(--infra-muted);
       font-size: 0.92rem;
       font-weight: 700;
-      padding: 12px 26px;
+      padding: 12px 24px;
       border-radius: 9999px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
     .infra-tab-btn:hover {
       border-color: var(--infra-purple);
       color: var(--infra-purple);
       background: var(--infra-purple-light);
+      transform: translateY(-2px);
     }
 
     .infra-tab-btn.active {
       background: var(--infra-purple);
       color: #ffffff;
       border-color: var(--infra-purple);
-      box-shadow: 0 6px 20px rgba(123, 63, 163, 0.25);
+      box-shadow: 0 6px 22px rgba(123, 63, 163, 0.28);
     }
 
     .infra-tab-pane {
@@ -438,33 +456,40 @@
     .infra-feature-card {
       background: #ffffff;
       border: 1px solid var(--infra-border);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 28px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-      transition: all 0.35s ease;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .infra-feature-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--infra-purple);
-      box-shadow: 0 14px 30px rgba(123, 63, 163, 0.12);
+      transform: translateY(-6px);
+      border-color: var(--card-color, var(--infra-purple));
+      box-shadow: 0 16px 34px var(--card-glow, rgba(123, 63, 163, 0.15));
     }
 
     .infra-feature-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: var(--infra-purple-light);
-      color: var(--infra-purple);
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--icon-bg, var(--infra-purple-light));
+      color: var(--icon-color, var(--infra-purple));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 18px;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease;
+    }
+
+    .infra-feature-card:hover .infra-feature-icon {
+      transform: scale(1.12) rotate(6deg);
+      background: var(--icon-color, var(--infra-purple));
+      color: #ffffff;
     }
 
     .infra-feature-card h3 {
-      font-size: 1.18rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--infra-dark);
       margin: 0 0 10px;
@@ -703,50 +728,62 @@
       </div>
 
       <div class="process-grid-animated">
-        <!-- Step 01 -->
-        <div class="process-card-anim">
+        <!-- Step 01 - Royal Blue -->
+        <div class="process-card-anim step-col-1">
           <div class="process-badge-circle">01</div>
-          <i class="fa-solid fa-comments process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
           <h4>Consultation</h4>
-          <p class="process-card-desc">Product requirements, barrier properties & custom sizing assessment.</p>
+          <p class="process-card-desc">Formulation requirements, barrier properties & custom sizing assessment.</p>
         </div>
 
-        <!-- Step 02 -->
-        <div class="process-card-anim">
+        <!-- Step 02 - Cyan / Teal -->
+        <div class="process-card-anim step-col-2">
           <div class="process-badge-circle">02</div>
-          <i class="fa-solid fa-compass-drafting process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-compass-drafting"></i>
+          </div>
           <h4>Design & CAD</h4>
           <p class="process-card-desc">High-precision 3D mould modeling & cavity flow simulation.</p>
         </div>
 
-        <!-- Step 03 -->
-        <div class="process-card-anim">
+        <!-- Step 03 - Amber / Gold -->
+        <div class="process-card-anim step-col-3">
           <div class="process-badge-circle">03</div>
-          <i class="fa-solid fa-cube process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-cube"></i>
+          </div>
           <h4>Prototyping</h4>
           <p class="process-card-desc">Rapid prototype sampling & trial run validation.</p>
         </div>
 
-        <!-- Step 04 -->
-        <div class="process-card-anim">
+        <!-- Step 04 - Purple / Violet -->
+        <div class="process-card-anim step-col-4">
           <div class="process-badge-circle">04</div>
-          <i class="fa-solid fa-gears process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-industry"></i>
+          </div>
           <h4>Manufacturing</h4>
           <p class="process-card-desc">Class 100k cleanroom injection & blow moulding execution.</p>
         </div>
 
-        <!-- Step 05 -->
-        <div class="process-card-anim">
+        <!-- Step 05 - Emerald Green -->
+        <div class="process-card-anim step-col-5">
           <div class="process-badge-circle">05</div>
-          <i class="fa-solid fa-microscope process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
           <h4>Quality QC</h4>
           <p class="process-card-desc">Optical laser dimensions, drop tests & seal integrity tests.</p>
         </div>
 
-        <!-- Step 06 -->
-        <div class="process-card-anim">
+        <!-- Step 06 - Rose Red -->
+        <div class="process-card-anim step-col-6">
           <div class="process-badge-circle">06</div>
-          <i class="fa-solid fa-truck-fast process-icon-mini"></i>
+          <div class="process-icon-tile">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+          </div>
           <h4>Dispatch</h4>
           <p class="process-card-desc">Palletized cleanroom packaging & punctual shipment delivery.</p>
         </div>
@@ -765,33 +802,33 @@
     <!-- Tab Buttons -->
     <div class="infra-tab-nav">
       <button class="infra-tab-btn active" onclick="switchInfraTab('moulding', this)">
-        <i class="fa-solid fa-screwdriver-wrench"></i> Moulding Machinery
+        <i class="fa-solid fa-gears" style="color: #f59e0b;"></i> Moulding Machinery
       </button>
       <button class="infra-tab-btn" onclick="switchInfraTab('cleanroom', this)">
-        <i class="fa-solid fa-shield-halved"></i> Cleanroom Environment
+        <i class="fa-solid fa-shield-virus" style="color: #06b6d4;"></i> Cleanroom Environment
       </button>
       <button class="infra-tab-btn" onclick="switchInfraTab('testing', this)">
-        <i class="fa-solid fa-vial-circle-check"></i> Quality & QC Lab
+        <i class="fa-solid fa-microscope" style="color: #10b981;"></i> Quality & QC Lab
       </button>
       <button class="infra-tab-btn" onclick="switchInfraTab('toolroom', this)">
-        <i class="fa-solid fa-cube"></i> In-House Tool Room
+        <i class="fa-solid fa-cubes" style="color: #8b5cf6;"></i> In-House Tool Room
       </button>
     </div>
 
     <!-- Tab 1: Moulding -->
     <div class="infra-tab-pane active" id="tab-moulding">
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div class="infra-feature-card" style="--card-color: #f59e0b; --card-glow: rgba(245, 158, 11, 0.2); --icon-bg: #fffbeb; --icon-color: #f59e0b;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
         <h3>High-Speed All-Electric Machines</h3>
         <p>Servo-driven injection moulding units from 50T to 350T ensuring sub-millimeter precision and ultra-fast cycle times.</p>
       </div>
-      <div class="infra-feature-card">
+      <div class="infra-feature-card" style="--card-color: #3b82f6; --card-glow: rgba(59, 130, 246, 0.2); --icon-bg: #eff6ff; --icon-color: #3b82f6;">
         <div class="infra-feature-icon"><i class="fa-solid fa-robot"></i></div>
         <h3>Robotic Take-Out Automation</h3>
         <p>Integrated Cartesian pick-and-place robots for touchless part handling straight from mould cavity into cleanroom conveyors.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-pills"></i></div>
+      <div class="infra-feature-card" style="--card-color: #10b981; --card-glow: rgba(16, 185, 129, 0.2); --icon-bg: #ecfdf5; --icon-color: #10b981;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-capsules"></i></div>
         <h3>Automatic Desiccant Insertion</h3>
         <p>Automated cap assembly lines inserting molecular sieve desiccant chambers with airtight spiral springs.</p>
       </div>
@@ -799,18 +836,18 @@
 
     <!-- Tab 2: Cleanroom -->
     <div class="infra-tab-pane" id="tab-cleanroom">
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-wind"></i></div>
+      <div class="infra-feature-card" style="--card-color: #0284c7; --card-glow: rgba(2, 132, 199, 0.2); --icon-bg: #f0f9ff; --icon-color: #0284c7;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-certificate"></i></div>
         <h3>Class 100k (ISO 8) Certified</h3>
         <p>Positive-pressure cleanroom areas conforming to international pharmaceutical packaging standards.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-filter"></i></div>
+      <div class="infra-feature-card" style="--card-color: #06b6d4; --card-glow: rgba(6, 182, 212, 0.2); --icon-bg: #ecfeff; --icon-color: #06b6d4;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-fan"></i></div>
         <h3>HEPA H14 Air Filtration</h3>
         <p>Continuous laminar airflow filtration removing airborne particulates down to 0.3 microns at 99.99% efficiency.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+      <div class="infra-feature-card" style="--card-color: #8b5cf6; --card-glow: rgba(139, 92, 246, 0.2); --icon-bg: #f5f3ff; --icon-color: #8b5cf6;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-door-closed"></i></div>
         <h3>Airlock Entry Protocols</h3>
         <p>Strict PPE gowning, air showers, and pass-box material transit preventing cross-contamination.</p>
       </div>
@@ -818,18 +855,18 @@
 
     <!-- Tab 3: Testing -->
     <div class="infra-tab-pane" id="tab-testing">
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+      <div class="infra-feature-card" style="--card-color: #6366f1; --card-glow: rgba(99, 102, 241, 0.2); --icon-bg: #eef2ff; --icon-color: #6366f1;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-crosshairs"></i></div>
         <h3>Optical Dimensional Projectors</h3>
         <p>Non-contact digital vision measurement systems validating thread pitch, wall thickness, and neck diameters.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-droplet-slash"></i></div>
+      <div class="infra-feature-card" style="--card-color: #f43f5e; --card-glow: rgba(244, 63, 94, 0.2); --icon-bg: #fff1f2; --icon-color: #f43f5e;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
         <h3>Vacuum Leak & Moisture Testers</h3>
         <p>Automated vacuum chamber leak detection guaranteeing 100% hermetic and moisture-proof seals.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+      <div class="infra-feature-card" style="--card-color: #ea580c; --card-glow: rgba(234, 88, 12, 0.2); --icon-bg: #fff7ed; --icon-color: #ea580c;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-weight-scale"></i></div>
         <h3>Cap Torque & Drop Impact Analyzers</h3>
         <p>Calibrated digital torque testers to ensure optimal child-resistant and tamper-evident cap opening forces.</p>
       </div>
@@ -837,17 +874,17 @@
 
     <!-- Tab 4: Tool Room -->
     <div class="infra-tab-pane" id="tab-toolroom">
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+      <div class="infra-feature-card" style="--card-color: #3b82f6; --card-glow: rgba(59, 130, 246, 0.2); --icon-bg: #eff6ff; --icon-color: #3b82f6;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
         <h3>In-House Tooling & CAD/CAM</h3>
         <p>Dedicated mold design center utilizing advanced CAD modeling and high-speed CNC spark EDM equipment.</p>
       </div>
-      <div class="infra-feature-card">
-        <div class="infra-feature-icon"><i class="fa-solid fa-wrench"></i></div>
+      <div class="infra-feature-card" style="--card-color: #0d9488; --card-glow: rgba(13, 148, 136, 0.2); --icon-bg: #f0fdfa; --icon-color: #0d9488;">
+        <div class="infra-feature-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
         <h3>Preventative Mold Maintenance</h3>
         <p>Scheduled ultrasonic cavity cleaning and mold refurbishment protocols ensuring zero downtime.</p>
       </div>
-      <div class="infra-feature-card">
+      <div class="infra-feature-card" style="--card-color: #a855f7; --card-glow: rgba(168, 85, 247, 0.2); --icon-bg: #faf5ff; --icon-color: #a855f7;">
         <div class="infra-feature-icon"><i class="fa-solid fa-shapes"></i></div>
         <h3>Custom Cavity Development</h3>
         <p>Rapid engineering turnaround for custom bottle shapes, closure sizes, and embossed brand logos.</p>
