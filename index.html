@@ -809,8 +809,8 @@
                 <li><span>Model:</span> <strong>${sanitizeHTML(p.sku || p.modelNumber || 'PPC')}</strong></li>
               </ul>
               <div class="card-buttons">
-                <a href="product-detail.html?id=${p.id}" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
-                <button type="button" class="btn btn-primary" style="flex: 1;" onclick="openQuoteModal('${sanitizeHTML(p.name)}')">Quote</button>
+                <a href="product-detail.html?id=${p.id}" class="btn btn-secondary">Details</a>
+                <button type="button" class="btn btn-primary" onclick="openQuoteModal('${sanitizeHTML(p.name)}')">Quote</button>
               </div>
             </div>
           `).join('');

@@ -263,8 +263,45 @@ img {
 
 .card-buttons {
   display: flex;
+  align-items: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.card-buttons .btn {
+  padding: 9px 14px !important;
+  font-size: 0.86rem !important;
+  border-radius: 10px !important;
+  white-space: nowrap !important;
+  flex: 1;
+  text-decoration: none;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+  min-width: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-buttons .btn-secondary {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: var(--dark) !important;
+}
+
+.card-buttons .btn-secondary:hover {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: var(--primary) !important;
+}
+
+.card-buttons .btn-primary {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+.card-buttons .btn-primary:hover {
+  background: var(--primary-dark) !important;
 }
 
 /* Hero Highlights Single-Line Bar */
