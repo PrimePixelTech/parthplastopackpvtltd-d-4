@@ -129,7 +129,7 @@
       align-items: center;
       justify-content: center;
       padding: 12px;
-      border: 1px solid rgba(0,0,0,0.03);
+      border: 1px solid rgba(0, 0, 0, 0.03);
     }
 
     .product-image-box img {
@@ -140,6 +140,62 @@
     }
 
 
+
+    /* Home About Section */
+    .home-about-section {
+      padding: 90px 0;
+    }
+
+    .home-about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .home-about-img-box {
+      width: 100%;
+      height: 460px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .home-about-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .home-about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 991px) {
+      .home-about-section {
+        padding: 50px 0;
+      }
+      .home-about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .home-about-img-box {
+        height: 260px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .home-about-img-box {
+        height: 220px;
+      }
+      .home-about-features {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
 
     /* CTA Section */
     .cta-section {
@@ -401,37 +457,38 @@
   </section>
 
   <!-- About Section -->
-  <section class="fade-up" style="padding: 100px 0;">
-    <div class="container" style="display: flex; gap: 60px; align-items: center;">
-      <div style="flex: 1; height: 500px; border-radius: var(--radius-xl); overflow: hidden; position: relative;">
-        <img src="assets/images/factoryy.webp" alt="Parth Plasto Pack Manufacturing Facility"
-          style="width: 100%; height: 100%; object-fit: cover;">
+  <section class="fade-up home-about-section">
+    <div class="container home-about-grid">
+      <div class="home-about-img-box">
+        <img src="assets/images/factoryy.webp" alt="Parth Plasto Pack Manufacturing Facility">
       </div>
-      <div style="flex: 1;">
+      <div class="home-about-content">
         <h2 class="section-title">About <span class="text-gradient">Us</span></h2>
         <p class="section-desc"
-          style="margin-left: 0; font-weight: 700; color: var(--dark); font-size: 1.25rem; margin-bottom: 12px;">Trusted
-          Manufacturer of Premium Packaging</p>
-        <p class="section-desc" style="margin-left: 0;">
-          Parth Plasto Pack Pvt. Ltd. is a leading manufacturer of high-end plastic packaging solutions for
-          pharmaceutical, nutraceutical, and healthcare industries.
-          With 25+ years experience in Ahmedabad, Gujarat, we deliver to domestic and international markets.
+          style="margin-left: 0; font-weight: 700; color: var(--dark); font-size: 1.2rem; margin-bottom: 14px;">
+          Trusted Manufacturer of Premium Packaging
+        </p>
+        <p class="section-desc" style="margin-left: 0; line-height: 1.65; margin-bottom: 24px;">
+          Parth Plasto Pack Pvt. Ltd. is a trusted manufacturer of premium plastic packaging solutions tailored for the pharmaceutical and nutraceutical industries. We are committed to delivering unmatched quality, continuous innovation, and total customer satisfaction.
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
-          <div style="display: flex; gap: 12px;">
-            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.5rem;"></i>
+        <div class="home-about-features">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.4rem; margin-top: 2px;"></i>
             <div>
-              <h4>ISO Certified</h4>
-              <p style="font-size: 0.875rem; color: var(--muted);">ISO 15378 certified manufacturing with GMP compliance
+              <h4 style="margin: 0 0 3px;">ISO Certified</h4>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.45;">
+                ISO 15378 certified cleanroom manufacturing with GMP compliance.
               </p>
             </div>
           </div>
-          <div style="display: flex; gap: 12px;">
-            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.5rem;"></i>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.4rem; margin-top: 2px;"></i>
             <div>
-              <h4>Food Grade</h4>
-              <p style="font-size: 0.875rem; color: var(--muted);">100% virgin food-grade FDA compliant polymers</p>
+              <h4 style="margin: 0 0 3px;">Food Grade</h4>
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.45;">
+                100% virgin food-grade US-FDA & FSSAI compliant polymers.
+              </p>
             </div>
           </div>
         </div>
@@ -541,7 +598,8 @@
           <div class="product-image-box">
             <img src="assets/images/products/tube-trio.jpg" alt="Effervescent Tablet Tube">
           </div>
-          <p style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+          <p
+            style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
             Airtight Tubes</p>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
             <h3 style="margin: 0;">Effervescent Tubes</h3>
@@ -553,7 +611,8 @@
           <div class="product-image-box">
             <img src="assets/images/products.webp" alt="Powder Containers">
           </div>
-          <p style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+          <p
+            style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
             Protein & Pharma</p>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
             <h3 style="margin: 0;">Powder Containers</h3>
@@ -565,7 +624,8 @@
           <div class="product-image-box">
             <img src="assets/images/products/pet-bottle.jpg" alt="PET Tablet Containers">
           </div>
-          <p style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+          <p
+            style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
             UV Barrier PET</p>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
             <h3 style="margin: 0;">PET Tablet Bottles</h3>
@@ -577,7 +637,8 @@
           <div class="product-image-box">
             <img src="assets/images/products/Cap.webp" alt="Plastic Caps & Closures">
           </div>
-          <p style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+          <p
+            style="color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
             Desiccant & CRC</p>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
             <h3 style="margin: 0;">Caps & Closures</h3>
