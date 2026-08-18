@@ -7,20 +7,64 @@
     }
   ],
   "routes": [
-    { "src": "/admin", "dest": "/admin.html" },
-    { "src": "/admin-products", "dest": "/admin-products.html" },
-    { "src": "/admin-categories", "dest": "/admin-categories.html" },
-    { "src": "/admin-inquiries", "dest": "/admin-inquiries.html" },
-    { "src": "/admin-settings", "dest": "/admin-settings.html" },
-    { "src": "/products", "dest": "/products.html" },
-    { "src": "/product-detail", "dest": "/product-detail.html" },
-    { "src": "/category", "dest": "/category.html" },
-    { "src": "/about", "dest": "/about.html" },
-    { "src": "/contact", "dest": "/contact.html" },
-    { "src": "/quality", "dest": "/quality.html" },
-    { "src": "/infrastructure", "dest": "/infrastructure.html" },
-    { "src": "/faq", "dest": "/faq.html" },
-    { "src": "/privacy", "dest": "/privacy.html" },
-    { "handle": "filesystem" }
+    {
+      "src": "/admin",
+      "dest": "/admin.html"
+    },
+    {
+      "src": "/admin-products",
+      "dest": "/admin-products.html"
+    },
+    {
+      "src": "/admin-categories",
+      "dest": "/admin-categories.html"
+    },
+    {
+      "src": "/admin-inquiries",
+      "dest": "/admin-inquiries.html"
+    },
+    {
+      "src": "/admin-settings",
+      "dest": "/admin-settings.html"
+    },
+    {
+      "src": "/products",
+      "dest": "/products.html"
+    },
+    {
+      "src": "/product-detail",
+      "dest": "/product-detail.html"
+    },
+    {
+      "src": "/category",
+      "dest": "/category.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/about.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact.html"
+    },
+    {
+      "src": "/quality",
+      "dest": "/quality.html"
+    },
+    {
+      "src": "/infrastructure",
+      "dest": "/infrastructure.html"
+    },
+    {
+      "src": "/faq",
+      "dest": "/faq.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/privacy.html"
+    },
+    {
+      "handle": "filesystem"
+    }
   ]
 }
