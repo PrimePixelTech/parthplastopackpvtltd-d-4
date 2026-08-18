@@ -81,7 +81,21 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .products-grid { grid-template-columns: 1fr; }
+      .products-grid { 
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+      }
+      .product-card {
+        padding: 15px !important;
+      }
+      .product-card h3, .product-card h4 {
+        font-size: 1rem !important;
+      }
+      .card-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px !important;
+      }
     }
   </style>
 </head>

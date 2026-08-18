@@ -28,7 +28,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      padding: 40px 0 100px;
+      padding-top: 40px;
+      padding-bottom: 100px;
     }
     
     .product-image-container {
@@ -105,7 +106,17 @@
     
     @media (max-width: 600px) {
       .spec-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .spec-card {
+        padding: 12px;
+      }
+      .spec-label {
+        font-size: 0.65rem;
+      }
+      .spec-value {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -164,7 +175,7 @@
   <section class="container product-detail-layout fade-up">
     <div class="product-image-container">
       <button class="share-btn" title="Share"><i class="fas fa-share-alt"></i></button>
-      <div style="color: #ccc; font-size: 2rem;">Product Image</div>
+      <img src="assets/images/product-1.webp" alt="TUBE-L-01 Product Image">
     </div>
     
     <div>
@@ -208,7 +219,7 @@
         </div>
       </div>
       
-      <div style="display: flex; gap: 16px; margin-top: 40px;">
+      <div class="cta-buttons" style="display: flex; gap: 16px; margin-top: 40px;">
         <a href="contact.html?product=TUBE-L-01" class="btn btn-primary" style="flex: 1;">REQUEST QUOTE</a>
         <a href="#" class="btn btn-secondary" style="flex: 1;">CATALOG</a>
       </div>
@@ -218,25 +229,29 @@
   <!-- Related Products -->
   <section class="container fade-up" style="padding-bottom: 100px;">
     <h2 class="section-title">Related Products</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
+    <div class="products-grid" style="margin-top: 40px;">
       <!-- Product -->
-      <div class="product-card" style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);">
-        <div style="height: 200px; background: var(--light); border-radius: var(--radius-sm); margin-bottom: 20px;"></div>
-        <div class="badge" style="font-size: 0.75rem; padding: 4px 10px;">Protein</div>
-        <h4>PPC 02</h4>
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-          <a href="#" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
-          <a href="#" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+      <div class="product-card">
+        <div class="product-image-box">
+          <img src="assets/images/products.webp" alt="PPC 02">
+        </div>
+        <div class="badge" style="font-size: 0.7rem; padding: 3px 8px; width: fit-content; margin-bottom: 6px;">Protein</div>
+        <h3>PPC 02</h3>
+        <div class="card-buttons">
+          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
+          <a href="contact.html?product=PPC 02" class="btn btn-primary" style="flex: 1;">Quote</a>
         </div>
       </div>
       <!-- Product -->
-      <div class="product-card" style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);">
-        <div style="height: 200px; background: var(--light); border-radius: var(--radius-sm); margin-bottom: 20px;"></div>
-        <div class="badge" style="font-size: 0.75rem; padding: 4px 10px;">Protein</div>
-        <h4>PPC 01</h4>
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-          <a href="#" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
-          <a href="#" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+      <div class="product-card">
+        <div class="product-image-box">
+          <img src="assets/images/productss.webp" alt="PPC 01">
+        </div>
+        <div class="badge" style="font-size: 0.7rem; padding: 3px 8px; width: fit-content; margin-bottom: 6px;">Protein</div>
+        <h3>PPC 01</h3>
+        <div class="card-buttons">
+          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
+          <a href="contact.html?product=PPC 01" class="btn btn-primary" style="flex: 1;">Quote</a>
         </div>
       </div>
     </div>

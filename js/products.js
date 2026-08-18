@@ -61,19 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     productGrid.innerHTML = items.map(p => `
       <div class="product-card">
-        <div style="height: 250px; background: var(--light); border-radius: var(--radius-md); margin-bottom: 20px; overflow: hidden;" class="product-image">
-          <!-- Placeholder for actual image -->
-          <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #ccc;">Image</div>
+        <div class="product-image-box">
+          <img src="assets/images/product-1.webp" alt="${p.name}">
         </div>
         <h3>${p.name}</h3>
-        <ul style="font-size: 0.875rem; color: var(--muted); margin: 15px 0;">
-          <li><strong>Material:</strong> ${p.material}</li>
-          <li><strong>Volume:</strong> ${p.volume}</li>
-          <li><strong>Cap:</strong> ${p.cap}</li>
+        <ul class="product-specs">
+          <li><span>Material:</span> <strong>${p.material}</strong></li>
+          <li><span>Volume:</span> <strong>${p.volume}</strong></li>
+          <li><span>Cap:</span> <strong>${p.cap}</strong></li>
         </ul>
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-          <a href="product-detail.html?id=${p.id}" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
-          <a href="contact.html?product=${p.name}" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        <div class="card-buttons">
+          <a href="product-detail.html?id=${p.id}" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
+          <a href="contact.html?product=${p.name}" class="btn btn-primary" style="flex: 1;">Quote</a>
         </div>
       </div>
     `).join('');
