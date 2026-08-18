@@ -8,7 +8,7 @@
 // Configurable Supabase Credentials
 // You can set these directly here or in Admin Settings (saved to localStorage)
 const DEFAULT_SUPABASE_URL = 'https://fgejtumodaoefpjbomvw.supabase.co';
-const DEFAULT_SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_PUBLIC_KEY';
+const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_ICCJLNQPPm7cGHNhESnbLg_ZUkrZs_r';
 
 function getSupabaseUrl() {
   if (typeof window !== 'undefined' && window.SUPABASE_URL) return window.SUPABASE_URL;
