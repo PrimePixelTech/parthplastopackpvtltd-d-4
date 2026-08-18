@@ -195,7 +195,7 @@ async function getProducts(options = {}) {
       }
 
       const { data, error } = await query;
-      if (!error && Array.isArray(data)) {
+      if (!error && Array.isArray(data) && data.length > 0) {
         let products = data.map(mapSupabaseToProduct);
 
         if (options.sortBy) {
@@ -217,13 +217,21 @@ async function getProducts(options = {}) {
         } catch (e) {}
 
         return products;
+      } else if (!error && Array.isArray(data) && data.length === 0) {
+        // Supabase database table is empty! Auto-seed default products into Supabase so all visitors see products
+        if (typeof DEFAULT_PRODUCTS !== 'undefined' && DEFAULT_PRODUCTS.length > 0) {
+          const recordsToInsert = DEFAULT_PRODUCTS.map(mapProductToSupabase);
+          supabase.from('products').insert(recordsToInsert).then(() => {
+            console.log('Auto-seeded default products into Supabase cloud DB');
+          }).catch(e => console.warn('Supabase auto-seed warning:', e));
+        }
       }
     } catch (err) {
-      console.warn('Supabase fetch error, falling back to local cache:', err);
+      console.warn('Supabase fetch error, falling back to local store:', err);
     }
   }
 
-  // 2. Fallback: Local IndexedDB / data/products.json
+  // 2. Fallback: Local IndexedDB / data/products.json / DEFAULT_PRODUCTS
   const store = await getStore('products', 'readonly');
   return new Promise(async (resolve, reject) => {
     const request = store.getAll();
@@ -244,7 +252,7 @@ async function getProducts(options = {}) {
           console.log('Central JSON fallback note:', e);
         }
 
-        if ((!products || products.length === 0) && DEFAULT_PRODUCTS.length > 0) {
+        if ((!products || products.length === 0) && typeof DEFAULT_PRODUCTS !== 'undefined' && DEFAULT_PRODUCTS.length > 0) {
           products = [...DEFAULT_PRODUCTS];
           try {
             const writeStore = await getStore('products', 'readwrite');
