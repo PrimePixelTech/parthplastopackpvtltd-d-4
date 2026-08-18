@@ -3,118 +3,643 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products | Parth Plasto Pack Pvt. Ltd.</title>
-  <meta name="description" content="Explore our comprehensive range of pharmaceutical and nutraceutical packaging products.">
+  <title>Our Products | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description" content="Discover our exclusive range of high-quality pharmaceutical and nutraceutical plastic packaging solutions including effervescent tubes, lids, spoons, PET tablet containers, and powder jars.">
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Our Products | Parth Plasto Pack Pvt. Ltd.">
+  <meta property="og:description" content="Discover our exclusive range of high-quality pharmaceutical and nutraceutical plastic packaging solutions.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    .page-header {
-      padding: 160px 0 80px;
-      background: var(--light);
-      text-align: center;
+    /* =========================================
+       Products Page Custom Styles & Animations
+       ========================================= */
+    :root {
+      --primary-purple: #7b3fa3;
+      --primary-purple-dark: #58217d;
+      --primary-purple-light: #f4ecfa;
+      --primary-purple-border: #e6d7f3;
+      --sidebar-active-bg: #ede4f5;
+      --text-dark: #191426;
+      --text-muted-grey: #6b7280;
+      --card-border: #f0edf6;
     }
-    
-    .filters-section {
-      padding: 40px 0;
-      border-bottom: 1px solid var(--border);
+
+    body {
+      background-color: #faf9fd;
     }
-    
-    .search-bar {
-      max-width: 500px;
-      margin: 0 auto 30px;
+
+    /* Page Container */
+    .catalog-page-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Banner Card */
+    .products-hero-section {
+      padding-top: 135px;
+      padding-bottom: 30px;
+    }
+
+    .products-hero-card {
+      background: linear-gradient(135deg, #f7f1fc 0%, #fbf9fd 50%, #f0e6f9 100%);
+      border: 1px solid #ebdff5;
+      border-radius: 28px;
+      padding: 48px 48px;
       position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(123, 63, 163, 0.04);
+      animation: heroFadeSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    
-    .search-bar input {
-      width: 100%;
-      padding: 16px 24px;
-      padding-right: 50px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border);
-      font-size: 1rem;
-      font-family: inherit;
-    }
-    
-    .search-bar i {
+
+    .products-hero-card::before {
+      content: '';
       position: absolute;
-      right: 24px;
+      top: -50%;
+      right: -10%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(123, 63, 163, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge-tag {
+      display: inline-block;
+      color: var(--primary-purple);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-catalog-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .hero-catalog-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted-grey);
+      max-width: 620px;
+      line-height: 1.55;
+    }
+
+    /* Horizontal Category Circular Icon Navigation */
+    .category-strip-section {
+      padding: 25px 0 20px;
+      animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    .category-circle-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 32px;
+      overflow-x: auto;
+      padding: 10px 4px 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .category-circle-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-circle-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      min-width: 90px;
+      max-width: 110px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-decoration: none;
+      padding: 0;
+    }
+
+    .cat-circle-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #e9e4f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      margin-bottom: 10px;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      padding: 8px;
+    }
+
+    .cat-circle-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cat-circle-icon .icon-box-svg {
+      font-size: 1.8rem;
+      color: #9363b8;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cat-circle-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #717786;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: color 0.25s ease;
+    }
+
+    .cat-circle-btn:hover .cat-circle-icon {
+      transform: translateY(-4px) scale(1.05);
+      border-color: var(--primary-purple);
+      box-shadow: 0 10px 22px rgba(123, 63, 163, 0.2);
+    }
+
+    .cat-circle-btn:hover .cat-circle-icon img,
+    .cat-circle-btn:hover .icon-box-svg {
+      transform: scale(1.1);
+    }
+
+    .cat-circle-btn:hover .cat-circle-label {
+      color: var(--primary-purple);
+    }
+
+    /* Active state for circular button */
+    .cat-circle-btn.active .cat-circle-icon {
+      border-color: var(--primary-purple);
+      box-shadow: 0 0 0 3px rgba(123, 63, 163, 0.25), 0 8px 24px rgba(123, 63, 163, 0.25);
+      transform: translateY(-2px);
+      animation: pulseActive 2s infinite alternate;
+    }
+
+    .cat-circle-btn.active .cat-circle-label {
+      color: var(--primary-purple);
+      font-weight: 700;
+    }
+
+    /* =========================================
+       Two-Column Catalog Layout
+       ========================================= */
+    .catalog-main-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 36px;
+      padding: 20px 0 100px;
+      align-items: start;
+    }
+
+    /* --- Left Sidebar --- */
+    .catalog-sidebar {
+      background: #ffffff;
+      border: 1px solid #efeaf5;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      position: sticky;
+      top: 100px;
+      animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .search-input-wrap i {
+      position: absolute;
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--muted);
+      color: #9ca3af;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
     }
-    
-    .filter-buttons {
+
+    .search-input-field {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: 12px;
+      border: 1px solid #e5e0ed;
+      background: #fdfcfe;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: var(--text-dark);
+      transition: all 0.25s ease;
+      outline: none;
+    }
+
+    .search-input-field:focus {
+      border-color: var(--primary-purple);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(123, 63, 163, 0.14);
+    }
+
+    .search-input-field:focus + i {
+      color: var(--primary-purple);
+    }
+
+    .product-counter-text {
+      font-size: 0.82rem;
+      color: #8c93a3;
+      margin-bottom: 24px;
+      padding-left: 2px;
+    }
+
+    .sidebar-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      padding-left: 4px;
+    }
+
+    .sidebar-categories-list {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
     }
-    
-    .filter-btn {
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--text);
+
+    .sidebar-cat-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
       cursor: pointer;
-      transition: var(--transition-normal);
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .sidebar-cat-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-cat-left .cat-thumb-mini {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .sidebar-cat-left i {
+      font-size: 0.95rem;
+      color: #8b5cf6;
+      width: 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .sidebar-cat-btn:hover {
+      background: #f8f4fc;
+      color: var(--primary-purple);
+      transform: translateX(3px);
+    }
+
+    .sidebar-cat-btn:hover .cat-thumb-mini,
+    .sidebar-cat-btn:hover .sidebar-cat-left i {
+      transform: scale(1.1);
+    }
+
+    .sidebar-cat-btn.active {
+      background: var(--sidebar-active-bg);
+      color: var(--primary-purple);
+      font-weight: 600;
+    }
+
+    .sidebar-cat-arrow {
+      font-size: 0.75rem;
+      color: var(--primary-purple);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-cat-btn.active .sidebar-cat-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* --- Right Products Grid --- */
+    .products-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Product Card with Rich Animations */
+    .product-catalog-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .product-catalog-card.animate-card {
+      animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .product-catalog-card:hover {
+      transform: translateY(-7px);
+      border-color: #dfd5ed;
+      box-shadow: 0 16px 36px rgba(123, 63, 163, 0.12);
+    }
+
+    .card-image-box {
+      width: 100%;
+      height: 190px;
+      background: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .card-image-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .product-catalog-card:hover .card-image-box img {
+      transform: scale(1.08);
+    }
+
+    .card-badge-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: #f1ecf7;
+      color: #6d4b8e;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #e7dff2;
+      transition: all 0.2s ease;
+    }
+
+    .product-catalog-card:hover .card-badge-tag {
+      background: var(--primary-purple);
+      color: #ffffff;
+      border-color: var(--primary-purple);
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-product-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      line-height: 1.25;
+      transition: color 0.2s ease;
+    }
+
+    .product-catalog-card:hover .card-product-title {
+      color: var(--primary-purple);
+    }
+
+    .card-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+      background: #faf8fd;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #f2eef8;
+      transition: background 0.2s ease;
+    }
+
+    .product-catalog-card:hover .card-specs-list {
+      background: #f6f1fc;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .spec-row .spec-label {
+      color: #8b92a2;
       font-weight: 500;
     }
-    
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--primary);
-      color: var(--white);
-      border-color: var(--primary);
+
+    .spec-row .spec-val {
+      color: #2e3545;
+      font-weight: 600;
+      text-align: right;
+      max-width: 60%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      padding: 60px 0;
+
+    .card-actions-row {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
     }
-    
-    @media (max-width: 1024px) {
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .btn-card-details {
+      flex: 1;
+      background: #5b28a8;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      text-decoration: none;
     }
-    @media (max-width: 768px) {
-      .products-grid { 
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
+
+    .btn-card-details:hover {
+      background: #451b85;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(91, 40, 168, 0.35);
+    }
+
+    .btn-card-quote {
+      flex: 1;
+      background: #ffffff;
+      color: #374151;
+      border: 1px solid #e3ddef;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .btn-card-quote:hover {
+      background: #fbf9fe;
+      border-color: var(--primary-purple);
+      color: var(--primary-purple);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(123, 63, 163, 0.12);
+    }
+
+    /* Keyframe Animations */
+    @keyframes heroFadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-15px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInLeft {
+      0% { opacity: 0; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes cardEntrance {
+      0% { opacity: 0; transform: translateY(24px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulseActive {
+      0% { box-shadow: 0 0 0 3px rgba(123, 63, 163, 0.25), 0 8px 24px rgba(123, 63, 163, 0.25); }
+      100% { box-shadow: 0 0 0 5px rgba(123, 63, 163, 0.4), 0 10px 28px rgba(123, 63, 163, 0.35); }
+    }
+
+    /* =========================================
+       Responsive Adjustments
+       ========================================= */
+    @media (max-width: 1100px) {
+      .catalog-main-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
       }
-      .product-card {
-        padding: 15px !important;
+      .products-catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
-      .product-card h3, .product-card h4 {
-        font-size: 1rem !important;
+    }
+
+    @media (max-width: 850px) {
+      .products-hero-card {
+        padding: 32px 24px;
       }
-      .card-buttons {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px !important;
+      .catalog-main-layout {
+        grid-template-columns: 1fr;
+      }
+      .catalog-sidebar {
+        position: static;
+        margin-bottom: 20px;
+      }
+      .sidebar-categories-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
+      .products-catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .products-hero-section {
+        padding-top: 110px;
+      }
+      .hero-catalog-title {
+        font-size: 1.85rem;
+      }
+      .category-circle-row {
+        gap: 20px;
+      }
+      .cat-circle-icon {
+        width: 62px;
+        height: 62px;
+      }
+      .sidebar-categories-list {
+        grid-template-columns: 1fr;
+      }
+      .products-catalog-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+
   <!-- Premium Loader -->
   <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
     <div class="loader-content">
       <div class="loader-logo">
         <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
       </div>
-
       <div class="loader-percentage">0%</div>
-
       <div class="loader-progress">
         <div class="loader-progress-fill"></div>
       </div>
-      
       <div class="loader-status">INITIALIZING EXPERIENCE</div>
-
       <div class="loader-tagline">
         <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
         <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
@@ -140,6 +665,9 @@
       </nav>
       
       <div class="header-actions">
+        <a href="#productSearch" class="icon-btn" aria-label="Search" onclick="document.getElementById('productSearch').focus();"><i class="fas fa-search"></i></a>
+        <a href="tel:+919825626651" class="icon-btn" aria-label="Call"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/919825626651" target="_blank" class="icon-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="contact.html" class="btn btn-primary">Get Quote</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
           <i class="fas fa-bars"></i>
@@ -148,38 +676,165 @@
     </div>
   </header>
 
-  <!-- Page Header -->
-  <section class="page-header fade-up">
-    <div class="container">
-      <div class="badge">PRODUCT CATEGORIES</div>
-      <h1 class="section-title">Packaging Solutions for Every Need</h1>
+  <!-- Hero Section -->
+  <section class="products-hero-section">
+    <div class="catalog-page-container">
+      <div class="products-hero-card">
+        <span class="hero-badge-tag">PREMIUM COLLECTION</span>
+        <h1 class="hero-catalog-title">Our Products</h1>
+        <p class="hero-catalog-subtitle">
+          Discover our exclusive range of high-quality pharmaceutical and nutraceutical plastic packaging solutions.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Filters -->
-  <section class="filters-section fade-up">
-    <div class="container">
-      <div class="search-bar">
-        <input type="text" id="productSearch" placeholder="Search products...">
-        <i class="fas fa-search"></i>
+  <!-- Horizontal Category Circular Icon Navigation -->
+  <section class="category-strip-section">
+    <div class="catalog-page-container">
+      <div class="category-circle-row" id="categoryCircleRow">
+        <!-- 1. All Products -->
+        <button class="cat-circle-btn active" data-category="all" title="All Products">
+          <div class="cat-circle-icon">
+            <i class="fa-solid fa-box-open icon-box-svg"></i>
+          </div>
+          <span class="cat-circle-label">All Products</span>
+        </button>
+
+        <!-- 2. Effervescent Tablet Tube -->
+        <button class="cat-circle-btn" data-category="tubes" title="Effervescent Tablet Tube">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/tube1.webp" alt="Effervescent Tablet Tube">
+          </div>
+          <span class="cat-circle-label">EFFERVESCENT TABLET TUBE</span>
+        </button>
+
+        <!-- 3. Lid -->
+        <button class="cat-circle-btn" data-category="lid" title="Lid">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/Cap.webp" alt="Lid">
+          </div>
+          <span class="cat-circle-label">LID</span>
+        </button>
+
+        <!-- 4. Spoon -->
+        <button class="cat-circle-btn" data-category="spoon" title="Spoon">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/spoon.jpg" alt="Spoon">
+          </div>
+          <span class="cat-circle-label">SPOON</span>
+        </button>
+
+        <!-- 5. PET Tablet Container -->
+        <button class="cat-circle-btn" data-category="pet-tablet" title="PET Tablet Container">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/pet-bottle.jpg" alt="PET Tablet Container">
+          </div>
+          <span class="cat-circle-label">PET TABLET CONTAINER</span>
+        </button>
+
+        <!-- 6. Tablet Container -->
+        <button class="cat-circle-btn" data-category="tablet-container" title="Tablet Container">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/tablet-container.jpg" alt="Tablet Container">
+          </div>
+          <span class="cat-circle-label">TABLET CONTAINER</span>
+        </button>
+
+        <!-- 7. Powder Container -->
+        <button class="cat-circle-btn" data-category="powder" title="Powder Container">
+          <div class="cat-circle-icon">
+            <img src="assets/images/products/Large_j_1.webp" alt="Powder Container">
+          </div>
+          <span class="cat-circle-label">POWDER CONTAINER</span>
+        </button>
       </div>
+    </div>
+  </section>
+
+  <!-- Two-Column Catalog Section (Sidebar + Grid) -->
+  <section class="catalog-page-container">
+    <div class="catalog-main-layout">
       
-      <div class="filter-buttons" id="filterButtons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="protein">Protein Containers</button>
-        <button class="filter-btn" data-filter="hdpe">HDPE Containers</button>
-        <button class="filter-btn" data-filter="jars">Medicine Jars</button>
-        <button class="filter-btn" data-filter="caps">Caps & Closures</button>
-        <button class="filter-btn" data-filter="pet">PET Bottles</button>
-        <button class="filter-btn" data-filter="tubes">Effervescent Tubes</button>
-      </div>
-    </div>
-  </section>
+      <!-- Left Sidebar -->
+      <aside class="catalog-sidebar">
+        <!-- Search Field -->
+        <div class="search-input-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="productSearch" class="search-input-field" placeholder="Search products..." autocomplete="off">
+        </div>
 
-  <!-- Product Grid -->
-  <section class="container fade-up" style="padding-bottom: 100px;">
-    <div class="products-grid" id="productGrid">
-      <!-- Products will be generated by JS -->
+        <!-- Result Counter -->
+        <div class="product-counter-text" id="productCountDisplay">
+          Showing 20 products
+        </div>
+
+        <!-- Categories List -->
+        <h2 class="sidebar-heading">Categories</h2>
+        <div class="sidebar-categories-list" id="sidebarCategoryList">
+          <button class="sidebar-cat-btn active" data-category="all">
+            <div class="sidebar-cat-left">
+              <i class="fa-solid fa-box"></i>
+              <span>All Products</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="tubes">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/tube1.webp" class="cat-thumb-mini" alt="">
+              <span>Effervescent Tablet Tube</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="lid">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/Cap.webp" class="cat-thumb-mini" alt="">
+              <span>Lid</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="spoon">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/spoon.jpg" class="cat-thumb-mini" alt="">
+              <span>Spoon</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="pet-tablet">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/pet-bottle.jpg" class="cat-thumb-mini" alt="">
+              <span>PET Tablet Container</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="tablet-container">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/tablet-container.jpg" class="cat-thumb-mini" alt="">
+              <span>Tablet Container</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+
+          <button class="sidebar-cat-btn" data-category="powder">
+            <div class="sidebar-cat-left">
+              <img src="assets/images/products/Large_j_1.webp" class="cat-thumb-mini" alt="">
+              <span>Powder Container</span>
+            </div>
+            <i class="fa-solid fa-chevron-right sidebar-cat-arrow"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Products Grid -->
+      <main class="products-catalog-grid" id="productGrid">
+        <!-- Products dynamically rendered by js/products.js -->
+      </main>
+
     </div>
   </section>
 
@@ -189,7 +844,10 @@
       <div class="footer-col">
         <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 16px;">Parth Plasto Pack</h3>
         <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands. 25+ years of industrial excellence.</p>
-        <p>11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #b7b0c8;">
+          <i class="fas fa-location-dot" style="margin-right: 8px;"></i>
+          11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433
+        </p>
       </div>
       
       <div class="footer-col">
@@ -207,12 +865,12 @@
       <div class="footer-col">
         <h4>Our Products</h4>
         <div class="footer-links">
-          <a href="products.html">Protein Powder Containers</a>
-          <a href="products.html">HDPE Containers</a>
-          <a href="products.html">Medicine Jars</a>
-          <a href="products.html">Plastic Caps & Closures</a>
-          <a href="products.html">PET Bottles</a>
-          <a href="products.html">Effervescent Tubes</a>
+          <a href="products.html?category=tubes">Effervescent Tablet Tubes</a>
+          <a href="products.html?category=powder">Powder Containers</a>
+          <a href="products.html?category=lid">Caps & Closures / Lids</a>
+          <a href="products.html?category=pet-tablet">PET Tablet Containers</a>
+          <a href="products.html?category=tablet-container">HDPE Tablet Containers</a>
+          <a href="products.html?category=spoon">Measuring Spoons & Scoops</a>
         </div>
       </div>
       
@@ -220,11 +878,11 @@
         <h4>Get In Touch</h4>
         <div class="footer-links" style="margin-bottom: 24px;">
           <a href="mailto:sales@parthplastopack.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i> sales@parthplastopack.com</a>
-          <a href="tel:+919876543210"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98765 43210</a>
-          <a href="#"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
+          <a href="tel:+919825626651"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98256 26651</a>
+          <a href="https://wa.me/919825626651" target="_blank"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
         </div>
         
-        <form class="footer-newsletter-form">
+        <form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
           <input type="email" placeholder="Your Email Address" required>
           <button type="submit">Subscribe</button>
         </form>
@@ -245,7 +903,9 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
+  <!-- Scripts -->
   <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/products.js"></script>
 </body>
 </html>

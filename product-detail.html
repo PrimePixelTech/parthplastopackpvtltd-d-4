@@ -3,140 +3,467 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TUBE-L-01 | Parth Plasto Pack</title>
+  <title id="pageTitle">TUBE-L-01 | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description" content="Technical specifications and dimensions for pharmaceutical packaging products by Parth Plasto Pack.">
   
+  <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    .breadcrumb {
-      padding: 120px 0 20px;
-      color: var(--muted);
-      font-size: 0.875rem;
+    :root {
+      --primary-purple: #6a2ba1;
+      --primary-gradient: linear-gradient(135deg, #6c32a8 0%, #356be5 100%);
+      --text-dark: #171127;
+      --text-grey: #6b7280;
+      --spec-border: #eef1f6;
+      --spec-icon-blue: #3b82f6;
     }
-    
-    .breadcrumb a {
-      color: var(--text);
+
+    body {
+      background-color: #faf9fd;
     }
-    
-    .breadcrumb a:hover {
-      color: var(--primary);
+
+    .detail-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    
-    .product-detail-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      padding-top: 40px;
-      padding-bottom: 100px;
+
+    /* Breadcrumb */
+    .breadcrumb-row {
+      padding: 125px 0 24px;
+      color: #9ca3af;
+      font-size: 0.88rem;
     }
-    
-    .product-image-container {
-      background: var(--light);
-      border-radius: var(--radius-xl);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .breadcrumb-row a {
+      color: #6b7280;
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
-    
-    .product-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transition: transform 0.5s ease;
+
+    .breadcrumb-row a:hover {
+      color: var(--primary-purple);
     }
-    
-    .product-image-container:hover img {
-      transform: scale(1.1);
+
+    .breadcrumb-sep {
+      margin: 0 10px;
+      color: #d1d5db;
     }
-    
-    .share-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--white);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-sm);
-      color: var(--dark);
-      cursor: pointer;
-      z-index: 10;
-    }
-    
-    .spec-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 30px 0;
-    }
-    
-    .spec-card {
-      background: var(--light);
-      padding: 16px;
-      border-radius: var(--radius-sm);
-    }
-    
-    .spec-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    
-    .spec-value {
+
+    .breadcrumb-current {
+      color: var(--text-dark);
       font-weight: 600;
-      color: var(--dark);
     }
-    
+
+    /* Main Showcase Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Left Image Showcase Card */
+    .image-showcase-box {
+      background: #ffffff;
+      border: 1px solid #ede8f5;
+      border-radius: 28px;
+      padding: 36px;
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.02);
+    }
+
+    .image-showcase-box img {
+      max-width: 90%;
+      max-height: 440px;
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .image-showcase-box:hover img {
+      transform: scale(1.04);
+    }
+
+    .share-pill-btn {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fbf9fd;
+      border: 1px solid #e7dfef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .share-pill-btn:hover {
+      background: var(--primary-purple);
+      color: #ffffff;
+      border-color: var(--primary-purple);
+    }
+
+    /* Right Details Showcase */
+    .details-showcase-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-tag-label {
+      color: #7b3fa3;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .product-title-text {
+      font-size: clamp(2.2rem, 3.5vw, 2.85rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .specs-section-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Specifications 2-Column Cards Grid */
+    .specs-two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .spec-pill-card {
+      background: #ffffff;
+      border: 1px solid var(--spec-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.015);
+      transition: all 0.2s ease;
+    }
+
+    .spec-pill-card:hover {
+      border-color: #dcd3ea;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(123, 63, 163, 0.06);
+    }
+
+    .spec-icon-holder {
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--spec-icon-blue);
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .spec-info-holder {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .spec-field-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #9ca3af;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .spec-field-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    /* Action Buttons */
+    .action-buttons-group {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-req-quote {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(108, 50, 168, 0.25);
+    }
+
+    .btn-req-quote:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108, 50, 168, 0.35);
+      color: #ffffff;
+    }
+
+    .btn-catalog-dl {
+      background: #ffffff;
+      color: #4b5563;
+      border: 1px solid #e2dcee;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-catalog-dl:hover {
+      border-color: var(--primary-purple);
+      color: var(--primary-purple);
+      background: #fbf9fd;
+      transform: translateY(-2px);
+    }
+
+    /* Related Products Section */
+    .related-products-section {
+      padding: 80px 0 100px;
+    }
+
+    .related-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 30px;
+    }
+
+    .related-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    /* Product Card */
+    .related-product-card {
+      background: #ffffff;
+      border: 1px solid #f0edf6;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.025);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .related-product-card:hover {
+      transform: translateY(-6px);
+      border-color: #dfd5ed;
+      box-shadow: 0 14px 30px rgba(123, 63, 163, 0.1);
+    }
+
+    .rel-image-box {
+      width: 100%;
+      height: 180px;
+      background: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .rel-image-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .related-product-card:hover .rel-image-box img {
+      transform: scale(1.06);
+    }
+
+    .rel-tag-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: #f1ecf7;
+      color: #6d4b8e;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #e7dff2;
+    }
+
+    .rel-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .rel-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 16px;
+      background: #faf8fd;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .rel-spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+
+    .rel-spec-item .rel-spec-label {
+      color: #9ca3af;
+    }
+
+    .rel-spec-item .rel-spec-val {
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .rel-buttons-row {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-rel-details {
+      flex: 1;
+      background: #5b28a8;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-rel-details:hover {
+      background: #4a1d8c;
+    }
+
+    .btn-rel-quote {
+      flex: 1;
+      background: #ffffff;
+      color: #374151;
+      border: 1px solid #e3ddef;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-rel-quote:hover {
+      border-color: var(--primary-purple);
+      color: var(--primary-purple);
+    }
+
+    /* Responsive */
     @media (max-width: 1024px) {
-      .product-detail-layout {
+      .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .related-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .breadcrumb-row {
+        padding-top: 110px;
+      }
+      .specs-two-col-grid {
         grid-template-columns: 1fr;
       }
-    }
-    
-    @media (max-width: 600px) {
-      .spec-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+      .action-buttons-group {
+        flex-direction: column;
       }
-      .spec-card {
-        padding: 12px;
+      .btn-req-quote, .btn-catalog-dl {
+        width: 100%;
       }
-      .spec-label {
-        font-size: 0.65rem;
-      }
-      .spec-value {
-        font-size: 0.9rem;
+      .related-cards-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+
   <!-- Premium Loader -->
   <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
     <div class="loader-content">
       <div class="loader-logo">
         <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
       </div>
-
       <div class="loader-percentage">0%</div>
-
       <div class="loader-progress">
         <div class="loader-progress-fill"></div>
       </div>
-      
       <div class="loader-status">INITIALIZING EXPERIENCE</div>
-
       <div class="loader-tagline">
         <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
         <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
@@ -160,102 +487,67 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
+        <a href="products.html" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
+        <a href="tel:+919825626651" class="icon-btn" aria-label="Call"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/919825626651" target="_blank" class="icon-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="contact.html" class="btn btn-primary">Get Quote</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
   <!-- Breadcrumb -->
-  <div class="container breadcrumb fade-up">
-    <a href="index.html">Home</a> &gt; <a href="products.html">Products</a> &gt; <span>TUBE-L-01</span>
+  <div class="detail-container">
+    <div class="breadcrumb-row">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">&gt;</span>
+      <a href="products.html">Products</a>
+      <span class="breadcrumb-sep">&gt;</span>
+      <span class="breadcrumb-current" id="breadcrumbProductName">TUBE-L-01</span>
+    </div>
   </div>
 
-  <!-- Product Detail -->
-  <section class="container product-detail-layout fade-up">
-    <div class="product-image-container">
-      <button class="share-btn" title="Share"><i class="fas fa-share-alt"></i></button>
-      <img src="assets/images/product-1.webp" alt="TUBE-L-01 Product Image">
-    </div>
-    
-    <div>
-      <div class="badge">OTHER</div>
-      <h1 class="section-title" style="margin-bottom: 10px;">TUBE-L-01</h1>
-      
-      <h3 style="margin-top: 30px; margin-bottom: 15px;">SPECIFICATIONS</h3>
-      
-      <div class="spec-grid">
-        <div class="spec-card">
-          <div class="spec-label">Material</div>
-          <div class="spec-value">MATERIAL PP RELIANCE</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">O.F. Volume</div>
-          <div class="spec-value">88 +/- 02</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Height</div>
-          <div class="spec-value">121 +/- 1</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Neck Size</div>
-          <div class="spec-value">29 +/- 0.5</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Max Dia</div>
-          <div class="spec-value">29 +/- 0.5</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Wall Thick.</div>
-          <div class="spec-value">1 +/- 0.1</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Cap Fitting</div>
-          <div class="spec-value">Push</div>
-        </div>
-        <div class="spec-card">
-          <div class="spec-label">Label Type</div>
-          <div class="spec-value">IML, Label & Shrink Sleeve</div>
-        </div>
+  <!-- Main Product Showcase Section -->
+  <main class="detail-container">
+    <section class="showcase-grid">
+      <!-- Left Column Image Card -->
+      <div class="image-showcase-box">
+        <button class="share-pill-btn" title="Share Product" onclick="navigator.clipboard.writeText(window.location.href); alert('Product link copied to clipboard!');">
+          <i class="fas fa-share-alt"></i>
+        </button>
+        <img id="detailImg" src="assets/images/products/tube-trio.jpg" alt="Product Image">
       </div>
-      
-      <div class="cta-buttons" style="display: flex; gap: 16px; margin-top: 40px;">
-        <a href="contact.html?product=TUBE-L-01" class="btn btn-primary" style="flex: 1;">REQUEST QUOTE</a>
-        <a href="#" class="btn btn-secondary" style="flex: 1;">CATALOG</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- Related Products -->
-  <section class="container fade-up" style="padding-bottom: 100px;">
-    <h2 class="section-title">Related Products</h2>
-    <div class="products-grid" style="margin-top: 40px;">
-      <!-- Product -->
-      <div class="product-card">
-        <div class="product-image-box">
-          <img src="assets/images/products.webp" alt="PPC 02">
+      <!-- Right Column Details -->
+      <div class="details-showcase-box">
+        <span class="category-tag-label" id="detailCatTag">OTHER</span>
+        <h1 class="product-title-text" id="detailTitle">TUBE-L-01</h1>
+
+        <h2 class="specs-section-title">SPECIFICATIONS</h2>
+
+        <div class="specs-two-col-grid" id="detailSpecsGrid">
+          <!-- Injected dynamically by JS -->
         </div>
-        <div class="badge" style="font-size: 0.7rem; padding: 3px 8px; width: fit-content; margin-bottom: 6px;">Protein</div>
-        <h3>PPC 02</h3>
-        <div class="card-buttons">
-          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
-          <a href="contact.html?product=PPC 02" class="btn btn-primary" style="flex: 1;">Quote</a>
-        </div>
-      </div>
-      <!-- Product -->
-      <div class="product-card">
-        <div class="product-image-box">
-          <img src="assets/images/productss.webp" alt="PPC 01">
-        </div>
-        <div class="badge" style="font-size: 0.7rem; padding: 3px 8px; width: fit-content; margin-bottom: 6px;">Protein</div>
-        <h3>PPC 01</h3>
-        <div class="card-buttons">
-          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1;">Details &rarr;</a>
-          <a href="contact.html?product=PPC 01" class="btn btn-primary" style="flex: 1;">Quote</a>
+
+        <div class="action-buttons-group">
+          <a id="detailReqQuoteBtn" href="contact.html?product=TUBE-L-01" class="btn-req-quote">
+            <i class="fa-solid fa-paper-plane"></i> REQUEST QUOTE
+          </a>
+          <a href="assets/images/products/Allproduct.webp" download="Parth-Plasto-Pack-Catalog.webp" class="btn-catalog-dl">
+            <i class="fa-solid fa-download"></i> CATALOG
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products-section">
+      <h2 class="related-title">Related Products</h2>
+      <div class="related-cards-grid" id="relatedGrid">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -263,7 +555,7 @@
       <div class="footer-col">
         <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 16px;">Parth Plasto Pack</h3>
         <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands. 25+ years of industrial excellence.</p>
-        <p>11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #b7b0c8;">11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Kuha, Ahmedabad - 382433</p>
       </div>
       
       <div class="footer-col">
@@ -281,12 +573,12 @@
       <div class="footer-col">
         <h4>Our Products</h4>
         <div class="footer-links">
-          <a href="products.html">Protein Powder Containers</a>
-          <a href="products.html">HDPE Containers</a>
-          <a href="products.html">Medicine Jars</a>
-          <a href="products.html">Plastic Caps & Closures</a>
-          <a href="products.html">PET Bottles</a>
-          <a href="products.html">Effervescent Tubes</a>
+          <a href="products.html?category=tubes">Effervescent Tubes</a>
+          <a href="products.html?category=powder">Powder Containers</a>
+          <a href="products.html?category=lid">Caps & Closures</a>
+          <a href="products.html?category=pet-tablet">PET Bottles</a>
+          <a href="products.html?category=tablet-container">Tablet Containers</a>
+          <a href="products.html?category=spoon">Measuring Spoons</a>
         </div>
       </div>
       
@@ -294,14 +586,9 @@
         <h4>Get In Touch</h4>
         <div class="footer-links" style="margin-bottom: 24px;">
           <a href="mailto:sales@parthplastopack.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i> sales@parthplastopack.com</a>
-          <a href="tel:+919876543210"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98765 43210</a>
-          <a href="#"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
+          <a href="tel:+919825626651"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98256 26651</a>
+          <a href="https://wa.me/919825626651" target="_blank"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
         </div>
-        
-        <form class="footer-newsletter-form">
-          <input type="email" placeholder="Your Email Address" required>
-          <button type="submit">Subscribe</button>
-        </form>
       </div>
     </div>
     
@@ -321,5 +608,76 @@
 
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/products.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = parseInt(urlParams.get('id')) || 1;
+      const product = products.find(p => p.id === prodId) || products[0];
+
+      if (product) {
+        document.title = `${product.name} | Parth Plasto Pack Pvt. Ltd.`;
+        document.getElementById('breadcrumbProductName').textContent = product.name;
+        document.getElementById('detailCatTag').textContent = product.tag || product.categoryName;
+        document.getElementById('detailTitle').textContent = product.name;
+        document.getElementById('detailImg').src = product.image;
+        document.getElementById('detailImg').alt = product.name;
+        document.getElementById('detailReqQuoteBtn').href = `contact.html?product=${encodeURIComponent(product.name)}`;
+
+        // Render Specification Cards with Icons
+        const specsGrid = document.getElementById('detailSpecsGrid');
+        if (specsGrid && product.specs) {
+          specsGrid.innerHTML = product.specs.map(s => `
+            <div class="spec-pill-card">
+              <div class="spec-icon-holder">
+                <i class="${s.icon || 'fa-solid fa-cube'}"></i>
+              </div>
+              <div class="spec-info-holder">
+                <span class="spec-field-label">${s.label}</span>
+                <span class="spec-field-value">${s.value}</span>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Render Related Products (e.g., PPC 02, PPC 01, etc.)
+        const relatedGrid = document.getElementById('relatedGrid');
+        const relatedItems = products.filter(p => p.id !== product.id).slice(0, 4);
+        if (relatedGrid && relatedItems.length > 0) {
+          relatedGrid.innerHTML = relatedItems.map(rp => `
+            <div class="related-product-card" onclick="window.location.href='product-detail.html?id=${rp.id}'">
+              <div class="rel-image-box">
+                <img src="${rp.image}" alt="${rp.name}">
+                <span class="rel-tag-badge">${rp.tag || 'Other'}</span>
+              </div>
+              <h3 class="rel-title">${rp.name}</h3>
+              <div class="rel-specs-list">
+                <div class="rel-spec-item">
+                  <span class="rel-spec-label">Material</span>
+                  <span class="rel-spec-val">${rp.material}</span>
+                </div>
+                <div class="rel-spec-item">
+                  <span class="rel-spec-label">Volume</span>
+                  <span class="rel-spec-val">${rp.volume}</span>
+                </div>
+                <div class="rel-spec-item">
+                  <span class="rel-spec-label">Cap</span>
+                  <span class="rel-spec-val">${rp.cap}</span>
+                </div>
+              </div>
+              <div class="rel-buttons-row">
+                <a href="product-detail.html?id=${rp.id}" class="btn-rel-details" onclick="event.stopPropagation();">
+                  Details &rarr;
+                </a>
+                <a href="contact.html?product=${encodeURIComponent(rp.name)}" class="btn-rel-quote" onclick="event.stopPropagation();">
+                  Quote
+                </a>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
