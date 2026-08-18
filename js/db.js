@@ -94,10 +94,34 @@ async function getStore(storeName, mode = 'readonly') {
  */
 async function getProducts(options = {}) {
   const store = await getStore('products', 'readonly');
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const request = store.getAll();
-    request.onsuccess = () => {
+    request.onsuccess = async () => {
       let products = request.result || [];
+
+      // Auto load central products if IndexedDB is empty on a new device
+      if (products.length === 0) {
+        try {
+          const res = await fetch('data/products.json?v=' + Date.now());
+          if (res.ok) {
+            products = await res.json();
+            if (Array.isArray(products) && products.length > 0) {
+              const writeStore = await getStore('products', 'readwrite');
+              products.forEach(p => writeStore.put(p));
+            }
+          }
+        } catch (e) {
+          console.log('Central JSON fallback note:', e);
+        }
+
+        if ((!products || products.length === 0) && DEFAULT_PRODUCTS.length > 0) {
+          products = [...DEFAULT_PRODUCTS];
+          try {
+            const writeStore = await getStore('products', 'readwrite');
+            products.forEach(p => writeStore.put(p));
+          } catch (err) {}
+        }
+      }
 
       // Filter by category
       if (options.categoryId && options.categoryId !== 'all') {
@@ -714,10 +738,131 @@ const DEFAULT_CATEGORIES = [
 ];
 
 /**
- * Initial Factory Products for Parth Plastopack (Starts completely empty)
- * Only products uploaded/created by the admin in the Admin Panel will appear on the website.
+ * Initial Factory Products for Parth Plastopack
+ * Automatically seeded for new visitors across all devices
  */
-const DEFAULT_PRODUCTS = [];
+const DEFAULT_PRODUCTS = [
+  {
+    id: "prod_eff_01",
+    name: "Effervescent Tablet Tube (100mm)",
+    slug: "effervescent-tablet-tube-100mm",
+    sku: "EFF-TUBE-100",
+    categoryId: "cat_effervescent",
+    categoryName: "EFFERVESCENT TABLET TUBE",
+    material: "Food Grade PP / PE",
+    capacity: "20 Tablets",
+    height: "100 mm",
+    diameter: "29 mm",
+    colorOptions: "White, Custom Colors",
+    shortDescription: "Airtight, moisture-resistant tube for effervescent vitamin & mineral tablets.",
+    description: "Precision-engineered polypropylene tube with desiccant stopper cap designed specifically for effervescent tablets. Ensures maximum barrier protection against humidity.",
+    primaryImage: "assets/images/products/tube-trio.jpg",
+    images: ["assets/images/products/tube-trio.jpg"],
+    status: "active",
+    featured: true,
+    order: 1
+  },
+  {
+    id: "prod_pow_01",
+    name: "Protein Powder Jar (1000ml)",
+    slug: "protein-powder-jar-1000ml",
+    sku: "PPC-1000ML",
+    categoryId: "cat_powder",
+    categoryName: "POWDER CONTAINER",
+    material: "High Density PP",
+    capacity: "1000 ml",
+    height: "160 mm",
+    diameter: "110 mm",
+    colorOptions: "White, Black, Custom",
+    shortDescription: "Heavy-duty food-grade container with airtight screw cap for protein powders.",
+    description: "Industrial-grade 1000ml container suitable for nutraceuticals, gym supplements, and pharmaceutical powders.",
+    primaryImage: "assets/images/products/products.webp",
+    images: ["assets/images/products/products.webp"],
+    status: "active",
+    featured: true,
+    order: 2
+  },
+  {
+    id: "prod_pet_01",
+    name: "PET Clear Tablet Bottle (250ml)",
+    slug: "pet-clear-tablet-bottle-250ml",
+    sku: "PET-BOT-250",
+    categoryId: "cat_pet_tablet",
+    categoryName: "PET TABLET CONTAINER",
+    material: "Clear PET",
+    capacity: "250 ml",
+    height: "120 mm",
+    diameter: "60 mm",
+    colorOptions: "Clear, Amber, Custom",
+    shortDescription: "Crystal-clear PET bottle providing superior clarity and UV protection.",
+    description: "Pharma-compliant PET bottle for capsules, tablets, and dietary supplements.",
+    primaryImage: "assets/images/products/pet-bottle.jpg",
+    images: ["assets/images/products/pet-bottle.jpg"],
+    status: "active",
+    featured: true,
+    order: 3
+  },
+  {
+    id: "prod_tab_01",
+    name: "HDPE Pharma Tablet Bottle (150ml)",
+    slug: "hdpe-pharma-tablet-bottle-150ml",
+    sku: "HDPE-TAB-150",
+    categoryId: "cat_tablet_container",
+    categoryName: "TABLET CONTAINER",
+    material: "Medical HDPE",
+    capacity: "150 ml",
+    height: "95 mm",
+    diameter: "52 mm",
+    colorOptions: "Opaque White",
+    shortDescription: "US-FDA compliant HDPE container with tamper-evident seal neck.",
+    description: "High-density polyethylene container designed for pharmaceutical tablets and capsule packaging.",
+    primaryImage: "assets/images/products/tablet-container.jpg",
+    images: ["assets/images/products/tablet-container.jpg"],
+    status: "active",
+    featured: true,
+    order: 4
+  },
+  {
+    id: "prod_cap_01",
+    name: "Desiccant Stopper Cap (38mm)",
+    slug: "desiccant-stopper-cap-38mm",
+    sku: "CAP-DES-38",
+    categoryId: "cat_lids_caps",
+    categoryName: "CAPS & CLOSURES",
+    material: "PP with Silica Desiccant",
+    capacity: "38mm Neck",
+    height: "30 mm",
+    diameter: "38 mm",
+    colorOptions: "White, Red, Blue",
+    shortDescription: "Tamper-evident spiral stopper cap with integrated desiccant chamber.",
+    description: "Specialized cap with built-in silica gel chamber to absorb moisture and protect moisture-sensitive tablets.",
+    primaryImage: "assets/images/products/Cap.webp",
+    images: ["assets/images/products/Cap.webp"],
+    status: "active",
+    featured: true,
+    order: 5
+  },
+  {
+    id: "prod_spn_01",
+    name: "Nutraceutical Measuring Scoop (10g)",
+    slug: "nutraceutical-measuring-scoop-10g",
+    sku: "SCP-10G",
+    categoryId: "cat_spoons",
+    categoryName: "MEASURING SPOONS",
+    material: "Food Grade PP",
+    capacity: "10g / 25ml",
+    height: "90 mm Handle",
+    diameter: "35 mm Bowl",
+    colorOptions: "Clear, White, Blue",
+    shortDescription: "Accurate food-grade scoop for precise powder dosage.",
+    description: "Calibrated measuring scoop manufactured in Class 100k cleanroom for nutraceutical powder products.",
+    primaryImage: "assets/images/products/spoon.jpg",
+    images: ["assets/images/products/spoon.jpg"],
+    status: "active",
+    featured: true,
+    order: 6
+  }
+];
 
 /**
  * Initial Sample Inquiries (Starts empty)
@@ -725,7 +870,7 @@ const DEFAULT_PRODUCTS = [];
 const DEFAULT_INQUIRIES = [];
 
 /**
- * Seed initial categories if empty
+ * Seed initial categories & products if empty
  */
 async function seedInitialData(force = false) {
   const db = await new Promise((resolve, reject) => {
@@ -750,19 +895,18 @@ async function seedInitialData(force = false) {
     }
   };
 
-  // Remove legacy sample mock products if present
+  // Seed default products if empty
   const prodTx = db.transaction('products', 'readwrite');
   const prodStore = prodTx.objectStore('products');
-  const getAllReq = prodStore.getAll();
+  const prodCountReq = prodStore.count();
 
-  getAllReq.onsuccess = () => {
-    const prods = getAllReq.result || [];
-    const mockIds = ['prod_tube_l_01', 'prod_ppc_02', 'prod_ppc_01', 'prod_tube_s_01', 'prod_pet_bottle_01', 'prod_cap_closure_01'];
-    prods.forEach(p => {
-      if (mockIds.includes(p.id)) {
-        prodStore.delete(p.id);
+  prodCountReq.onsuccess = () => {
+    if (prodCountReq.result === 0 || force) {
+      if (force) prodStore.clear();
+      for (const prod of DEFAULT_PRODUCTS) {
+        prodStore.put(prod);
       }
-    });
+    }
   };
 }
 
