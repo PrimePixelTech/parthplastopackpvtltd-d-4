@@ -1,118 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quality Assurance | Parth Plasto Pack</title>
-  
+  <title>Quality Assurance | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description"
+    content="Uncompromising quality assurance, ISO 15378, US-FDA compliant packaging, Class 100k cleanroom testing at Parth Plasto Pack.">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <style>
-    .page-header {
-      padding: 160px 0 80px;
-      background: var(--light);
+    :root {
+      --quality-purple: #7b3fa3;
+      --quality-dark: #191426;
+      --quality-muted: #64748b;
+      --quality-light: #f8f6fb;
+      --quality-border: #e8e4ee;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ffffff;
+      color: #334155;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .quality-hero-section {
+      padding: 140px 20px 40px;
       text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(123, 63, 163, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
     }
-    
-    .quality-layout {
+
+    .quality-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(123, 63, 163, 0.1);
+      color: var(--quality-purple);
+      border: 1px solid rgba(123, 63, 163, 0.22);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 20px;
+      border-radius: 9999px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.1);
+      animation: pulseBadge 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .quality-hero-title {
+      font-size: 2.85rem;
+      font-weight: 800;
+      color: var(--quality-dark);
+      margin: 0 0 16px;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #7b3fa3 0%, #c51f3a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .quality-hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--quality-muted);
+      max-width: 720px;
+      margin: 0 auto 30px;
+      line-height: 1.65;
+    }
+
+    /* Live Animated Metrics Strip */
+    .quality-stats-strip {
+      max-width: 1200px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+    }
+
+    .quality-stats-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      padding: 80px 0;
+      grid-template-columns: repeat(5, 1fr);
+      background: #ffffff;
+      border: 1px solid var(--quality-border);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      padding: 24px 10px;
     }
-    
-    .cert-card {
+
+    .quality-stat-item {
+      text-align: center;
+      position: relative;
+      padding: 0 12px;
+    }
+
+    .quality-stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--quality-border);
+    }
+
+    .quality-stat-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--quality-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, #7b3fa3 0%, #c51f3a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .quality-stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--quality-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Main Section Container */
+    .quality-section-wrapper {
+      max-width: 1200px;
+      margin: 0 auto 70px;
+      padding: 0 20px;
+    }
+
+    .quality-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .quality-section-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--quality-dark);
+      margin: 0 0 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .quality-section-desc {
+      font-size: 1.05rem;
+      color: var(--quality-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* 6 Colorful Certifications Grid */
+    .cert-grid-colorful {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .cert-card-colorful {
+      background: #ffffff;
+      border: 1px solid var(--cert-border, #e2e8f0);
+      border-radius: 20px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cert-card-colorful::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--cert-color, #7b3fa3);
+      transition: height 0.3s ease;
+    }
+
+    .cert-card-colorful:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 36px var(--cert-glow, rgba(123, 63, 163, 0.16));
+      border-color: var(--cert-color, #7b3fa3);
+    }
+
+    .cert-card-colorful:hover::before {
+      height: 6px;
+    }
+
+    .cert-card-top {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition-normal);
+      gap: 18px;
     }
-    
-    .cert-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    
-    .cert-icon {
-      font-size: 2rem;
-      color: var(--primary);
-      width: 60px;
-      height: 60px;
+
+    .cert-icon-tile {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--cert-bg, #f5f3ff);
+      color: var(--cert-color, #7b3fa3);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--light);
-      border-radius: 50%;
+      font-size: 1.6rem;
       flex-shrink: 0;
+      box-shadow: 0 4px 12px var(--cert-glow, rgba(0, 0, 0, 0.05));
+      transition: transform 0.35s ease;
+      animation: floatIcon 4s ease-in-out infinite;
     }
-    
-    .progress-group {
-      margin-bottom: 30px;
+
+    .cert-card-colorful:hover .cert-icon-tile {
+      transform: scale(1.12) rotate(6deg);
     }
-    
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-weight: 600;
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
     }
-    
-    .progress-bar-container {
-      width: 100%;
-      height: 12px;
-      background: var(--light);
-      border-radius: var(--radius-full);
-      overflow: hidden;
+
+    .cert-title-group h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--quality-dark);
+      margin: 0 0 4px;
     }
-    
-    .progress-fill {
-      height: 100%;
-      background: var(--gradient-primary);
-      width: 0;
-      transition: width 1.5s ease-out;
-      border-radius: var(--radius-full);
+
+    .cert-badge-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cert-color, #7b3fa3);
+      background: var(--cert-bg, #f5f3ff);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
     }
-    
-    .testing-list {
+
+    .cert-desc {
+      font-size: 0.92rem;
+      color: var(--quality-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Individual Colorful Themes */
+    .cert-theme-blue {
+      --cert-color: #2563eb;
+      --cert-bg: #eff6ff;
+      --cert-border: #bfdbfe;
+      --cert-glow: rgba(37, 99, 235, 0.22);
+    }
+    .cert-theme-green {
+      --cert-color: #059669;
+      --cert-bg: #ecfdf5;
+      --cert-border: #a7f3d0;
+      --cert-glow: rgba(5, 150, 105, 0.22);
+    }
+    .cert-theme-amber {
+      --cert-color: #d97706;
+      --cert-bg: #fffbeb;
+      --cert-border: #fde68a;
+      --cert-glow: rgba(217, 119, 6, 0.22);
+    }
+    .cert-theme-purple {
+      --cert-color: #7c3aed;
+      --cert-bg: #f5f3ff;
+      --cert-border: #ddd6fe;
+      --cert-glow: rgba(124, 58, 237, 0.22);
+    }
+    .cert-theme-cyan {
+      --cert-color: #0891b2;
+      --cert-bg: #ecfeff;
+      --cert-border: #a5f3fc;
+      --cert-glow: rgba(8, 145, 178, 0.22);
+    }
+    .cert-theme-rose {
+      --cert-color: #e11d48;
+      --cert-bg: #fff1f2;
+      --cert-border: #fecdd3;
+      --cert-glow: rgba(225, 29, 72, 0.22);
+    }
+
+    /* Two-Column Analytics & Testing Section */
+    .quality-analytics-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 40px;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 40px;
+      align-items: start;
+      background: #ffffff;
+      border: 1px solid var(--quality-border);
+      border-radius: 24px;
+      padding: 45px 40px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+      margin-bottom: 70px;
     }
-    
-    .testing-item {
+
+    .analytics-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--quality-dark);
+      margin: 0 0 24px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    
-    .testing-item i {
-      color: var(--green);
+
+    .analytics-title i {
+      color: var(--quality-purple);
     }
-    
+
+    /* Metric Progress Item */
+    .metric-progress-item {
+      margin-bottom: 24px;
+    }
+
+    .metric-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .metric-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--quality-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-value {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--metric-color, #7b3fa3);
+    }
+
+    .metric-bar-track {
+      width: 100%;
+      height: 10px;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .metric-bar-fill {
+      height: 100%;
+      background: var(--metric-gradient, linear-gradient(90deg, #7b3fa3, #c51f3a));
+      border-radius: 9999px;
+      transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* 6 Testing Procedure Tiles */
+    .testing-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .testing-tile {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .testing-tile:hover {
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-color: var(--tile-color, #7b3fa3);
+    }
+
+    .testing-tile-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--tile-bg, #f5f3ff);
+      color: var(--tile-color, #7b3fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .testing-tile-content h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--quality-dark);
+      margin: 0 0 3px;
+    }
+
+    .testing-tile-content p {
+      font-size: 0.82rem;
+      color: var(--quality-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* CTA Section - Premium Brand Gradient */
+    .quality-cta-section {
+      background: linear-gradient(135deg, #74379B 0%, #8E3A91 50%, #B03A72 100%);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 70px 40px;
+      margin: 40px auto 90px;
+      max-width: 1200px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(116, 55, 155, 0.28);
+    }
+
+    .quality-cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .quality-cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      right: -20%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Responsive */
     @media (max-width: 1024px) {
-      .quality-layout {
+      .cert-grid-colorful {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .quality-analytics-grid {
         grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 35px 25px;
+      }
+      .quality-stats-container {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
-    
-    @media (max-width: 600px) {
-      .testing-list {
+
+    @media (max-width: 768px) {
+      .quality-hero-section {
+        padding: 130px 16px 30px;
+      }
+      .quality-hero-title {
+        font-size: 2.1rem;
+      }
+      .cert-grid-colorful {
         grid-template-columns: 1fr;
+      }
+      .testing-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .quality-stats-container {
+        grid-template-columns: 1fr 1fr;
+      }
+      .quality-stat-item:not(:last-child)::after {
+        display: none;
       }
     }
   </style>
 </head>
+
 <body>
+
   <!-- Premium Loader -->
   <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
     <div class="loader-content">
@@ -125,7 +516,7 @@
       <div class="loader-progress">
         <div class="loader-progress-fill"></div>
       </div>
-      
+
       <div class="loader-status">INITIALIZING EXPERIENCE</div>
 
       <div class="loader-tagline">
@@ -142,6 +533,7 @@
         <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
         <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
       </div>
+
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -150,114 +542,277 @@
         <a href="quality.html" class="active">Quality</a>
         <a href="contact.html">Contact</a>
       </nav>
+
       <div class="header-actions">
-        <a href="contact.html" class="btn btn-primary">Get Quote</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <a href="products.html" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
+        <a href="tel:+919825626651" class="icon-btn" aria-label="Call"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/919825626651" target="_blank" class="icon-btn" aria-label="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
+        <button type="button" class="btn btn-primary" onclick="openQuoteModal()">Get Quote</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Page Header -->
-  <section class="page-header fade-up">
+  <!-- Hero Section -->
+  <section class="quality-hero-section">
     <div class="container">
-      <div class="badge">QUALITY ASSURANCE</div>
-      <h1 class="section-title">Uncompromising Quality Standards</h1>
-      <p class="section-desc">Every product undergoes rigorous multi-point quality testing to ensure pharmaceutical-grade compliance.</p>
+      <h1 class="quality-hero-title">Uncompromising <span class="text-gradient">Quality Standards</span></h1>
+      <p class="quality-hero-subtitle">
+        Every product undergoes rigorous multi-point laser testing and strict cleanroom inspection to ensure 100% pharmaceutical-grade compliance and airtight sealing.
+      </p>
     </div>
   </section>
 
-  <!-- Quality Layout -->
-  <section class="container quality-layout fade-up">
-    <div>
-      <h3 style="margin-bottom: 30px;">Certifications & Compliance</h3>
-      
-      <div class="cert-card fade-left">
-        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
-        <div>
-          <h4 style="margin-bottom: 4px;">ISO 15378</h4>
-          <p style="font-size: 0.875rem; color: var(--muted);">Primary Packaging Material Standard</p>
-        </div>
+  <!-- Live Animated Metrics Strip -->
+  <div class="quality-stats-strip">
+    <div class="quality-stats-container">
+      <div class="quality-stat-item">
+        <div class="quality-stat-number" data-target="99.8">99.8%</div>
+        <div class="quality-stat-label">Batch Pass Rate</div>
       </div>
-      
-      <div class="cert-card fade-left" style="transition-delay: 100ms;">
-        <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-        <div>
-          <h4 style="margin-bottom: 4px;">US-FDA</h4>
-          <p style="font-size: 0.875rem; color: var(--muted);">FDA Compliant Raw Materials</p>
-        </div>
+      <div class="quality-stat-item">
+        <div class="quality-stat-number" data-target="0.3">0.3μ</div>
+        <div class="quality-stat-label">Particulate Filter</div>
       </div>
-      
-      <div class="cert-card fade-left" style="transition-delay: 200ms;">
-        <div class="cert-icon"><i class="fas fa-leaf"></i></div>
-        <div>
-          <h4 style="margin-bottom: 4px;">Food Grade</h4>
-          <p style="font-size: 0.875rem; color: var(--muted);">FSSAI Approved for Food Contact</p>
-        </div>
+      <div class="quality-stat-item">
+        <div class="quality-stat-number" data-target="100">100%</div>
+        <div class="quality-stat-label">Hermetic Seal</div>
       </div>
-      
-      <div class="cert-card fade-left" style="transition-delay: 300ms;">
-        <div class="cert-icon"><i class="fas fa-clipboard-check"></i></div>
-        <div>
-          <h4 style="margin-bottom: 4px;">GMP Certified</h4>
-          <p style="font-size: 0.875rem; color: var(--muted);">Good Manufacturing Practices</p>
-        </div>
+      <div class="quality-stat-item">
+        <div class="quality-stat-number">Class 100k</div>
+        <div class="quality-stat-label">Cleanroom Testing</div>
+      </div>
+      <div class="quality-stat-item">
+        <div class="quality-stat-number">Zero-Defect</div>
+        <div class="quality-stat-label">QA Protocol</div>
       </div>
     </div>
-    
-    <div>
-      <h3 style="margin-bottom: 30px;">Quality Metrics</h3>
-      
-      <div class="progress-group fade-right">
-        <div class="progress-label">
-          <span>Batch Quality Pass Rate</span>
-          <span><span class="counter" data-target="99.8">0</span>%</span>
+  </div>
+
+  <!-- Certifications Section -->
+  <section class="quality-section-wrapper">
+    <div class="quality-section-header">
+      <h2 class="quality-section-title">Global Certifications & <span class="text-gradient">Compliance</span></h2>
+      <p class="quality-section-desc">Manufactured in strict adherence to global pharmaceutical regulatory standards and food safety norms.</p>
+    </div>
+
+    <div class="cert-grid-colorful">
+      <!-- 01. ISO 15378 - Blue -->
+      <div class="cert-card-colorful cert-theme-blue">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>ISO 15378:2017</h3>
+            <span class="cert-badge-tag">Pharma Primary Packaging</span>
+          </div>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-fill" data-width="99.8%"></div>
+        <p class="cert-desc">Specific GMP requirements applied to primary packaging materials for medicinal and pharmaceutical products.</p>
+      </div>
+
+      <!-- 02. US-FDA Compliant - Emerald Green -->
+      <div class="cert-card-colorful cert-theme-green">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>US-FDA DMF Listed</h3>
+            <span class="cert-badge-tag">Virgin Grade Polymers</span>
+          </div>
+        </div>
+        <p class="cert-desc">100% medical and food contact compliant virgin polymers meeting US-FDA 21 CFR standards for drug packaging.</p>
+      </div>
+
+      <!-- 03. Food Grade / FSSAI - Amber -->
+      <div class="cert-card-colorful cert-theme-amber">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>FSSAI Food Contact</h3>
+            <span class="cert-badge-tag">Nutraceutical Grade</span>
+          </div>
+        </div>
+        <p class="cert-desc">Non-toxic, odorless, and migration-tested containers certified safe for nutraceuticals, protein powders, and food supplements.</p>
+      </div>
+
+      <!-- 04. GMP Certified - Purple -->
+      <div class="cert-card-colorful cert-theme-purple">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>cGMP Certified</h3>
+            <span class="cert-badge-tag">Current Good Mfg.</span>
+          </div>
+        </div>
+        <p class="cert-desc">Standardized operating procedures, strict batch documentation, line clearance, and contamination control protocols.</p>
+      </div>
+
+      <!-- 05. ISO 9001:2015 - Cyan -->
+      <div class="cert-card-colorful cert-theme-cyan">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-medal"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>ISO 9001:2015</h3>
+            <span class="cert-badge-tag">Quality Management</span>
+          </div>
+        </div>
+        <p class="cert-desc">Robust quality management framework ensuring end-to-end traceability, process repeatability, and continuous improvement.</p>
+      </div>
+
+      <!-- 06. Cleanroom ISO 8 - Rose Red -->
+      <div class="cert-card-colorful cert-theme-rose">
+        <div class="cert-card-top">
+          <div class="cert-icon-tile">
+            <i class="fa-solid fa-shield-virus"></i>
+          </div>
+          <div class="cert-title-group">
+            <h3>ISO 14644-1 Class 8</h3>
+            <span class="cert-badge-tag">Positive Pressure</span>
+          </div>
+        </div>
+        <p class="cert-desc">Controlled air particulate levels with 20+ HEPA air changes per hour for zero bioburden packaging production.</p>
+      </div>
+    </div>
+
+    <!-- Analytics & Testing Procedures 2-Column Section -->
+    <div class="quality-analytics-grid">
+      <!-- Left: Performance Metrics -->
+      <div>
+        <h3 class="analytics-title"><i class="fa-solid fa-chart-line"></i> Quality Performance Metrics</h3>
+
+        <div class="metric-progress-item" style="--metric-color: #2563eb; --metric-gradient: linear-gradient(90deg, #2563eb, #38bdf8);">
+          <div class="metric-progress-header">
+            <span class="metric-name"><i class="fa-solid fa-circle-check" style="color: #2563eb;"></i> Batch Quality Pass Rate</span>
+            <span class="metric-value">99.8%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 99.8%;"></div>
+          </div>
+        </div>
+
+        <div class="metric-progress-item" style="--metric-color: #059669; --metric-gradient: linear-gradient(90deg, #059669, #34d399);">
+          <div class="metric-progress-header">
+            <span class="metric-name"><i class="fa-solid fa-circle-check" style="color: #059669;"></i> Dimensional Accuracy</span>
+            <span class="metric-value">99.5%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 99.5%;"></div>
+          </div>
+        </div>
+
+        <div class="metric-progress-item" style="--metric-color: #7c3aed; --metric-gradient: linear-gradient(90deg, #7c3aed, #a78bfa);">
+          <div class="metric-progress-header">
+            <span class="metric-name"><i class="fa-solid fa-circle-check" style="color: #7c3aed;"></i> Customer Satisfaction</span>
+            <span class="metric-value">98.5%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 98.5%;"></div>
+          </div>
+        </div>
+
+        <div class="metric-progress-item" style="--metric-color: #e11d48; --metric-gradient: linear-gradient(90deg, #e11d48, #fb7185);">
+          <div class="metric-progress-header">
+            <span class="metric-name"><i class="fa-solid fa-circle-check" style="color: #e11d48;"></i> On-Time Dispatch Delivery</span>
+            <span class="metric-value">97.0%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 97%;"></div>
+          </div>
         </div>
       </div>
-      
-      <div class="progress-group fade-right" style="transition-delay: 100ms;">
-        <div class="progress-label">
-          <span>Dimensional Accuracy</span>
-          <span><span class="counter" data-target="99.5">0</span>%</span>
+
+      <!-- Right: Testing Procedures 6-Tile Grid -->
+      <div>
+        <h3 class="analytics-title"><i class="fa-solid fa-flask-vial"></i> Multi-Point Testing Protocols</h3>
+        <div class="testing-cards-grid">
+          <!-- 1 -->
+          <div class="testing-tile" style="--tile-color: #2563eb; --tile-bg: #eff6ff;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+            <div class="testing-tile-content">
+              <h4>Dimensional Accuracy</h4>
+              <p>Optical shadowgraph laser profiling for ±0.05mm neck and thread precision.</p>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="testing-tile" style="--tile-color: #0891b2; --tile-bg: #ecfeff;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-droplet-slash"></i></div>
+            <div class="testing-tile-content">
+              <h4>Vacuum Leak Testing</h4>
+              <p>-0.08 MPa chamber seal tests guaranteeing zero micro-leakage.</p>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="testing-tile" style="--tile-color: #e11d48; --tile-bg: #fff1f2;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-box-tissue"></i></div>
+            <div class="testing-tile-content">
+              <h4>Drop Impact Test</h4>
+              <p>1.2m free-fall impact drops on concrete to evaluate structural toughness.</p>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="testing-tile" style="--tile-color: #7c3aed; --tile-bg: #f5f3ff;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-vial-circle-check"></i></div>
+            <div class="testing-tile-content">
+              <h4>Chemical Compatibility</h4>
+              <p>ESCR stress crack and chemical leaching resistance testing.</p>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="testing-tile" style="--tile-color: #d97706; --tile-bg: #fffbeb;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-arrow-rotate-right"></i></div>
+            <div class="testing-tile-content">
+              <h4>Cap Torque Analysis</h4>
+              <p>Calibrated digital torque tests for tamper-evident & CRC closures.</p>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="testing-tile" style="--tile-color: #059669; --tile-bg: #ecfdf5;">
+            <div class="testing-tile-icon"><i class="fa-solid fa-microscope"></i></div>
+            <div class="testing-tile-content">
+              <h4>MVTR Moisture Analysis</h4>
+              <p>Moisture Vapor Transmission testing for effervescent & tablet protection.</p>
+            </div>
+          </div>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-fill" data-width="99.5%"></div>
-        </div>
-      </div>
-      
-      <div class="progress-group fade-right" style="transition-delay: 200ms;">
-        <div class="progress-label">
-          <span>Customer Satisfaction</span>
-          <span><span class="counter" data-target="98.5">0</span>%</span>
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-fill" data-width="98.5%"></div>
-        </div>
-      </div>
-      
-      <div class="progress-group fade-right" style="transition-delay: 300ms;">
-        <div class="progress-label">
-          <span>On-Time Delivery</span>
-          <span><span class="counter" data-target="97">0</span>%</span>
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-fill" data-width="97%"></div>
-        </div>
-      </div>
-      
-      <h3 style="margin-top: 50px;">Quality Testing Includes:</h3>
-      <div class="testing-list fade-up">
-        <div class="testing-item"><i class="fas fa-check-circle"></i> Dimensional Accuracy</div>
-        <div class="testing-item"><i class="fas fa-check-circle"></i> Drop Impact Test</div>
-        <div class="testing-item"><i class="fas fa-check-circle"></i> Chemical Compatibility</div>
-        <div class="testing-item"><i class="fas fa-check-circle"></i> Leak Testing</div>
-        <div class="testing-item"><i class="fas fa-check-circle"></i> MVTR Analysis</div>
-        <div class="testing-item"><i class="fas fa-check-circle"></i> Visual Inspection</div>
       </div>
     </div>
   </section>
+
+  <!-- Interactive Call to Action Banner -->
+  <div class="container">
+    <div class="quality-cta-section">
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin: 0 0 16px; color: #ffffff;">
+        Request Quality Audit & <span class="text-gradient" style="background: linear-gradient(135deg, #ffffff, #f1e6f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Certificate of Analysis</span>
+      </h2>
+      <p style="color: rgba(255, 255, 255, 0.92); max-width: 680px; margin: 0 auto 36px; font-size: 1.05rem; line-height: 1.65;">
+        Need batch test reports, DMF registration details, or sample validations? Our QA team provides complete regulatory documentation.
+      </p>
+      <div class="cta-buttons" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <a href="contact.html" class="btn cta-btn-glass" style="padding: 14px 32px; font-size: 1.05rem; border-radius: 9999px; background: rgba(255,255,255,0.2) !important;">
+          <i class="fas fa-file-contract" style="margin-right: 8px;"></i> Request COA & Batch Report
+        </a>
+        <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass" style="padding: 14px 30px; font-size: 1.05rem; border-radius: 9999px;">
+          <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -267,7 +822,7 @@
         <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands. 25+ years of industrial excellence.</p>
         <p>11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
       </div>
-      
+
       <div class="footer-col">
         <h4>Quick Links</h4>
         <div class="footer-links">
@@ -279,34 +834,29 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-      
+
       <div class="footer-col">
-        <h4>Our Products</h4>
+        <h4>Packaging Categories</h4>
         <div class="footer-links">
           <a href="products.html">Protein Powder Containers</a>
-          <a href="products.html">HDPE Containers</a>
-          <a href="products.html">Medicine Jars</a>
-          <a href="products.html">Plastic Caps & Closures</a>
-          <a href="products.html">PET Bottles</a>
+          <a href="products.html">HDPE Pharma Jars</a>
           <a href="products.html">Effervescent Tubes</a>
+          <a href="products.html">Tamper-Evident Caps</a>
+          <a href="products.html">Pharma Dropper Bottles</a>
+          <a href="products.html">Measuring Spoons</a>
         </div>
       </div>
-      
+
       <div class="footer-col">
         <h4>Get In Touch</h4>
         <div class="footer-links" style="margin-bottom: 24px;">
           <a href="mailto:sales@parthplastopack.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i> sales@parthplastopack.com</a>
-          <a href="tel:+919876543210"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98765 43210</a>
-          <a href="#"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
+          <a href="tel:+919825626651"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98256 26651</a>
+          <a href="https://wa.me/919825626651" target="_blank"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
         </div>
-        
-        <form class="footer-newsletter-form">
-          <input type="email" placeholder="Your Email Address" required>
-          <button type="submit">Subscribe</button>
-        </form>
       </div>
     </div>
-    
+
     <div class="container footer-bottom">
       <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
       <div class="footer-bottom-links">
@@ -324,4 +874,5 @@
   <script src="js/main.js?v=2"></script>
   <script src="js/animations.js?v=2"></script>
 </body>
+
 </html>
