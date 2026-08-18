@@ -351,20 +351,22 @@
 
     .form-feedback-alert {
       display: none;
-      padding: 16px 20px;
-      border-radius: 12px;
-      font-size: 0.95rem;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-size: 0.92rem;
       font-weight: 600;
       margin-bottom: 20px;
       align-items: center;
-      gap: 10px;
-    }
-
-    .form-feedback-alert.success {
-      display: flex;
+      gap: 12px;
       background: #ecfdf5;
       color: #065f46;
       border: 1px solid #a7f3d0;
+      animation: fadeInAlert 0.35s ease-in-out;
+    }
+
+    @keyframes fadeInAlert {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive */
@@ -599,8 +601,8 @@
 
     <!-- Right Column: Clean Modern Form -->
     <div class="contact-form-card">
-      <div class="form-feedback-alert success" id="contactSuccessAlert">
-        <i class="fa-solid fa-circle-check" style="font-size: 1.3rem;"></i>
+      <div class="form-feedback-alert" id="contactSuccessAlert" style="display: none;">
+        <i class="fa-solid fa-circle-check" style="font-size: 1.3rem; color: #059669; flex-shrink: 0;"></i>
         <span>Thank you! Your details have been submitted. Opening WhatsApp directly...</span>
       </div>
 
