@@ -11,9 +11,20 @@ const DEFAULT_SUPABASE_URL = 'https://fgejtumodaoefpjbomvw.supabase.co';
 const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_ICCJLNQPPm7cGHNhESnbLg_ZUkrZs_r';
 
 function getSupabaseUrl() {
-  if (typeof window !== 'undefined' && window.SUPABASE_URL) return window.SUPABASE_URL;
-  const storedUrl = typeof localStorage !== 'undefined' ? localStorage.getItem('ppp_supabase_url') : null;
-  return storedUrl || DEFAULT_SUPABASE_URL;
+  let url = null;
+  if (typeof window !== 'undefined' && window.SUPABASE_URL) url = window.SUPABASE_URL;
+  else if (typeof localStorage !== 'undefined') url = localStorage.getItem('ppp_supabase_url');
+  
+  url = url || DEFAULT_SUPABASE_URL;
+  
+  // Clean URL to prevent errors if user pasted /rest/v1/
+  if (url) {
+    url = url.trim();
+    if (url.endsWith('/rest/v1/')) url = url.replace('/rest/v1/', '');
+    if (url.endsWith('/rest/v1')) url = url.replace('/rest/v1', '');
+    if (url.endsWith('/')) url = url.slice(0, -1);
+  }
+  return url;
 }
 
 function getSupabaseAnonKey() {
