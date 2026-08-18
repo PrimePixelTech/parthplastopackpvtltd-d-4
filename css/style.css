@@ -1753,8 +1753,19 @@ section {
     height: 32px !important;
     min-height: unset !important;
   }
-  .premium-features-grid, .certifications-grid, .features-grid-light {
+  .premium-features-grid, .certifications-grid {
     grid-template-columns: 1fr;
+  }
+  .features-grid-light {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .feature-card-light {
+    padding: 12px 10px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    border-radius: 14px !important;
   }
   
   /* Trusted Marquee */
