@@ -64,7 +64,7 @@
 
     /* About Hero Split */
     .about-hero-section {
-      padding: 40px 20px 70px;
+      padding: 130px 20px 70px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -96,7 +96,7 @@
       position: absolute;
       bottom: 20px;
       left: 20px;
-      background: rgba(25, 20, 38, 0.9);
+      background: rgba(25, 20, 38, 0.92);
       backdrop-filter: blur(8px);
       color: #ffffff;
       padding: 12px 20px;
@@ -134,7 +134,7 @@
 
     .about-hero-desc {
       font-size: 1rem;
-      color: var(--about-muted);
+      color: #334155;
       line-height: 1.7;
       margin: 0 0 20px;
     }
@@ -394,14 +394,39 @@
 
     @media (max-width: 768px) {
       .page-header {
-        padding: 130px 16px 30px;
+        padding: 110px 16px 30px;
+      }
+      .about-hero-section {
+        padding: 100px 16px 40px !important;
       }
       .about-hero-title {
-        font-size: 2.1rem;
+        font-size: 1.85rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 14px !important;
+      }
+      .about-hero-desc {
+        font-size: 0.92rem !important;
+        line-height: 1.62 !important;
+        margin-bottom: 16px !important;
+        color: #334155 !important;
       }
       .about-img-frame {
-        height: 250px;
+        height: 240px;
         border-radius: 18px;
+      }
+      .about-floating-exp {
+        padding: 8px 12px !important;
+        bottom: 10px !important;
+        left: 10px !important;
+        border-radius: 12px !important;
+        gap: 8px !important;
+      }
+      .about-floating-exp .exp-num {
+        font-size: 1.35rem !important;
+      }
+      .about-floating-exp .exp-text {
+        font-size: 0.65rem !important;
+        letter-spacing: 0.2px !important;
       }
       .about-features-4grid {
         grid-template-columns: 1fr 1fr;
@@ -509,7 +534,7 @@
 
       <!-- Right: About Details -->
       <div>
-        <h1 class="about-hero-title">Trusted Manufacturer of<br><span class="text-gradient">Premium Packaging</span></h1>
+        <h1 class="about-hero-title">Trusted Manufacturer of <span class="text-gradient">Premium Packaging</span></h1>
         <p class="about-hero-desc">
           Parth Plasto Pack Pvt. Ltd. is a trusted manufacturer of premium plastic packaging solutions tailored for the pharmaceutical and nutraceutical industries. We are committed to delivering unmatched quality, continuous innovation, and total customer satisfaction.
         </p>
