@@ -585,44 +585,124 @@
 
     @media (max-width: 850px) {
       .products-hero-card {
-        padding: 32px 24px;
+        padding: 28px 20px;
       }
       .catalog-main-layout {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
       .catalog-sidebar {
         position: static;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
+        padding: 16px;
+        border-radius: 16px;
       }
       .sidebar-categories-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .sidebar-categories-list::-webkit-scrollbar {
+        display: none;
+      }
+      .sidebar-cat-btn {
+        white-space: nowrap;
+        padding: 8px 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 0.8rem;
       }
       .products-catalog-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
       }
     }
 
     @media (max-width: 580px) {
+      .catalog-page-container {
+        padding: 0 12px !important;
+      }
       .products-hero-section {
-        padding-top: 110px;
+        padding-top: 100px;
+        padding-bottom: 15px;
+      }
+      .products-hero-card {
+        padding: 20px 16px;
+        border-radius: 20px;
       }
       .hero-catalog-title {
-        font-size: 1.85rem;
+        font-size: 1.65rem;
+      }
+      .hero-catalog-subtitle {
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+      .category-strip-section {
+        padding: 14px 0 10px;
       }
       .category-circle-row {
-        gap: 20px;
+        gap: 16px;
+        padding-bottom: 10px;
+      }
+      .cat-circle-btn {
+        min-width: 76px;
+        max-width: 86px;
       }
       .cat-circle-icon {
-        width: 62px;
-        height: 62px;
+        width: 54px;
+        height: 54px;
+        margin-bottom: 6px;
+        padding: 6px;
       }
-      .sidebar-categories-list {
-        grid-template-columns: 1fr;
+      .cat-circle-label {
+        font-size: 0.64rem;
       }
       .products-catalog-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+      .product-catalog-card {
+        padding: 10px !important;
+        border-radius: 14px !important;
+      }
+      .card-image-box {
+        height: 130px !important;
+        margin-bottom: 8px !important;
+        padding: 6px !important;
+      }
+      .card-product-title {
+        font-size: 0.88rem !important;
+        margin-bottom: 6px !important;
+        line-height: 1.25 !important;
+      }
+      .card-badge-tag {
+        font-size: 0.6rem !important;
+        padding: 2px 5px !important;
+        bottom: 6px !important;
+        left: 6px !important;
+      }
+      .card-specs-list {
+        padding: 6px 8px !important;
+        gap: 4px !important;
+        margin-bottom: 8px !important;
+      }
+      .spec-row {
+        font-size: 0.68rem !important;
+      }
+      .card-actions-row {
+        gap: 6px !important;
+        flex-direction: column !important;
+      }
+      .btn-card-details, .btn-card-quote {
+        padding: 8px 6px !important;
+        font-size: 0.74rem !important;
+        border-radius: 8px !important;
+        text-align: center;
+        justify-content: center;
       }
     }
   </style>
