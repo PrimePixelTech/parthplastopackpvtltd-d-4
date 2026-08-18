@@ -526,7 +526,7 @@
     <div class="contact-form-card">
       <div class="form-feedback-alert success" id="contactSuccessAlert">
         <i class="fa-solid fa-circle-check" style="font-size: 1.3rem;"></i>
-        <span>Thank you! Your message has been sent successfully. Our team will contact you shortly.</span>
+        <span>Thank you! Your details have been submitted. Opening WhatsApp directly...</span>
       </div>
 
       <form id="contactPageForm" onsubmit="handleContactSubmit(event)">
@@ -568,7 +568,7 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn-send-message">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Send Message via WhatsApp
         </button>
       </form>
     </div>
@@ -637,16 +637,36 @@
   <script>
     function handleContactSubmit(e) {
       e.preventDefault();
-      const form = document.getElementById('contactPageForm');
-      const alertBox = document.getElementById('contactSuccessAlert');
       
+      const name = document.getElementById('contactName')?.value.trim() || '';
+      const email = document.getElementById('contactEmail')?.value.trim() || '';
+      const phone = document.getElementById('contactPhone')?.value.trim() || '';
+      const company = document.getElementById('contactCompany')?.value.trim() || 'N/A';
+      const subject = document.getElementById('contactSubject')?.value.trim() || 'General Inquiry';
+      const message = document.getElementById('contactMessage')?.value.trim() || '';
+
+      const whatsappText = `*New Inquiry - Parth Plasto Pack*\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📧 *Email:* ${email}\n` +
+        `📱 *Phone:* ${phone}\n` +
+        `🏢 *Company:* ${company}\n` +
+        `📌 *Subject:* ${subject}\n\n` +
+        `📝 *Message / Requirement:*\n${message}`;
+
+      const whatsappUrl = `https://wa.me/919825626651?text=${encodeURIComponent(whatsappText)}`;
+
+      const alertBox = document.getElementById('contactSuccessAlert');
       if (alertBox) {
         alertBox.style.display = 'flex';
-        form.reset();
         setTimeout(() => {
           alertBox.style.display = 'none';
-        }, 6000);
+        }, 8000);
       }
+
+      window.open(whatsappUrl, '_blank');
+
+      const form = document.getElementById('contactPageForm');
+      if (form) form.reset();
     }
   </script>
 </body>
