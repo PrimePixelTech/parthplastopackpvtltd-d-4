@@ -144,34 +144,106 @@
     /* Home About Section */
     .home-about-section {
       padding: 90px 0;
+      background: #ffffff;
     }
 
     .home-about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 48px;
       align-items: center;
     }
 
     .home-about-img-box {
       width: 100%;
-      height: 460px;
-      border-radius: var(--radius-xl);
+      height: 440px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .home-about-img-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    .about-exp-badge {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      background: rgba(25, 20, 38, 0.88);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-exp-badge i {
+      color: #f59e0b;
+      font-size: 1.1rem;
     }
 
     .home-about-features {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 16px;
       margin-top: 24px;
+    }
+
+    .about-chip {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.25s ease;
+    }
+
+    .about-chip:hover {
+      background: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 6px 18px rgba(123, 63, 163, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .about-chip-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .about-chip h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 0 0 3px;
+    }
+
+    .about-chip p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.4;
     }
 
     @media (max-width: 991px) {
@@ -183,17 +255,25 @@
         gap: 28px;
       }
       .home-about-img-box {
-        height: 260px;
+        height: 250px;
+        border-radius: 18px;
+      }
+      .about-exp-badge {
+        bottom: 12px;
+        left: 12px;
+        padding: 8px 14px;
+        font-size: 0.78rem;
       }
     }
 
     @media (max-width: 576px) {
       .home-about-img-box {
         height: 220px;
+        border-radius: 16px;
       }
       .home-about-features {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 12px;
       }
     }
 
@@ -461,36 +541,46 @@
     <div class="container home-about-grid">
       <div class="home-about-img-box">
         <img src="assets/images/factoryy.webp" alt="Parth Plasto Pack Manufacturing Facility">
+        <div class="about-exp-badge">
+          <i class="fa-solid fa-award"></i>
+          <span>25+ Years Industrial Excellence</span>
+        </div>
       </div>
       <div class="home-about-content">
         <h2 class="section-title">About <span class="text-gradient">Us</span></h2>
-        <p class="section-desc"
-          style="margin-left: 0; font-weight: 700; color: var(--dark); font-size: 1.2rem; margin-bottom: 14px;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--dark); margin: 0 0 14px; line-height: 1.35;">
           Trusted Manufacturer of Premium Packaging
-        </p>
-        <p class="section-desc" style="margin-left: 0; line-height: 1.65; margin-bottom: 24px;">
+        </h3>
+        <p class="section-desc" style="margin-left: 0; line-height: 1.65; margin-bottom: 20px; font-size: 0.95rem; color: #475569;">
           Parth Plasto Pack Pvt. Ltd. is a trusted manufacturer of premium plastic packaging solutions tailored for the pharmaceutical and nutraceutical industries. We are committed to delivering unmatched quality, continuous innovation, and total customer satisfaction.
         </p>
 
         <div class="home-about-features">
-          <div style="display: flex; gap: 12px; align-items: flex-start;">
-            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.4rem; margin-top: 2px;"></i>
+          <div class="about-chip">
+            <div class="about-chip-icon">
+              <i class="fa-solid fa-certificate"></i>
+            </div>
             <div>
-              <h4 style="margin: 0 0 3px;">ISO Certified</h4>
-              <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.45;">
-                ISO 15378 certified cleanroom manufacturing with GMP compliance.
-              </p>
+              <h4>ISO 15378 Certified</h4>
+              <p>Cleanroom manufacturing with strict GMP compliance.</p>
             </div>
           </div>
-          <div style="display: flex; gap: 12px; align-items: flex-start;">
-            <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.4rem; margin-top: 2px;"></i>
+
+          <div class="about-chip">
+            <div class="about-chip-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
             <div>
-              <h4 style="margin: 0 0 3px;">Food Grade</h4>
-              <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.45;">
-                100% virgin food-grade US-FDA & FSSAI compliant polymers.
-              </p>
+              <h4>100% Food Grade</h4>
+              <p>Virgin medical polymers with US-FDA & FSSAI approval.</p>
             </div>
           </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="about.html" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 12px 24px; font-size: 0.92rem; font-weight: 700; text-decoration: none;">
+            Learn More About Us &rarr;
+          </a>
         </div>
       </div>
     </div>
