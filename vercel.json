@@ -1,21 +1,26 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/admin-products", "destination": "/admin-products.html" },
-    { "source": "/admin-categories", "destination": "/admin-categories.html" },
-    { "source": "/admin-inquiries", "destination": "/admin-inquiries.html" },
-    { "source": "/admin-settings", "destination": "/admin-settings.html" },
-    { "source": "/products", "destination": "/products.html" },
-    { "source": "/product-detail", "destination": "/product-detail.html" },
-    { "source": "/category", "destination": "/category.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/quality", "destination": "/quality.html" },
-    { "source": "/infrastructure", "destination": "/infrastructure.html" },
-    { "source": "/faq", "destination": "/faq.html" },
-    { "source": "/privacy", "destination": "/privacy.html" }
+  "builds": [
+    {
+      "src": "**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/admin-products", "dest": "/admin-products.html" },
+    { "src": "/admin-categories", "dest": "/admin-categories.html" },
+    { "src": "/admin-inquiries", "dest": "/admin-inquiries.html" },
+    { "src": "/admin-settings", "dest": "/admin-settings.html" },
+    { "src": "/products", "dest": "/products.html" },
+    { "src": "/product-detail", "dest": "/product-detail.html" },
+    { "src": "/category", "dest": "/category.html" },
+    { "src": "/about", "dest": "/about.html" },
+    { "src": "/contact", "dest": "/contact.html" },
+    { "src": "/quality", "dest": "/quality.html" },
+    { "src": "/infrastructure", "dest": "/infrastructure.html" },
+    { "src": "/faq", "dest": "/faq.html" },
+    { "src": "/privacy", "dest": "/privacy.html" },
+    { "handle": "filesystem" }
   ]
 }
