@@ -177,7 +177,6 @@ function renderProductsGrid() {
       <div class="product-catalog-card animate-card" style="animation-delay: ${index * 0.04}s;" onclick="goToProductDetail(event, '${p.id}')">
         <div class="card-image-box">
           <img src="${mainImg}" alt="${sanitizeHTML(p.name)}" loading="lazy" onerror="this.src=getPlaceholderSVG('${p.name}')">
-          <span class="card-badge-tag">${sanitizeHTML(catName)}</span>
         </div>
         
         <div class="card-body">
@@ -185,25 +184,25 @@ function renderProductsGrid() {
           
           <div class="card-specs-list">
             <div class="spec-row">
-              <span class="spec-label">Material</span>
-              <span class="spec-val">${sanitizeHTML(p.material || 'PP Food Grade')}</span>
+              <span class="spec-label">Material:</span>
+              <span class="spec-val">${sanitizeHTML(p.material || 'Food Grade PP')}</span>
             </div>
             <div class="spec-row">
-              <span class="spec-label">Capacity</span>
+              <span class="spec-label">Volume:</span>
               <span class="spec-val">${sanitizeHTML(p.capacity || p.size || 'Standard')}</span>
             </div>
             <div class="spec-row">
-              <span class="spec-label">SKU / Model</span>
-              <span class="spec-val">${sanitizeHTML(p.sku || p.modelNumber || 'PPC-Series')}</span>
+              <span class="spec-label">Model:</span>
+              <span class="spec-val">${sanitizeHTML(p.sku || p.modelNumber || p.name)}</span>
             </div>
           </div>
           
           <div class="card-actions-row">
             <a href="product-detail.html?id=${p.id}" class="btn-card-details" onclick="event.stopPropagation();">
-              View Product &rarr;
+              Details
             </a>
             <button type="button" class="btn-card-quote" onclick="event.stopPropagation(); openQuoteModal('${sanitizeHTML(p.name)}');">
-              Request Quote
+              Quote
             </button>
           </div>
         </div>
