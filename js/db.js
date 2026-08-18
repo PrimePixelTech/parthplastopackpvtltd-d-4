@@ -327,7 +327,7 @@ async function addProduct(productData) {
   const newProduct = {
     id: id,
     name: productData.name?.trim() || 'Untitled Product',
-    slug: productData.slug || (typeof generateSlug === 'function' ? generateSlug(productData.name) : id),
+    slug: productData.slug || (typeof generateSlug === 'function' ? `${generateSlug(productData.name)}-${id.slice(-4)}` : id),
     sku: productData.sku?.trim() || `SKU-${Date.now().toString().slice(-4)}`,
     modelNumber: productData.modelNumber?.trim() || '',
     categoryId: productData.categoryId || 'cat_effervescent',
@@ -368,6 +368,7 @@ async function addProduct(productData) {
     const { error } = await supabase.from('products').insert([supabaseRecord]);
     if (error) {
       console.error('Supabase addProduct insert error:', error);
+      throw new Error(`Cloud Database Error: ${error.message}`);
     }
   }
 
@@ -397,6 +398,7 @@ async function updateProduct(id, productData) {
     const { error } = await supabase.from('products').update(supabaseRecord).eq('id', id);
     if (error) {
       console.error('Supabase updateProduct error:', error);
+      throw new Error(`Cloud Database Error: ${error.message}`);
     }
   }
 
@@ -409,9 +411,9 @@ async function updateProduct(id, productData) {
 }
 
 /**
- * Delete product (Soft delete in Supabase & Local Cache)
+ * Delete product (Hard delete in Supabase & Local Cache by default)
  */
-async function deleteProduct(id, softDelete = true) {
+async function deleteProduct(id, softDelete = false) {
   const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
   if (supabase) {
     if (softDelete) {
@@ -447,6 +449,11 @@ async function deleteProduct(id, softDelete = true) {
  * Bulk delete products
  */
 async function bulkDeleteProducts(ids) {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    await supabase.from('products').delete().in('id', ids);
+  }
+
   const store = await getStore('products', 'readwrite');
   return Promise.all(ids.map(id => new Promise((resolve, reject) => {
     const req = store.delete(id);
