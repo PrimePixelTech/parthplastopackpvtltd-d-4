@@ -596,23 +596,41 @@
         border-radius: 16px;
       }
       .sidebar-categories-list {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 8px;
-        padding-bottom: 4px;
-        scrollbar-width: none;
-      }
-      .sidebar-categories-list::-webkit-scrollbar {
-        display: none;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
       }
       .sidebar-cat-btn {
-        white-space: nowrap;
-        padding: 8px 12px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 0.8rem;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 9px 12px !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        font-size: 0.8rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        min-width: 0 !important;
+      }
+      .sidebar-cat-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        flex: 1 !important;
+      }
+      .sidebar-cat-left span {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        font-size: 0.78rem !important;
+      }
+      .sidebar-cat-left .cat-thumb-mini {
+        width: 20px !important;
+        height: 20px !important;
+        flex-shrink: 0 !important;
       }
       .products-catalog-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -680,6 +698,60 @@
       .sidebar-heading {
         font-size: 0.85rem !important;
         margin-bottom: 10px !important;
+      }
+      .sidebar-categories-list {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .sidebar-cat-btn {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 8px 10px !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        font-size: 0.74rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        min-width: 0 !important;
+      }
+      .sidebar-cat-btn.active {
+        background: #f3e8ff !important;
+        border-color: #d8b4fe !important;
+        color: #6d28d9 !important;
+      }
+      .sidebar-cat-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        flex: 1 !important;
+      }
+      .sidebar-cat-left span {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        font-size: 0.74rem !important;
+        font-weight: 600 !important;
+      }
+      .sidebar-cat-left .cat-thumb-mini {
+        width: 18px !important;
+        height: 18px !important;
+        flex-shrink: 0 !important;
+      }
+      .sidebar-cat-left i {
+        font-size: 0.82rem !important;
+        width: 16px !important;
+        flex-shrink: 0 !important;
+      }
+      .sidebar-cat-btn > span:last-child {
+        flex-shrink: 0 !important;
+        font-size: 0.68rem !important;
+        padding: 1px 5px !important;
       }
       .search-input-field {
         padding: 8px 12px 8px 34px !important;
