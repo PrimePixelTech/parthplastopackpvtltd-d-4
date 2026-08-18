@@ -89,17 +89,147 @@ async function getStore(storeName, mode = 'readonly') {
    PRODUCTS CRUD
    ========================================================================== */
 
+// Supabase Data Mappers
+function mapSupabaseToProduct(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    name: row.name || 'Untitled Product',
+    slug: row.slug || (typeof generateSlug === 'function' ? generateSlug(row.name || 'product') : row.name),
+    sku: row.sku || '',
+    modelNumber: row.model_number || '',
+    categoryId: row.category_id || 'cat_effervescent',
+    categoryName: row.category_name || '',
+    subCategory: row.sub_category || '',
+    productType: row.product_type || 'Container',
+    price: row.price || '',
+    shortDescription: row.short_description || '',
+    description: row.description || '',
+    primaryImage: row.image_url || row.primary_image || (Array.isArray(row.images) && row.images[0]) || 'assets/images/products/tube-trio.jpg',
+    images: Array.isArray(row.images) && row.images.length > 0 ? row.images : [row.image_url || row.primary_image || 'assets/images/products/tube-trio.jpg'],
+    material: row.material || '',
+    color: row.color || '',
+    shape: row.shape || '',
+    capacity: row.capacity || '',
+    size: row.size || '',
+    weight: row.weight || '',
+    height: row.height || '',
+    width: row.width || '',
+    diameter: row.diameter || '',
+    neckSize: row.neck_size || '',
+    packagingType: row.packaging_type || '',
+    usage: row.usage || '',
+    countryOfOrigin: row.country_of_origin || 'India',
+    specifications: Array.isArray(row.specifications) ? row.specifications : (typeof row.specifications === 'string' ? JSON.parse(row.specifications || '[]') : []),
+    features: Array.isArray(row.features) ? row.features : (typeof row.features === 'string' ? JSON.parse(row.features || '[]') : []),
+    status: row.status || 'active',
+    featured: row.featured === true || row.featured === 'true',
+    order: row.order || 0,
+    createdAt: row.created_at || new Date().toISOString(),
+    updatedAt: row.updated_at || new Date().toISOString()
+  };
+}
+
+function mapProductToSupabase(p) {
+  return {
+    id: p.id,
+    name: p.name || 'Untitled Product',
+    slug: p.slug || (typeof generateSlug === 'function' ? generateSlug(p.name || 'product') : p.id),
+    sku: p.sku || '',
+    model_number: p.modelNumber || '',
+    category_id: p.categoryId || 'cat_effervescent',
+    category_name: p.categoryName || '',
+    sub_category: p.subCategory || '',
+    product_type: p.productType || 'Container',
+    price: p.price || '',
+    short_description: p.shortDescription || '',
+    description: p.description || '',
+    image_url: p.primaryImage || (Array.isArray(p.images) && p.images[0]) || '',
+    primary_image: p.primaryImage || (Array.isArray(p.images) && p.images[0]) || '',
+    images: Array.isArray(p.images) ? p.images : [],
+    material: p.material || '',
+    color: p.color || '',
+    shape: p.shape || '',
+    capacity: p.capacity || '',
+    size: p.size || '',
+    weight: p.weight || '',
+    height: p.height || '',
+    width: p.width || '',
+    diameter: p.diameter || '',
+    neck_size: p.neckSize || '',
+    packaging_type: p.packagingType || '',
+    usage: p.usage || '',
+    country_of_origin: p.countryOfOrigin || 'India',
+    specifications: Array.isArray(p.specifications) ? p.specifications : [],
+    features: Array.isArray(p.features) ? p.features : [],
+    status: p.status || 'active',
+    featured: p.featured === true || p.featured === 'true',
+    order: typeof p.order === 'number' ? p.order : 0,
+    created_at: p.createdAt || new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  };
+}
+
 /**
  * Get all products with optional filtering and sorting
  */
 async function getProducts(options = {}) {
+  // 1. Primary: Fetch directly from Supabase Cloud Database if configured
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try {
+      let query = supabase.from('products').select('*');
+
+      if (options.status && options.status !== 'all') {
+        query = query.eq('status', options.status);
+      }
+      if (options.categoryId && options.categoryId !== 'all') {
+        query = query.eq('category_id', options.categoryId);
+      }
+      if (options.featured) {
+        query = query.eq('featured', true);
+      }
+      if (options.search) {
+        const s = options.search.trim();
+        query = query.or(`name.ilike.%${s}%,sku.ilike.%${s}%,description.ilike.%${s}%,material.ilike.%${s}%`);
+      }
+
+      const { data, error } = await query;
+      if (!error && Array.isArray(data)) {
+        let products = data.map(mapSupabaseToProduct);
+
+        if (options.sortBy) {
+          switch (options.sortBy) {
+            case 'name-asc': products.sort((a, b) => (a.name || '').localeCompare(b.name || '')); break;
+            case 'name-desc': products.sort((a, b) => (b.name || '').localeCompare(a.name || '')); break;
+            case 'newest': products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); break;
+            case 'updated': products.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); break;
+            case 'featured':
+            default: products.sort((a, b) => (a.order || 0) - (b.order || 0)); break;
+          }
+        } else {
+          products.sort((a, b) => (a.order || 0) - (b.order || 0));
+        }
+
+        try {
+          const store = await getStore('products', 'readwrite');
+          products.forEach(p => store.put(p));
+        } catch (e) {}
+
+        return products;
+      }
+    } catch (err) {
+      console.warn('Supabase fetch error, falling back to local cache:', err);
+    }
+  }
+
+  // 2. Fallback: Local IndexedDB / data/products.json
   const store = await getStore('products', 'readonly');
   return new Promise(async (resolve, reject) => {
     const request = store.getAll();
     request.onsuccess = async () => {
       let products = request.result || [];
 
-      // Auto load central products if IndexedDB is empty on a new device
       if (products.length === 0) {
         try {
           const res = await fetch('data/products.json?v=' + Date.now());
@@ -123,17 +253,12 @@ async function getProducts(options = {}) {
         }
       }
 
-      // Filter by category
       if (options.categoryId && options.categoryId !== 'all') {
         products = products.filter(p => p.categoryId === options.categoryId);
       }
-
-      // Filter by status (public website should only see 'active')
       if (options.status && options.status !== 'all') {
         products = products.filter(p => p.status === options.status);
       }
-
-      // Filter by search query
       if (options.search) {
         const query = options.search.toLowerCase().trim();
         products = products.filter(p => {
@@ -143,45 +268,9 @@ async function getProducts(options = {}) {
             (p.modelNumber && p.modelNumber.toLowerCase().includes(query)) ||
             (p.material && p.material.toLowerCase().includes(query)) ||
             (p.shortDescription && p.shortDescription.toLowerCase().includes(query)) ||
-            (p.description && p.description.toLowerCase().includes(query)) ||
-            (p.seo?.keywords && p.seo.keywords.toLowerCase().includes(query))
+            (p.description && p.description.toLowerCase().includes(query))
           );
         });
-      }
-
-      // Filter by material
-      if (options.material && options.material !== 'all') {
-        products = products.filter(p => p.material && p.material.toLowerCase().includes(options.material.toLowerCase()));
-      }
-
-      // Filter by capacity
-      if (options.capacity && options.capacity !== 'all') {
-        products = products.filter(p => p.capacity && p.capacity.toLowerCase().includes(options.capacity.toLowerCase()));
-      }
-
-      // Sorting
-      if (options.sortBy) {
-        switch (options.sortBy) {
-          case 'name-asc':
-            products.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-            break;
-          case 'name-desc':
-            products.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
-            break;
-          case 'newest':
-            products.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
-            break;
-          case 'updated':
-            products.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
-            break;
-          case 'featured':
-          default:
-            products.sort((a, b) => (a.order || 0) - (b.order || 0));
-            break;
-        }
-      } else {
-        // Default order
-        products.sort((a, b) => (a.order || 0) - (b.order || 0));
       }
 
       resolve(products);
@@ -194,6 +283,16 @@ async function getProducts(options = {}) {
  * Get single product by ID
  */
 async function getProductById(id) {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try {
+      const { data, error } = await supabase.from('products').select('*').eq('id', id).single();
+      if (!error && data) {
+        return mapSupabaseToProduct(data);
+      }
+    } catch (e) {}
+  }
+
   const store = await getStore('products', 'readonly');
   return new Promise((resolve, reject) => {
     const request = store.get(id);
@@ -211,16 +310,16 @@ async function getProductBySlug(slug) {
 }
 
 /**
- * Add new product
+ * Add new product (Saves to Supabase DB & Local Cache)
  */
 async function addProduct(productData) {
-  const store = await getStore('products', 'readwrite');
   const now = new Date().toISOString();
+  const id = productData.id || `prod_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
   
   const newProduct = {
-    id: productData.id || `prod_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+    id: id,
     name: productData.name?.trim() || 'Untitled Product',
-    slug: productData.slug || generateSlug(productData.name),
+    slug: productData.slug || (typeof generateSlug === 'function' ? generateSlug(productData.name) : id),
     sku: productData.sku?.trim() || `SKU-${Date.now().toString().slice(-4)}`,
     modelNumber: productData.modelNumber?.trim() || '',
     categoryId: productData.categoryId || 'cat_effervescent',
@@ -229,6 +328,7 @@ async function addProduct(productData) {
     price: productData.price || '',
     shortDescription: productData.shortDescription?.trim() || '',
     description: productData.description?.trim() || '',
+    primaryImage: productData.primaryImage || (Array.isArray(productData.images) && productData.images[0]) || 'assets/images/products/tube-trio.jpg',
     images: Array.isArray(productData.images) && productData.images.length > 0 
       ? productData.images 
       : ['assets/images/products/tube-trio.jpg'],
@@ -248,39 +348,49 @@ async function addProduct(productData) {
     specifications: Array.isArray(productData.specifications) ? productData.specifications : [],
     features: Array.isArray(productData.features) ? productData.features : [],
     status: productData.status || 'active',
+    featured: productData.featured === true || productData.featured === 'true',
     order: typeof productData.order === 'number' ? productData.order : Date.now(),
-    seo: {
-      title: productData.seo?.title || `${productData.name} | Parth Plastopack`,
-      description: productData.seo?.description || productData.shortDescription || '',
-      keywords: productData.seo?.keywords || '',
-      canonicalUrl: productData.seo?.canonicalUrl || ''
-    },
     createdAt: productData.createdAt || now,
     updatedAt: now
   };
 
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    const supabaseRecord = mapProductToSupabase(newProduct);
+    const { error } = await supabase.from('products').insert([supabaseRecord]);
+    if (error) {
+      console.error('Supabase addProduct insert error:', error);
+    }
+  }
+
+  const store = await getStore('products', 'readwrite');
   return new Promise((resolve, reject) => {
-    const request = store.add(newProduct);
+    const request = store.put(newProduct);
     request.onsuccess = () => resolve(newProduct);
     request.onerror = (e) => reject(e.target.error);
   });
 }
 
 /**
- * Update existing product
+ * Update existing product (Updates Supabase & Local Cache)
  */
 async function updateProduct(id, productData) {
   const existing = await getProductById(id);
-  if (!existing) {
-    throw new Error(`Product with ID ${id} not found.`);
-  }
-
   const updatedProduct = {
-    ...existing,
+    ...(existing || {}),
     ...productData,
     id: id,
     updatedAt: new Date().toISOString()
   };
+
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    const supabaseRecord = mapProductToSupabase(updatedProduct);
+    const { error } = await supabase.from('products').update(supabaseRecord).eq('id', id);
+    if (error) {
+      console.error('Supabase updateProduct error:', error);
+    }
+  }
 
   const store = await getStore('products', 'readwrite');
   return new Promise((resolve, reject) => {
@@ -291,15 +401,38 @@ async function updateProduct(id, productData) {
 }
 
 /**
- * Delete product
+ * Delete product (Soft delete in Supabase & Local Cache)
  */
-async function deleteProduct(id) {
+async function deleteProduct(id, softDelete = true) {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    if (softDelete) {
+      await supabase.from('products').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', id);
+    } else {
+      await supabase.from('products').delete().eq('id', id);
+    }
+  }
+
   const store = await getStore('products', 'readwrite');
-  return new Promise((resolve, reject) => {
-    const request = store.delete(id);
-    request.onsuccess = () => resolve(true);
-    request.onerror = (e) => reject(e.target.error);
-  });
+  if (softDelete) {
+    const existing = await getProductById(id);
+    if (existing) {
+      existing.status = 'inactive';
+      existing.updatedAt = new Date().toISOString();
+      await new Promise((resolve, reject) => {
+        const req = store.put(existing);
+        req.onsuccess = () => resolve(true);
+        req.onerror = (e) => reject(e.target.error);
+      });
+    }
+  } else {
+    await new Promise((resolve, reject) => {
+      const req = store.delete(id);
+      req.onsuccess = () => resolve(true);
+      req.onerror = (e) => reject(e.target.error);
+    });
+  }
+  return true;
 }
 
 /**

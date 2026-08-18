@@ -105,10 +105,16 @@ class ProductImageGalleryManager {
     const filesToProcess = Array.from(fileList).slice(0, remainingSlots);
     for (const file of filesToProcess) {
       try {
-        const compressed = await compressImageFile(file);
-        this.images.push(compressed);
+        if (typeof isSupabaseConfigured === 'function' && isSupabaseConfigured()) {
+          if (typeof showToast === 'function') showToast(`Uploading ${file.name} to Supabase Storage...`, 'info');
+          const publicUrl = await uploadProductImageToSupabase(file);
+          this.images.push(publicUrl);
+        } else {
+          const compressed = await compressImageFile(file);
+          this.images.push(compressed);
+        }
       } catch (err) {
-        console.error('Image compression error:', err);
+        console.error('Image processing error:', err);
         if (typeof showToast === 'function') {
           showToast(`Error processing ${file.name}: ${err.message}`, 'error');
         }
@@ -116,7 +122,7 @@ class ProductImageGalleryManager {
     }
     this.render();
     if (typeof showToast === 'function') {
-      showToast('Image(s) uploaded and optimized successfully!', 'success');
+      showToast('Image(s) uploaded and saved successfully!', 'success');
     }
   }
 

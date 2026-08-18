@@ -170,13 +170,59 @@
           </div>
         </form>
       </div>
+
+      <!-- Supabase Free Cloud Database & Storage Configuration -->
+      <div class="dashboard-card-box" style="margin-top: 24px;">
+        <h3 class="dashboard-card-heading" style="margin-bottom: 12px; color: #10b981;">
+          <i class="fa-solid fa-database" style="margin-right: 8px;"></i>
+          Supabase Free Cloud Backend Integration
+        </h3>
+        <p style="font-size: 0.86rem; color: var(--admin-text-muted); margin-bottom: 18px; line-height: 1.5;">
+          Connect your free Supabase project to store products centrally in the cloud and upload product images directly to Supabase Storage. This makes your products visible across all devices (laptops, iPhones, Androids, tablets) for all visitors.
+        </p>
+
+        <form id="supabase-settings-form" onsubmit="saveSupabaseSettings(event)">
+          <div class="form-grid-2">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Supabase Project URL</label>
+              <input type="url" id="setting-supabase-url" class="form-control-custom" placeholder="https://xyzcompany.supabase.co" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Supabase Public Anon Key</label>
+              <input type="text" id="setting-supabase-key" class="form-control-custom" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." required>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div id="supabase-status-badge" style="font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #94a3b8;"></span>
+              <span>Checking Supabase status...</span>
+            </div>
+            <button type="submit" class="btn-admin btn-purple-custom">
+              <i class="fa-solid fa-plug-circle-check"></i> Save & Connect Supabase
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/db.js"></script>
   <script src="js/utils.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Load current Supabase credentials
+      const urlInput = document.getElementById('setting-supabase-url');
+      const keyInput = document.getElementById('setting-supabase-key');
+      const badge = document.getElementById('supabase-status-badge');
+
+      if (urlInput) urlInput.value = localStorage.getItem('ppp_supabase_url') || (typeof DEFAULT_SUPABASE_URL !== 'undefined' ? DEFAULT_SUPABASE_URL : '');
+      if (keyInput) keyInput.value = localStorage.getItem('ppp_supabase_key') || (typeof DEFAULT_SUPABASE_ANON_KEY !== 'undefined' ? DEFAULT_SUPABASE_ANON_KEY : '');
+
+      checkSupabaseConnectionBadge();
+
       const clearBtn = document.getElementById('btn-clear-all-products');
       if (clearBtn) {
         clearBtn.onclick = () => {
@@ -193,6 +239,32 @@
         };
       }
     });
+
+    function checkSupabaseConnectionBadge() {
+      const badge = document.getElementById('supabase-status-badge');
+      if (!badge) return;
+      if (typeof isSupabaseConfigured === 'function' && isSupabaseConfigured()) {
+        badge.innerHTML = `<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></span> <span style="color: #10b981;">Supabase Connected (Live Cloud Database Active)</span>`;
+      } else {
+        badge.innerHTML = `<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span> <span style="color: #d97706;">Supabase Not Connected (Using Local Cache Fallback)</span>`;
+      }
+    }
+
+    function saveSupabaseSettings(e) {
+      e.preventDefault();
+      const url = document.getElementById('setting-supabase-url').value.trim();
+      const key = document.getElementById('setting-supabase-key').value.trim();
+
+      if (!url || !key) {
+        showToast('Please enter both Supabase URL and Anon Key.', 'warning');
+        return;
+      }
+
+      localStorage.setItem('ppp_supabase_url', url);
+      localStorage.setItem('ppp_supabase_key', key);
+      showToast('Supabase settings saved! Reloading connection...', 'success');
+      setTimeout(() => window.location.reload(), 1200);
+    }
   </script>
 </body>
 </html>
