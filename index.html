@@ -35,9 +35,9 @@
     }
     
     .hero-title {
-      font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+      font-size: clamp(1.8rem, 3.3vw, 3.2rem);
       margin-bottom: 24px;
-      line-height: 1.18;
+      line-height: 1.2;
       letter-spacing: -0.5px;
     }
     
@@ -179,6 +179,9 @@
         word-break: normal;
         overflow-wrap: break-word;
       }
+      .hero-title span {
+        white-space: normal !important;
+      }
       .hero-title br {
         display: none;
       }
@@ -270,7 +273,8 @@
     <div class="container hero-content fade-up">
       <div class="badge">ISO 15378 & GMP CLEANROOM FACILITY</div>
       <h1 class="hero-title">
-        Precision Plastic <span class="text-gradient">Packaging Solutions</span> for Global Brands
+        <span style="white-space: nowrap; display: inline-block;">Precision Plastic <span class="text-gradient">Packaging Solutions</span></span><br>
+        <span>for Global Brands</span>
       </h1>
       <p class="section-desc" style="margin-left: 0; max-width: 650px;">
         Engineering sterile, leak-proof, and FDA-compliant bottles, jars, and containers for leading pharmaceutical, healthcare, and nutraceutical manufacturers worldwide.
