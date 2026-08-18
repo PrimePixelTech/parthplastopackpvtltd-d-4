@@ -771,6 +771,72 @@
       pointer-events: none;
     }
 
+    .cta-buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .cta-main-btn {
+      width: 100%;
+      background: #ffffff !important;
+      color: #7b3fa3 !important;
+      font-weight: 800 !important;
+      padding: 14px 28px !important;
+      border-radius: 9999px !important;
+      font-size: 1rem !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+      transition: all 0.3s ease !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      white-space: nowrap !important;
+      border: none !important;
+    }
+
+    .cta-main-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22) !important;
+      background: #faf5ff !important;
+      color: #58217d !important;
+    }
+
+    .cta-sub-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .cta-sub-buttons .cta-btn-glass {
+      padding: 12px 16px !important;
+      font-size: 0.92rem !important;
+      border-radius: 9999px !important;
+      text-align: center !important;
+      justify-content: center !important;
+      white-space: nowrap !important;
+      background: rgba(255, 255, 255, 0.18) !important;
+      backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      color: #ffffff !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .cta-sub-buttons .cta-btn-glass:hover {
+      background: rgba(255, 255, 255, 0.28) !important;
+      transform: translateY(-2px);
+    }
+
     /* Responsive */
     @media (max-width: 1100px) {
       .infra-cards-grid {
@@ -1348,19 +1414,24 @@
   <!-- Interactive Call to Action Banner -->
   <div class="container">
     <div class="infra-cta-section">
-      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin: 0 0 16px; color: #ffffff;">
-        Schedule a Cleanroom <span class="text-gradient" style="background: linear-gradient(135deg, #ffffff, #f1e6f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Plant Audit</span>
+      <h2 style="font-size: clamp(1.65rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 14px; color: #ffffff;">
+        Schedule a Cleanroom <span style="background: linear-gradient(135deg, #ffffff, #fef08a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Plant Audit</span>
       </h2>
-      <p style="color: rgba(255, 255, 255, 0.92); max-width: 680px; margin: 0 auto 36px; font-size: 1.05rem; line-height: 1.65;">
+      <p style="color: rgba(255, 255, 255, 0.92); max-width: 640px; margin: 0 auto 28px; font-size: 0.96rem; line-height: 1.6;">
         We welcome pharmaceutical, healthcare, and nutraceutical QA teams to audit our Ahmedabad manufacturing facility and discuss custom tooling.
       </p>
-      <div class="cta-buttons" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <a href="contact.html" class="btn cta-btn-glass" style="padding: 14px 32px; font-size: 1.05rem; border-radius: 9999px; background: rgba(255,255,255,0.2) !important;">
-          <i class="fas fa-calendar-check" style="margin-right: 8px;"></i> Schedule Plant Audit / Contact Us
+      <div class="cta-buttons-wrapper">
+        <a href="contact.html" class="btn cta-btn-white cta-main-btn">
+          Schedule Plant Audit &rarr;
         </a>
-        <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass" style="padding: 14px 30px; font-size: 1.05rem; border-radius: 9999px;">
-          <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp
-        </a>
+        <div class="cta-sub-buttons">
+          <a href="tel:+919825626651" class="btn cta-btn-glass">
+            <i class="fas fa-phone-alt"></i> Call Now
+          </a>
+          <a href="https://wa.me/919825626651" target="_blank" class="btn cta-btn-glass">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </div>
