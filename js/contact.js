@@ -48,9 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (isValid) {
+        // Save to IndexedDB if available
+        if (typeof addInquiry === 'function') {
+          const subject = document.getElementById('subject')?.value.trim() || '';
+          addInquiry({
+            name: name,
+            email: email,
+            phone: phone,
+            productName: subject,
+            company: 'Website Contact',
+            message: message
+          }).catch(err => console.warn('Inquiry DB save:', err));
+        }
+
         // Show success state without reload
         const successMsg = document.getElementById('successMsg');
-        successMsg.style.display = 'block';
+        if (successMsg) successMsg.style.display = 'block';
         
         // Disable form inputs
         const inputs = form.querySelectorAll('input, textarea, button');
@@ -58,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Hide success message after 5 seconds and reset
         setTimeout(() => {
-          successMsg.style.display = 'none';
+          if (successMsg) successMsg.style.display = 'none';
           inputs.forEach(input => input.disabled = false);
           form.reset();
         }, 5000);

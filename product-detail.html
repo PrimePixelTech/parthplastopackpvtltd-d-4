@@ -608,76 +608,9 @@
 
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
-  <script src="js/products.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const prodId = parseInt(urlParams.get('id')) || 1;
-      const product = products.find(p => p.id === prodId) || products[0];
-
-      if (product) {
-        document.title = `${product.name} | Parth Plasto Pack Pvt. Ltd.`;
-        document.getElementById('breadcrumbProductName').textContent = product.name;
-        document.getElementById('detailCatTag').textContent = product.tag || product.categoryName;
-        document.getElementById('detailTitle').textContent = product.name;
-        document.getElementById('detailImg').src = product.image;
-        document.getElementById('detailImg').alt = product.name;
-        document.getElementById('detailReqQuoteBtn').href = `contact.html?product=${encodeURIComponent(product.name)}`;
-
-        // Render Specification Cards with Icons
-        const specsGrid = document.getElementById('detailSpecsGrid');
-        if (specsGrid && product.specs) {
-          specsGrid.innerHTML = product.specs.map(s => `
-            <div class="spec-pill-card">
-              <div class="spec-icon-holder">
-                <i class="${s.icon || 'fa-solid fa-cube'}"></i>
-              </div>
-              <div class="spec-info-holder">
-                <span class="spec-field-label">${s.label}</span>
-                <span class="spec-field-value">${s.value}</span>
-              </div>
-            </div>
-          `).join('');
-        }
-
-        // Render Related Products (e.g., PPC 02, PPC 01, etc.)
-        const relatedGrid = document.getElementById('relatedGrid');
-        const relatedItems = products.filter(p => p.id !== product.id).slice(0, 4);
-        if (relatedGrid && relatedItems.length > 0) {
-          relatedGrid.innerHTML = relatedItems.map(rp => `
-            <div class="related-product-card" onclick="window.location.href='product-detail.html?id=${rp.id}'">
-              <div class="rel-image-box">
-                <img src="${rp.image}" alt="${rp.name}">
-                <span class="rel-tag-badge">${rp.tag || 'Other'}</span>
-              </div>
-              <h3 class="rel-title">${rp.name}</h3>
-              <div class="rel-specs-list">
-                <div class="rel-spec-item">
-                  <span class="rel-spec-label">Material</span>
-                  <span class="rel-spec-val">${rp.material}</span>
-                </div>
-                <div class="rel-spec-item">
-                  <span class="rel-spec-label">Volume</span>
-                  <span class="rel-spec-val">${rp.volume}</span>
-                </div>
-                <div class="rel-spec-item">
-                  <span class="rel-spec-label">Cap</span>
-                  <span class="rel-spec-val">${rp.cap}</span>
-                </div>
-              </div>
-              <div class="rel-buttons-row">
-                <a href="product-detail.html?id=${rp.id}" class="btn-rel-details" onclick="event.stopPropagation();">
-                  Details &rarr;
-                </a>
-                <a href="contact.html?product=${encodeURIComponent(rp.name)}" class="btn-rel-quote" onclick="event.stopPropagation();">
-                  Quote
-                </a>
-              </div>
-            </div>
-          `).join('');
-        }
-      }
-    });
-  </script>
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/inquiries.js"></script>
+  <script src="js/product-detail.js"></script>
 </body>
 </html>

@@ -1,0 +1,332 @@
+/* ===================================================
+   Expo 2026 Invitation Popup & Floating Ad Banner
+   =================================================== */
+
+/* Backdrop Overlay */
+.expo-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.expo-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Window */
+.expo-modal-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 460px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s ease;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.expo-modal-backdrop.active .expo-modal-container {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Header Bar */
+.expo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #6b0f1a 0%, #8b1524 100%);
+  color: #ffffff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.expo-modal-title {
+  font-family: 'Poppins', sans-serif, system-ui;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  margin: 0;
+}
+
+.expo-modal-title .expo-live-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #4ade80;
+  animation: expoPulse 1.8s infinite;
+}
+
+@keyframes expoPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  }
+
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+/* Close Button */
+.expo-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.expo-close-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(90deg);
+}
+
+/* Card Body */
+.expo-card-body {
+  position: relative;
+  background: #f8fafc;
+  padding: 10px;
+  text-align: center;
+}
+
+.expo-card-image-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  background: #000;
+}
+
+.expo-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* Action Buttons Footer */
+.expo-action-footer {
+  padding: 14px 16px 16px;
+  background: #ffffff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expo-quick-info {
+  display: flex;
+  justify-content: space-around;
+  background: #fdf2f2;
+  border: 1px dashed #f0a3af;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif, system-ui;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7b1122;
+}
+
+.expo-quick-info span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.expo-btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.expo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif, system-ui;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.expo-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.expo-btn-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+  color: #fff;
+}
+
+.expo-btn-secondary {
+  background: linear-gradient(135deg, #7b1122 0%, #991b1b 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(123, 17, 34, 0.25);
+}
+
+.expo-btn-secondary:hover {
+  background: linear-gradient(135deg, #630c1a 0%, #7f1d1d 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(123, 17, 34, 0.35);
+  color: #fff;
+}
+
+.expo-btn-outline {
+  grid-column: 1 / -1;
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.expo-btn-outline:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ===================================================
+   Floating Sticky Ad Trigger Badge
+   =================================================== */
+.expo-floating-trigger {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 99999;
+  background: linear-gradient(135deg, #7b1122 0%, #991b1b 100%);
+  color: #ffffff;
+  padding: 10px 18px 10px 14px;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(123, 17, 34, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif, system-ui;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: none;
+  animation: expoFloatAnim 3.5s ease-in-out infinite;
+}
+
+.expo-floating-trigger:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(123, 17, 34, 0.55),
+    0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.expo-floating-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.expo-floating-badge {
+  background: #f59e0b;
+  color: #000;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@keyframes expoFloatAnim {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .expo-modal-container {
+    max-width: 95vw;
+    border-radius: 14px;
+  }
+
+  .expo-btn-group {
+    grid-template-columns: 1fr;
+  }
+
+  .expo-floating-trigger {
+    bottom: 18px;
+    left: 14px;
+    padding: 8px 14px 8px 10px;
+    font-size: 12px;
+  }
+
+  .expo-floating-trigger .expo-floating-text {
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

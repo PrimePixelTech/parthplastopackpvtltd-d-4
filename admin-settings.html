@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Parth Plastopack Admin</title>
+  <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">
+        <img src="assets/images/PPPLOGO.webp" alt="Logo" onerror="this.src=getPlaceholderSVG('PPP')">
+      </div>
+      <div>
+        <h2 class="sidebar-brand-name">Parth Plastopack</h2>
+        <span class="sidebar-brand-badge">Admin Panel</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div style="padding: 0 0 14px;">
+        <a href="admin-products.html?action=new" class="btn-admin btn-purple-custom" style="width: 100%; justify-content: center; font-size: 0.95rem; padding: 12px; box-shadow: 0 4px 14px rgba(123, 63, 163, 0.35); font-weight: 700; text-decoration: none;">
+          <i class="fa-solid fa-plus"></i> Add Product
+        </a>
+      </div>
+
+      <span class="sidebar-section-title">Overview</span>
+      <a href="admin.html" class="sidebar-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="admin-products.html" class="sidebar-nav-item">
+        <i class="fa-solid fa-box-archive"></i>
+        <span>Products</span>
+      </a>
+      <a href="admin-categories.html" class="sidebar-nav-item">
+        <i class="fa-solid fa-folder-tree"></i>
+        <span>Categories</span>
+      </a>
+      <a href="admin-inquiries.html" class="sidebar-nav-item">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <span>Inquiries</span>
+      </a>
+      
+      <span class="sidebar-section-title" style="margin-top: 12px;">System</span>
+      <a href="admin-settings.html" class="sidebar-nav-item active">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" target="_blank" class="sidebar-quick-link">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>View Public Website</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Wrapper -->
+  <div class="admin-main-wrapper">
+    <header class="admin-header">
+      <div class="header-left">
+        <button type="button" class="mobile-toggle-btn" id="mobile-sidebar-toggle" aria-label="Toggle Sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <span style="font-weight: 700; color: var(--admin-text-main);">Settings & System Preferences</span>
+      </div>
+
+      <div class="header-right">
+        <a href="admin-products.html?action=new" class="btn-admin btn-purple-custom btn-sm-custom" style="font-weight: 700; text-decoration: none;">
+          <i class="fa-solid fa-plus"></i> Add Product
+        </a>
+        <div class="admin-profile-pill">
+          <div class="profile-avatar">AD</div>
+          <div class="profile-info">
+            <span class="profile-name">Administrator</span>
+            <span class="profile-role">Store Manager</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content" style="max-width: 900px;">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-subtitle">Manage company contact info, persistence storage, and development demo tools.</p>
+        </div>
+      </div>
+
+      <!-- Storage & Database Info -->
+      <div class="dashboard-card-box" style="margin-bottom: 24px;">
+        <h3 class="dashboard-card-heading" style="margin-bottom: 16px;">
+          <i class="fa-solid fa-database" style="color: var(--admin-purple-primary); margin-right: 8px;"></i>
+          Local Database & Storage (IndexedDB)
+        </h3>
+        <p style="color: var(--admin-text-muted); font-size: 0.9rem; margin-bottom: 16px;">
+          All products, high-resolution optimized images, specifications, categories, and submitted customer inquiries are stored in your browser's persistent IndexedDB database (<code>ParthPlastoPackDB</code>).
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px;">
+          <div style="background: var(--admin-surface-subtle); border: 1px solid var(--admin-border); padding: 16px; border-radius: 12px;">
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">Database Name</div>
+            <strong style="font-size: 1rem; color: var(--admin-text-main);">ParthPlastoPackDB</strong>
+          </div>
+          <div style="background: var(--admin-surface-subtle); border: 1px solid var(--admin-border); padding: 16px; border-radius: 12px;">
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">Persistence Engine</div>
+            <strong style="font-size: 1rem; color: var(--admin-green);">IndexedDB (Active)</strong>
+          </div>
+          <div style="background: var(--admin-surface-subtle); border: 1px solid var(--admin-border); padding: 16px; border-radius: 12px;">
+            <div style="font-size: 0.8rem; color: var(--admin-text-muted);">Data Sharing</div>
+            <strong style="font-size: 1rem; color: var(--admin-blue-primary);">Admin &harr; Website Sync</strong>
+          </div>
+        </div>
+
+        <div style="padding-top: 16px; border-top: 1px solid var(--admin-border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong style="display: block; font-size: 0.95rem; color: var(--admin-text-main);">Clear All Products</strong>
+            <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+              Delete all products from the catalog so only new products you upload in the Admin Panel will be displayed.
+            </span>
+          </div>
+          <button type="button" class="btn-admin btn-danger-custom" id="btn-clear-all-products">
+            <i class="fa-solid fa-trash-can"></i> Clear All Products
+          </button>
+        </div>
+      </div>
+
+      <!-- Company Profile Details -->
+      <div class="dashboard-card-box">
+        <h3 class="dashboard-card-heading" style="margin-bottom: 16px;">
+          <i class="fa-solid fa-building" style="color: var(--admin-blue-primary); margin-right: 8px;"></i>
+          Company & Contact Information
+        </h3>
+
+        <form id="settings-company-form" onsubmit="event.preventDefault(); showToast('Company profile settings updated!', 'success');">
+          <div class="form-grid-2">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Company Name</label>
+              <input type="text" class="form-control-custom" value="Parth Plastopack Pvt. Ltd." required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Sales Support Email</label>
+              <input type="email" class="form-control-custom" value="sales@parthplastopack.com" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Primary Phone / WhatsApp</label>
+              <input type="tel" class="form-control-custom" value="+91 98256 26651" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Manufacturing Unit Address</label>
+              <input type="text" class="form-control-custom" value="11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Kuha, Ahmedabad - 382433">
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; text-align: right;">
+            <button type="submit" class="btn-admin btn-purple-custom">
+              <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const clearBtn = document.getElementById('btn-clear-all-products');
+      if (clearBtn) {
+        clearBtn.onclick = () => {
+          showConfirmModal({
+            title: 'Clear All Products',
+            message: 'Are you sure you want to delete all products from the catalog? The products page will be completely empty until you upload or add new products.',
+            confirmText: 'Yes, Clear Products',
+            type: 'danger',
+            onConfirm: async () => {
+              await clearAllProducts();
+              showToast('All products cleared! Only new products you upload will appear.', 'success');
+            }
+          });
+        };
+      }
+    });
+  </script>
+</body>
+</html>

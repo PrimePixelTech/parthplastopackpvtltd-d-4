@@ -1,0 +1,795 @@
+/**
+ * Parth Plastopack Pvt. Ltd.
+ * Database Layer (IndexedDB with robust promise-based API)
+ * 
+ * Stores:
+ * - products: Complete product catalog, specs, features, images, SEO
+ * - categories: Packaging categories with hierarchy & order
+ * - inquiries: Customer quote requests from website
+ * - settings: Store & catalog settings
+ */
+
+const DB_NAME = 'ParthPlastoPackDB';
+const DB_VERSION = 1;
+
+let dbInstance = null;
+
+/**
+ * Initialize IndexedDB Database & Stores
+ */
+function initDB() {
+  return new Promise((resolve, reject) => {
+    if (dbInstance) {
+      return resolve(dbInstance);
+    }
+
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+
+      // Products Store
+      if (!db.objectStoreNames.contains('products')) {
+        const productStore = db.createObjectStore('products', { keyPath: 'id' });
+        productStore.createIndex('categoryId', 'categoryId', { unique: false });
+        productStore.createIndex('sku', 'sku', { unique: false });
+        productStore.createIndex('slug', 'slug', { unique: false });
+        productStore.createIndex('status', 'status', { unique: false });
+        productStore.createIndex('order', 'order', { unique: false });
+        productStore.createIndex('createdAt', 'createdAt', { unique: false });
+        productStore.createIndex('updatedAt', 'updatedAt', { unique: false });
+      }
+
+      // Categories Store
+      if (!db.objectStoreNames.contains('categories')) {
+        const categoryStore = db.createObjectStore('categories', { keyPath: 'id' });
+        categoryStore.createIndex('slug', 'slug', { unique: false });
+        categoryStore.createIndex('order', 'order', { unique: false });
+        categoryStore.createIndex('status', 'status', { unique: false });
+      }
+
+      // Inquiries Store
+      if (!db.objectStoreNames.contains('inquiries')) {
+        const inquiryStore = db.createObjectStore('inquiries', { keyPath: 'id' });
+        inquiryStore.createIndex('productId', 'productId', { unique: false });
+        inquiryStore.createIndex('status', 'status', { unique: false });
+        inquiryStore.createIndex('createdAt', 'createdAt', { unique: false });
+      }
+
+      // Settings Store
+      if (!db.objectStoreNames.contains('settings')) {
+        db.createObjectStore('settings', { keyPath: 'key' });
+      }
+    };
+
+    request.onsuccess = async (event) => {
+      dbInstance = event.target.result;
+      // Auto seed initial data if empty
+      await seedInitialData();
+      resolve(dbInstance);
+    };
+
+    request.onerror = (event) => {
+      console.error('IndexedDB Error:', event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
+
+/**
+ * Execute transaction helper
+ */
+async function getStore(storeName, mode = 'readonly') {
+  const db = await initDB();
+  const tx = db.transaction(storeName, mode);
+  return tx.objectStore(storeName);
+}
+
+/* ==========================================================================
+   PRODUCTS CRUD
+   ========================================================================== */
+
+/**
+ * Get all products with optional filtering and sorting
+ */
+async function getProducts(options = {}) {
+  const store = await getStore('products', 'readonly');
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => {
+      let products = request.result || [];
+
+      // Filter by category
+      if (options.categoryId && options.categoryId !== 'all') {
+        products = products.filter(p => p.categoryId === options.categoryId);
+      }
+
+      // Filter by status (public website should only see 'active')
+      if (options.status && options.status !== 'all') {
+        products = products.filter(p => p.status === options.status);
+      }
+
+      // Filter by search query
+      if (options.search) {
+        const query = options.search.toLowerCase().trim();
+        products = products.filter(p => {
+          return (
+            (p.name && p.name.toLowerCase().includes(query)) ||
+            (p.sku && p.sku.toLowerCase().includes(query)) ||
+            (p.modelNumber && p.modelNumber.toLowerCase().includes(query)) ||
+            (p.material && p.material.toLowerCase().includes(query)) ||
+            (p.shortDescription && p.shortDescription.toLowerCase().includes(query)) ||
+            (p.description && p.description.toLowerCase().includes(query)) ||
+            (p.seo?.keywords && p.seo.keywords.toLowerCase().includes(query))
+          );
+        });
+      }
+
+      // Filter by material
+      if (options.material && options.material !== 'all') {
+        products = products.filter(p => p.material && p.material.toLowerCase().includes(options.material.toLowerCase()));
+      }
+
+      // Filter by capacity
+      if (options.capacity && options.capacity !== 'all') {
+        products = products.filter(p => p.capacity && p.capacity.toLowerCase().includes(options.capacity.toLowerCase()));
+      }
+
+      // Sorting
+      if (options.sortBy) {
+        switch (options.sortBy) {
+          case 'name-asc':
+            products.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+            break;
+          case 'name-desc':
+            products.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+            break;
+          case 'newest':
+            products.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+            break;
+          case 'updated':
+            products.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
+            break;
+          case 'featured':
+          default:
+            products.sort((a, b) => (a.order || 0) - (b.order || 0));
+            break;
+        }
+      } else {
+        // Default order
+        products.sort((a, b) => (a.order || 0) - (b.order || 0));
+      }
+
+      resolve(products);
+    };
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Get single product by ID
+ */
+async function getProductById(id) {
+  const store = await getStore('products', 'readonly');
+  return new Promise((resolve, reject) => {
+    const request = store.get(id);
+    request.onsuccess = () => resolve(request.result || null);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Get single product by Slug
+ */
+async function getProductBySlug(slug) {
+  const products = await getProducts();
+  return products.find(p => p.slug === slug) || null;
+}
+
+/**
+ * Add new product
+ */
+async function addProduct(productData) {
+  const store = await getStore('products', 'readwrite');
+  const now = new Date().toISOString();
+  
+  const newProduct = {
+    id: productData.id || `prod_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+    name: productData.name?.trim() || 'Untitled Product',
+    slug: productData.slug || generateSlug(productData.name),
+    sku: productData.sku?.trim() || `SKU-${Date.now().toString().slice(-4)}`,
+    modelNumber: productData.modelNumber?.trim() || '',
+    categoryId: productData.categoryId || 'cat_effervescent',
+    subCategory: productData.subCategory?.trim() || '',
+    productType: productData.productType?.trim() || 'Container',
+    price: productData.price || '',
+    shortDescription: productData.shortDescription?.trim() || '',
+    description: productData.description?.trim() || '',
+    images: Array.isArray(productData.images) && productData.images.length > 0 
+      ? productData.images 
+      : ['assets/images/products/tube-trio.jpg'],
+    material: productData.material?.trim() || 'Food Grade PP',
+    color: productData.color?.trim() || 'White / Translucent / Custom',
+    shape: productData.shape?.trim() || 'Cylindrical',
+    capacity: productData.capacity?.trim() || '',
+    size: productData.size?.trim() || '',
+    weight: productData.weight?.trim() || '',
+    height: productData.height?.trim() || '',
+    width: productData.width?.trim() || '',
+    diameter: productData.diameter?.trim() || '',
+    neckSize: productData.neckSize?.trim() || '',
+    packagingType: productData.packagingType?.trim() || 'Box Packaging / Export Pallet',
+    usage: productData.usage?.trim() || 'Pharmaceutical & Nutraceutical Packaging',
+    countryOfOrigin: productData.countryOfOrigin?.trim() || 'India',
+    specifications: Array.isArray(productData.specifications) ? productData.specifications : [],
+    features: Array.isArray(productData.features) ? productData.features : [],
+    status: productData.status || 'active',
+    order: typeof productData.order === 'number' ? productData.order : Date.now(),
+    seo: {
+      title: productData.seo?.title || `${productData.name} | Parth Plastopack`,
+      description: productData.seo?.description || productData.shortDescription || '',
+      keywords: productData.seo?.keywords || '',
+      canonicalUrl: productData.seo?.canonicalUrl || ''
+    },
+    createdAt: productData.createdAt || now,
+    updatedAt: now
+  };
+
+  return new Promise((resolve, reject) => {
+    const request = store.add(newProduct);
+    request.onsuccess = () => resolve(newProduct);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Update existing product
+ */
+async function updateProduct(id, productData) {
+  const existing = await getProductById(id);
+  if (!existing) {
+    throw new Error(`Product with ID ${id} not found.`);
+  }
+
+  const updatedProduct = {
+    ...existing,
+    ...productData,
+    id: id,
+    updatedAt: new Date().toISOString()
+  };
+
+  const store = await getStore('products', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const request = store.put(updatedProduct);
+    request.onsuccess = () => resolve(updatedProduct);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Delete product
+ */
+async function deleteProduct(id) {
+  const store = await getStore('products', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const request = store.delete(id);
+    request.onsuccess = () => resolve(true);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Bulk delete products
+ */
+async function bulkDeleteProducts(ids) {
+  const store = await getStore('products', 'readwrite');
+  return Promise.all(ids.map(id => new Promise((resolve, reject) => {
+    const req = store.delete(id);
+    req.onsuccess = () => resolve(true);
+    req.onerror = (e) => reject(e.target.error);
+  })));
+}
+
+/**
+ * Bulk update product status
+ */
+async function bulkUpdateProductStatus(ids, status) {
+  const now = new Date().toISOString();
+  const products = await Promise.all(ids.map(id => getProductById(id)));
+  const validProducts = products.filter(Boolean);
+
+  const store = await getStore('products', 'readwrite');
+  return Promise.all(validProducts.map(product => {
+    product.status = status;
+    product.updatedAt = now;
+    return new Promise((resolve, reject) => {
+      const req = store.put(product);
+      req.onsuccess = () => resolve(product);
+      req.onerror = (e) => reject(e.target.error);
+    });
+  }));
+}
+
+/**
+ * Reorder products
+ */
+async function reorderProducts(orderedIds) {
+  const products = await Promise.all(orderedIds.map(id => getProductById(id)));
+  const store = await getStore('products', 'readwrite');
+  return Promise.all(products.map((product, index) => {
+    if (!product) return Promise.resolve(null);
+    product.order = index + 1;
+    return new Promise((resolve, reject) => {
+      const req = store.put(product);
+      req.onsuccess = () => resolve(product);
+      req.onerror = (e) => reject(e.target.error);
+    });
+  }));
+}
+
+/* ==========================================================================
+   CATEGORIES CRUD
+   ========================================================================== */
+
+/**
+ * Get all categories
+ */
+async function getCategories(options = {}) {
+  const store = await getStore('categories', 'readonly');
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => {
+      let categories = request.result || [];
+
+      if (options.status && options.status !== 'all') {
+        categories = categories.filter(c => c.status === options.status);
+      }
+
+      if (options.search) {
+        const query = options.search.toLowerCase().trim();
+        categories = categories.filter(c => 
+          (c.name && c.name.toLowerCase().includes(query)) ||
+          (c.description && c.description.toLowerCase().includes(query))
+        );
+      }
+
+      categories.sort((a, b) => (a.order || 0) - (b.order || 0));
+      resolve(categories);
+    };
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Get category by ID
+ */
+async function getCategoryById(id) {
+  const store = await getStore('categories', 'readonly');
+  return new Promise((resolve, reject) => {
+    const request = store.get(id);
+    request.onsuccess = () => resolve(request.result || null);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Get category by Slug
+ */
+async function getCategoryBySlug(slug) {
+  const categories = await getCategories();
+  return categories.find(c => c.slug === slug) || null;
+}
+
+/**
+ * Add Category
+ */
+async function addCategory(categoryData) {
+  const store = await getStore('categories', 'readwrite');
+  const now = new Date().toISOString();
+
+  const newCategory = {
+    id: categoryData.id || `cat_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+    name: categoryData.name?.trim() || 'New Category',
+    slug: categoryData.slug || generateSlug(categoryData.name),
+    description: categoryData.description?.trim() || '',
+    image: categoryData.image || 'assets/images/products/tube-trio.jpg',
+    icon: categoryData.icon || 'fa-solid fa-pills',
+    status: categoryData.status || 'active',
+    order: typeof categoryData.order === 'number' ? categoryData.order : Date.now(),
+    createdAt: now,
+    updatedAt: now
+  };
+
+  return new Promise((resolve, reject) => {
+    const request = store.add(newCategory);
+    request.onsuccess = () => resolve(newCategory);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Update Category
+ */
+async function updateCategory(id, categoryData) {
+  const existing = await getCategoryById(id);
+  if (!existing) {
+    throw new Error(`Category with ID ${id} not found.`);
+  }
+
+  const updatedCategory = {
+    ...existing,
+    ...categoryData,
+    id: id,
+    updatedAt: new Date().toISOString()
+  };
+
+  const store = await getStore('categories', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const request = store.put(updatedCategory);
+    request.onsuccess = () => resolve(updatedCategory);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Delete Category (with safe product check)
+ */
+async function deleteCategory(id, targetMoveCategoryId = null) {
+  const products = await getProducts({ categoryId: id });
+  
+  if (products.length > 0) {
+    if (!targetMoveCategoryId) {
+      throw new Error(`Cannot delete category: ${products.length} product(s) are assigned to it. Please reassign or delete them first.`);
+    }
+    // Reassign products to target category
+    const productStore = await getStore('products', 'readwrite');
+    for (const p of products) {
+      p.categoryId = targetMoveCategoryId;
+      p.updatedAt = new Date().toISOString();
+      await new Promise((resolve, reject) => {
+        const req = productStore.put(p);
+        req.onsuccess = resolve;
+        req.onerror = reject;
+      });
+    }
+  }
+
+  const store = await getStore('categories', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const request = store.delete(id);
+    request.onsuccess = () => resolve(true);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Reorder categories
+ */
+async function reorderCategories(orderedIds) {
+  const categories = await Promise.all(orderedIds.map(id => getCategoryById(id)));
+  const store = await getStore('categories', 'readwrite');
+  return Promise.all(categories.map((category, index) => {
+    if (!category) return Promise.resolve(null);
+    category.order = index + 1;
+    return new Promise((resolve, reject) => {
+      const req = store.put(category);
+      req.onsuccess = () => resolve(category);
+      req.onerror = (e) => reject(e.target.error);
+    });
+  }));
+}
+
+/* ==========================================================================
+   INQUIRIES CRUD
+   ========================================================================== */
+
+/**
+ * Get all quote inquiries
+ */
+async function getInquiries(options = {}) {
+  const store = await getStore('inquiries', 'readonly');
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => {
+      let inquiries = request.result || [];
+
+      if (options.status && options.status !== 'all') {
+        inquiries = inquiries.filter(i => i.status === options.status);
+      }
+
+      if (options.search) {
+        const q = options.search.toLowerCase();
+        inquiries = inquiries.filter(i => 
+          (i.name && i.name.toLowerCase().includes(q)) ||
+          (i.company && i.company.toLowerCase().includes(q)) ||
+          (i.email && i.email.toLowerCase().includes(q)) ||
+          (i.productName && i.productName.toLowerCase().includes(q))
+        );
+      }
+
+      inquiries.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+      resolve(inquiries);
+    };
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Add customer quote inquiry
+ */
+async function addInquiry(inquiryData) {
+  const store = await getStore('inquiries', 'readwrite');
+  const newInquiry = {
+    id: `inq_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+    name: inquiryData.name?.trim() || 'Anonymous',
+    company: inquiryData.company?.trim() || '',
+    email: inquiryData.email?.trim() || '',
+    phone: inquiryData.phone?.trim() || '',
+    productId: inquiryData.productId || '',
+    productName: inquiryData.productName?.trim() || '',
+    quantity: inquiryData.quantity || '',
+    message: inquiryData.message?.trim() || '',
+    status: 'new', // new, contacted, closed
+    createdAt: new Date().toISOString()
+  };
+
+  return new Promise((resolve, reject) => {
+    const request = store.add(newInquiry);
+    request.onsuccess = () => resolve(newInquiry);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Update inquiry status
+ */
+async function updateInquiryStatus(id, status) {
+  const store = await getStore('inquiries', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const getReq = store.get(id);
+    getReq.onsuccess = () => {
+      const inq = getReq.result;
+      if (!inq) return reject(new Error('Inquiry not found'));
+      inq.status = status;
+      inq.updatedAt = new Date().toISOString();
+      const putReq = store.put(inq);
+      putReq.onsuccess = () => resolve(inq);
+      putReq.onerror = (e) => reject(e.target.error);
+    };
+    getReq.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Delete inquiry
+ */
+async function deleteInquiry(id) {
+  const store = await getStore('inquiries', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const request = store.delete(id);
+    request.onsuccess = () => resolve(true);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/* ==========================================================================
+   DASHBOARD STATS & ANALYTICS
+   ========================================================================== */
+
+/**
+ * Calculate comprehensive dashboard statistics
+ */
+async function getDashboardStats() {
+  const [products, categories, inquiries] = await Promise.all([
+    getProducts(),
+    getCategories(),
+    getInquiries()
+  ]);
+
+  const activeProducts = products.filter(p => p.status === 'active').length;
+  const draftProducts = products.filter(p => p.status === 'draft').length;
+  const inactiveProducts = products.filter(p => p.status === 'inactive').length;
+
+  // Category distribution
+  const categoryDistribution = categories.map(cat => {
+    const count = products.filter(p => p.categoryId === cat.id).length;
+    return {
+      id: cat.id,
+      name: cat.name,
+      count: count,
+      percentage: products.length > 0 ? Math.round((count / products.length) * 100) : 0
+    };
+  });
+
+  // Recent products
+  const recentProducts = [...products]
+    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+    .slice(0, 5);
+
+  // Recently updated products
+  const recentlyUpdated = [...products]
+    .sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))
+    .slice(0, 5);
+
+  // Recent inquiries
+  const recentInquiries = inquiries.slice(0, 5);
+
+  return {
+    totalProducts: products.length,
+    activeProducts,
+    draftProducts,
+    inactiveProducts,
+    totalCategories: categories.length,
+    totalInquiries: inquiries.length,
+    totalCustomers: 1200,
+    downloadsCount: 348,
+    categoryDistribution,
+    recentProducts,
+    recentlyUpdated,
+    recentInquiries
+  };
+}
+
+/* ==========================================================================
+   SAMPLE DATA SEEDING & RESET ENGINE
+   ========================================================================== */
+
+/**
+ * Generate clean URL slug
+ */
+function generateSlug(text) {
+  if (!text) return `item-${Date.now()}`;
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[\s\W-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Initial Factory Categories for Parth Plastopack
+ */
+const DEFAULT_CATEGORIES = [
+  {
+    id: 'cat_effervescent',
+    name: 'EFFERVESCENT TABLET TUBE',
+    slug: 'effervescent-tablet-tube',
+    description: 'Airtight, moisture-resistant packaging for effervescent vitamin & mineral tablets with desiccant cap options.',
+    image: 'assets/images/products/tube-trio.jpg',
+    icon: 'fa-solid fa-flask-vial',
+    status: 'active',
+    order: 1
+  },
+  {
+    id: 'cat_powder',
+    name: 'POWDER CONTAINER',
+    slug: 'powder-container',
+    description: 'Heavy-duty food-grade PP containers with airtight seals and IML branding for protein & pharma powders.',
+    image: 'assets/images/products/products.webp',
+    icon: 'fa-solid fa-cubes',
+    status: 'active',
+    order: 2
+  },
+  {
+    id: 'cat_pet_tablet',
+    name: 'PET TABLET CONTAINER',
+    slug: 'pet-tablet-container',
+    description: 'Crystal-clear PET containers providing superior UV resistance, lightweight handling, and child-resistant options.',
+    image: 'assets/images/products/pet-bottle.jpg',
+    icon: 'fa-solid fa-bottle-water',
+    status: 'active',
+    order: 3
+  },
+  {
+    id: 'cat_tablet_container',
+    name: 'TABLET CONTAINER',
+    slug: 'tablet-container',
+    description: 'High-density polyethylene containers designed for medical tablets, capsules, and health supplements.',
+    image: 'assets/images/products/tablet-container.jpg',
+    icon: 'fa-solid fa-pills',
+    status: 'active',
+    order: 4
+  },
+  {
+    id: 'cat_lids_caps',
+    name: 'CAPS & CLOSURES',
+    slug: 'caps-and-closures',
+    description: 'Precision-threaded caps, tamper-evident seals, desiccant spiral stoppers, and child-resistant closures.',
+    image: 'assets/images/products/Cap.webp',
+    icon: 'fa-solid fa-shield-halved',
+    status: 'active',
+    order: 5
+  },
+  {
+    id: 'cat_spoons',
+    name: 'MEASURING SPOONS',
+    slug: 'measuring-spoons',
+    description: 'Accurate, food-grade measuring scoops ranging from 1g to 50g for nutraceutical and pharmaceutical dosing.',
+    image: 'assets/images/products/spoon.jpg',
+    icon: 'fa-solid fa-spoon',
+    status: 'active',
+    order: 6
+  }
+];
+
+/**
+ * Initial Factory Products for Parth Plastopack (Starts completely empty)
+ * Only products uploaded/created by the admin in the Admin Panel will appear on the website.
+ */
+const DEFAULT_PRODUCTS = [];
+
+/**
+ * Initial Sample Inquiries (Starts empty)
+ */
+const DEFAULT_INQUIRIES = [];
+
+/**
+ * Seed initial categories if empty
+ */
+async function seedInitialData(force = false) {
+  const db = await new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onsuccess = (e) => resolve(e.target.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
+
+  const catTx = db.transaction('categories', 'readwrite');
+  const catStore = catTx.objectStore('categories');
+  const catCountReq = catStore.count();
+
+  catCountReq.onsuccess = async () => {
+    const catCount = catCountReq.result;
+    if (catCount === 0 || force) {
+      if (force) {
+        catStore.clear();
+      }
+      for (const cat of DEFAULT_CATEGORIES) {
+        catStore.put(cat);
+      }
+    }
+  };
+
+  // Remove legacy sample mock products if present
+  const prodTx = db.transaction('products', 'readwrite');
+  const prodStore = prodTx.objectStore('products');
+  const getAllReq = prodStore.getAll();
+
+  getAllReq.onsuccess = () => {
+    const prods = getAllReq.result || [];
+    const mockIds = ['prod_tube_l_01', 'prod_ppc_02', 'prod_ppc_01', 'prod_tube_s_01', 'prod_pet_bottle_01', 'prod_cap_closure_01'];
+    prods.forEach(p => {
+      if (mockIds.includes(p.id)) {
+        prodStore.delete(p.id);
+      }
+    });
+  };
+}
+
+/**
+ * Clear all products completely from database
+ */
+async function clearAllProducts() {
+  const store = await getStore('products', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const req = store.clear();
+    req.onsuccess = () => resolve(true);
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Reset whole database
+ */
+async function resetDatabase() {
+  await clearAllProducts();
+  await seedInitialData(true);
+  return true;
+}
+
+window.clearAllProducts = clearAllProducts;
+
+// Auto initialize on load
+if (typeof window !== 'undefined') {
+  initDB().catch(err => console.warn('DB Auto-init warning:', err));
+}

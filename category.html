@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="categoryPageTitle">Category Catalog | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description" content="Explore packaging products by category from Parth Plastopack Pvt. Ltd.">
+  
+  <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-purple: #7b3fa3;
+      --primary-purple-dark: #58217d;
+      --text-dark: #191426;
+      --text-muted-grey: #6b7280;
+    }
+    body { background-color: #faf9fd; }
+    .category-page-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .cat-hero-card {
+      background: linear-gradient(135deg, #f7f1fc 0%, #fbf9fd 50%, #f0e6f9 100%);
+      border: 1px solid #ebdff5;
+      border-radius: 28px;
+      padding: 48px;
+      margin-top: 135px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(123, 63, 163, 0.04);
+    }
+    .cat-badge-tag {
+      color: var(--primary-purple);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .cat-page-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .cat-page-subtitle {
+      color: var(--text-muted-grey);
+      font-size: 1.05rem;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack" style="height: 48px; object-fit: contain;">
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="infrastructure.html" class="nav-link">Infrastructure</a>
+        <a href="quality.html" class="nav-link">Quality</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="admin.html" class="btn btn-secondary" style="padding: 10px 18px; font-size: 0.85rem;" target="_blank">
+          <i class="fa-solid fa-gauge" style="margin-right: 6px;"></i> Admin Panel
+        </a>
+        <button class="btn btn-primary" onclick="openQuoteModal()">Request Quote</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="category-page-container">
+    <!-- Breadcrumbs -->
+    <div style="padding-top: 110px; color: #9ca3af; font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
+      <a href="index.html" style="color: #6b7280;">Home</a>
+      <span>&rsaquo;</span>
+      <a href="products.html" style="color: #6b7280;">Products</a>
+      <span>&rsaquo;</span>
+      <span style="color: #191426; font-weight: 600;" id="breadcrumbCategoryName">Category</span>
+    </div>
+
+    <!-- Category Hero -->
+    <section class="cat-hero-card" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 280px;">
+        <span class="cat-badge-tag">Packaging Category</span>
+        <h1 class="cat-page-title" id="catTitle">Packaging Category</h1>
+        <p class="cat-page-subtitle" id="catDescription">Explore all available sizes, specifications, and configurations in this category.</p>
+      </div>
+      <div id="catHeroImageBox" style="width: 120px; height: 120px; border-radius: 16px; background: #fff; border: 2px solid #e9e4f0; display: none; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.06); padding: 8px;">
+        <img id="catHeroImage" src="" alt="Category Image" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- Filter & Count Bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 0 4px; flex-wrap: wrap; gap: 16px;">
+      <span style="font-weight: 600; color: #4b5563; font-size: 0.95rem;" id="catProductCountDisplay">Loading products...</span>
+      <div style="display: flex; gap: 12px;">
+        <input type="text" id="catSearchInput" placeholder="Search in this category..." style="padding: 8px 16px; border-radius: 9999px; border: 1px solid #e2e8f0; font-size: 0.88rem; outline: none; background: #fff;">
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="products-grid-catalog" id="catProductsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-bottom: 60px;">
+      <!-- Dynamic Products -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 16px;">Parth Plasto Pack</h3>
+        <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="products.html">All Products</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:sales@parthplastopack.com">sales@parthplastopack.com</a>
+          <a href="tel:+919825626651">+91 98256 26651</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/inquiries.js"></script>
+  <script src="js/categories.js"></script>
+</body>
+</html>
