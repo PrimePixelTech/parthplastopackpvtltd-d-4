@@ -425,7 +425,7 @@
     @media (max-width: 1024px) {
       .showcase-grid {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
       }
       .related-cards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -433,20 +433,83 @@
     }
 
     @media (max-width: 600px) {
+      .detail-container {
+        padding: 0 12px !important;
+      }
       .breadcrumb-row {
-        padding-top: 110px;
+        padding-top: 100px !important;
+        padding-bottom: 14px !important;
+        font-size: 0.8rem !important;
+      }
+      .image-showcase-box {
+        min-height: 240px !important;
+        padding: 20px !important;
+        border-radius: 20px !important;
+      }
+      .image-showcase-box img {
+        max-height: 200px !important;
+      }
+      .product-title-text {
+        font-size: 1.75rem !important;
+        margin-bottom: 14px !important;
       }
       .specs-two-col-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+      .spec-pill-card {
+        padding: 8px 10px !important;
+        gap: 8px !important;
+        border-radius: 10px !important;
+      }
+      .spec-icon-holder {
+        width: 18px !important;
+        font-size: 0.9rem !important;
+      }
+      .spec-field-label {
+        font-size: 0.58rem !important;
+      }
+      .spec-field-value {
+        font-size: 0.8rem !important;
       }
       .action-buttons-group {
-        flex-direction: column;
+        flex-direction: column !important;
+        gap: 10px !important;
       }
       .btn-req-quote, .btn-catalog-dl {
-        width: 100%;
+        width: 100% !important;
+        padding: 12px 14px !important;
+        font-size: 0.84rem !important;
+        justify-content: center !important;
       }
       .related-cards-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+      .related-card {
+        padding: 8px !important;
+        border-radius: 12px !important;
+      }
+      .related-img-box {
+        height: 110px !important;
+        margin-bottom: 6px !important;
+      }
+      .related-title {
+        font-size: 0.82rem !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+      .related-actions {
+        flex-direction: column !important;
+        gap: 4px !important;
+      }
+      .btn-rel-details, .btn-rel-quote {
+        padding: 6px 4px !important;
+        font-size: 0.7rem !important;
+        border-radius: 6px !important;
+        text-align: center !important;
+        justify-content: center !important;
       }
     }
   </style>
