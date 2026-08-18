@@ -42,29 +42,23 @@
     .infra-pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #f5edfc 0%, #ede0f7 100%);
-      color: var(--infra-purple-dark);
-      font-size: 1.15rem;
-      font-weight: 800;
-      padding: 10px 28px;
-      border-radius: 9999px;
-      border: 1.5px solid #dfcef0;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-      box-shadow: 0 6px 20px rgba(123, 63, 163, 0.12);
-      animation: pulseBadge 3s infinite ease-in-out;
-    }
-
-    .infra-pill-badge i {
-      font-size: 1.25rem;
+      gap: 8px;
+      background: var(--infra-purple-light);
       color: var(--infra-purple);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 7px 20px;
+      border-radius: 9999px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.1);
+      animation: pulseBadge 3s infinite ease-in-out;
     }
 
     @keyframes pulseBadge {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+      50% { transform: scale(1.03); }
     }
 
     .infra-hero-title {
@@ -77,16 +71,20 @@
     }
 
     .text-gradient {
-      background: linear-gradient(135deg, #7b3fa3 0%, #a855f7 35%, #c026d3 70%, #db2777 100%);
+      background: linear-gradient(135deg, #7b3fa3 0%, #c51f3a 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       display: inline-block;
     }
 
     .text-gradient-light {
-      background: linear-gradient(135deg, #d8b4fe 0%, #f0abfc 50%, #fda4af 100%);
+      background: linear-gradient(135deg, #f3e8ff 0%, #f472b6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       display: inline-block;
     }
 
@@ -700,8 +698,8 @@
   <!-- Hero Section -->
   <section class="infra-hero-section">
     <div class="container">
-      <span class="infra-pill-badge"><i class="fa-solid fa-industry"></i> OUR <span class="text-gradient">INFRASTRUCTURE</span></span>
-      <h1 class="infra-hero-title">World-Class Manufacturing <span class="text-gradient">Facility</span></h1>
+      <span class="infra-pill-badge"><i class="fa-solid fa-industry"></i> OUR INFRASTRUCTURE</span>
+      <h1 class="infra-hero-title">World-Class <span class="text-gradient">Manufacturing Facility</span></h1>
       <p class="infra-hero-subtitle">
         State-of-the-art cleanroom manufacturing with advanced injection and blow moulding machinery engineered for pharmaceutical integrity.
       </p>
@@ -806,8 +804,8 @@
   <section class="process-section">
     <div class="process-container">
       <div class="process-header">
-        <span class="infra-pill-badge"><i class="fa-solid fa-arrows-spin"></i> OUR <span class="text-gradient">PROCESS</span></span>
-        <h2 style="font-size: 2.35rem; font-weight: 800; color: var(--infra-dark); margin: 0 0 14px;">From Concept to <span class="text-gradient">Delivery</span></h2>
+        <span class="infra-pill-badge"><i class="fa-solid fa-arrows-spin"></i> OUR PROCESS</span>
+        <h2 style="font-size: 2.35rem; font-weight: 800; color: var(--infra-dark); margin: 0 0 14px;">From Concept to Delivery</h2>
         <p style="color: var(--infra-muted); font-size: 1.05rem; margin: 0;">A streamlined 6-step manufacturing process ensuring flawless quality and hermetic sealing at every stage.</p>
       </div>
 
@@ -878,9 +876,9 @@
   <!-- Interactive Infrastructure Capabilities Tabs -->
   <section class="infra-tabs-section">
     <div style="text-align: center; max-width: 700px; margin: 0 auto 35px;">
-      <span class="infra-pill-badge"><i class="fa-solid fa-microchip"></i> PLANT <span class="text-gradient">CAPABILITIES</span></span>
-      <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--infra-dark); margin: 0 0 12px;">Machinery & Plant <span class="text-gradient">Highlights</span></h2>
-      <p style="color: var(--infra-muted); font-size: 1rem;">Explore the specialized technological pillars powering our zero-defect production.</p>
+      <span class="infra-pill-badge"><i class="fa-solid fa-microchip"></i> PLANT CAPABILITIES</span>
+      <h2 style="font-size: 2.35rem; font-weight: 800; color: var(--infra-dark); margin: 0 0 12px;">Machinery & Plant <span class="text-gradient">Highlights</span></h2>
+      <p style="color: var(--infra-muted); font-size: 1.05rem;">Explore the specialized technological pillars powering our zero-defect production.</p>
     </div>
 
     <!-- Tab Buttons -->
@@ -980,9 +978,9 @@
   <div class="container">
     <div class="infra-cta-section">
       <span class="infra-pill-badge" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">
-        <i class="fa-solid fa-building-circle-check"></i> VISIT OUR <span class="text-gradient-light">FACILITY</span>
+        <i class="fa-solid fa-building-circle-check"></i> VISIT OUR FACILITY
       </span>
-      <h2 style="font-size: 2.2rem; font-weight: 800; margin: 16px 0;">Schedule a Cleanroom <span class="text-gradient-light">Plant Audit</span></h2>
+      <h2 style="font-size: 2.35rem; font-weight: 800; margin: 16px 0; color: #ffffff;">Schedule a Cleanroom <span class="text-gradient-light">Plant Audit</span></h2>
       <p style="color: #cbd5e1; max-width: 650px; margin: 0 auto 30px; font-size: 1.05rem; line-height: 1.6;">
         We welcome pharmaceutical, nutraceutical, and healthcare QA teams to audit our Ahmedabad manufacturing facility.
       </p>
