@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Parth Plasto Pack</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .page-header {
+      padding: 160px 0 80px;
+      background: var(--light);
+      text-align: center;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 0 100px;
+    }
+    
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    
+    .accordion-button {
+      width: 100%;
+      text-align: left;
+      padding: 24px;
+      background: var(--white);
+      border: none;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-normal);
+    }
+    
+    .accordion-button:hover, .accordion-button[aria-expanded="true"] {
+      background: var(--light);
+      color: var(--primary);
+    }
+    
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .accordion-button[aria-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+    
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: var(--white);
+    }
+    
+    .accordion-body {
+      padding: 0 24px 24px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Loader -->
+  <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
+      </div>
+
+      <div class="loader-percentage">0%</div>
+
+      <div class="loader-progress">
+        <div class="loader-progress-fill"></div>
+      </div>
+      
+      <div class="loader-status">INITIALIZING EXPERIENCE</div>
+
+      <div class="loader-tagline">
+        <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
+        <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
+        <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="quality.html">Quality</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary">Get Quote</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header fade-up">
+    <div class="container">
+      <div class="badge">FAQ</div>
+      <h1 class="section-title">Frequently Asked Questions</h1>
+      <p class="section-desc">Find answers to common questions about our products, services, and manufacturing capabilities.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="container faq-container fade-up">
+    <div class="accordion">
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq1-btn" aria-controls="faq1-content">
+          What types of packaging products do you manufacture?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq1-content" aria-labelledby="faq1-btn">
+          <div class="accordion-body">
+            We manufacture a comprehensive range of pharmaceutical and nutraceutical plastic packaging including HDPE containers, PET bottles, medicine jars, protein powder containers, effervescent tablet tubes, plastic caps & closures, spoons, funnels, and custom-moulded packaging solutions.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq2-btn" aria-controls="faq2-content">
+          Are your products FDA and ISO certified?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq2-content" aria-labelledby="faq2-btn">
+          <div class="accordion-body">
+            Yes, our manufacturing processes are ISO 15378 certified and GMP compliant. We strictly use 100% virgin, food-grade, FDA-compliant polymers for all our pharmaceutical and nutraceutical packaging.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq3-btn" aria-controls="faq3-content">
+          What is the minimum order quantity (MOQ)?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq3-content" aria-labelledby="faq3-btn">
+          <div class="accordion-body">
+            Our Minimum Order Quantity (MOQ) depends on the specific product, specifications, level of customization, and production requirements. Please contact our sales team for exact figures on your desired items.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq4-btn" aria-controls="faq4-content">
+          Can you provide custom packaging designs and moulding?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq4-content" aria-labelledby="faq4-btn">
+          <div class="accordion-body">
+            Absolutely. We offer complete custom mould development, engineering, prototyping, and customization including specific colors, embossing, and unique shapes tailored to your brand's requirements.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq5-btn" aria-controls="faq5-content">
+          What materials do you use for manufacturing?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq5-content" aria-labelledby="faq5-btn">
+          <div class="accordion-body">
+            We utilize high-quality, pharmaceutical and food-grade polymers such as Polypropylene (PP), High-Density Polyethylene (HDPE), and Polyethylene Terephthalate (PET) depending on the product application.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-button" aria-expanded="false" id="faq6-btn" aria-controls="faq6-content">
+          Do you offer free samples for testing?
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="faq6-content" aria-labelledby="faq6-btn">
+          <div class="accordion-body">
+            Yes, we understand the importance of quality testing. Free samples are available upon request based on the product and your specific requirements. Contact our team to arrange a sample shipment.
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const accordionBtns = document.querySelectorAll('.accordion-button');
+      
+      accordionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          
+          // Close all others
+          accordionBtns.forEach(otherBtn => {
+            if (otherBtn !== btn) {
+              otherBtn.setAttribute('aria-expanded', 'false');
+              otherBtn.nextElementSibling.style.maxHeight = null;
+            }
+          });
+          
+          // Toggle current
+          if (isExpanded) {
+            btn.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = null;
+          } else {
+            btn.setAttribute('aria-expanded', 'true');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+/* Responsive Design for Parth Plasto Pack */
+
+/* 1600px */
+@media (max-width: 1600px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* 1440px */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* 1366px */
+@media (max-width: 1366px) {
+  .container {
+    max-width: 1140px;
+  }
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* 1280px */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+/* 1024px - Tablet */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .header-container {
+    padding: 0 20px;
+  }
+  
+  .nav-links {
+    display: none; /* Hide for mobile menu */
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: var(--white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+    gap: 30px;
+    z-index: 999;
+    overflow-y: auto;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-links a {
+    font-size: 1.25rem;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .header-actions .btn {
+    display: none; /* Hide Get Quote button on tablet header, show in menu instead if needed */
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* 768px - Mobile */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-desc {
+    font-size: 1rem;
+  }
+}
+
+/* 430px and below - Small Mobile */
+@media (max-width: 430px) {
+  .header-actions {
+    gap: 8px;
+  }
+  
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .logo-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

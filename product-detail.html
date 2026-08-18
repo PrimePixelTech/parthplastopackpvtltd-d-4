@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUBE-L-01 | Parth Plasto Pack</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .breadcrumb {
+      padding: 120px 0 20px;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--text);
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+    
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 40px 0 100px;
+    }
+    
+    .product-image-container {
+      background: var(--light);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .product-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-image-container:hover img {
+      transform: scale(1.1);
+    }
+    
+    .share-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--white);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      color: var(--dark);
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 30px 0;
+    }
+    
+    .spec-card {
+      background: var(--light);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+    }
+    
+    .spec-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    
+    .spec-value {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    @media (max-width: 1024px) {
+      .product-detail-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .spec-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Loader -->
+  <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
+      </div>
+
+      <div class="loader-percentage">0%</div>
+
+      <div class="loader-progress">
+        <div class="loader-progress-fill"></div>
+      </div>
+      
+      <div class="loader-status">INITIALIZING EXPERIENCE</div>
+
+      <div class="loader-tagline">
+        <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
+        <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
+        <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="quality.html">Quality</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary">Get Quote</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="container breadcrumb fade-up">
+    <a href="index.html">Home</a> &gt; <a href="products.html">Products</a> &gt; <span>TUBE-L-01</span>
+  </div>
+
+  <!-- Product Detail -->
+  <section class="container product-detail-layout fade-up">
+    <div class="product-image-container">
+      <button class="share-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+      <div style="color: #ccc; font-size: 2rem;">Product Image</div>
+    </div>
+    
+    <div>
+      <div class="badge">OTHER</div>
+      <h1 class="section-title" style="margin-bottom: 10px;">TUBE-L-01</h1>
+      
+      <h3 style="margin-top: 30px; margin-bottom: 15px;">SPECIFICATIONS</h3>
+      
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-label">Material</div>
+          <div class="spec-value">MATERIAL PP RELIANCE</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">O.F. Volume</div>
+          <div class="spec-value">88 +/- 02</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Height</div>
+          <div class="spec-value">121 +/- 1</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Neck Size</div>
+          <div class="spec-value">29 +/- 0.5</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Max Dia</div>
+          <div class="spec-value">29 +/- 0.5</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Wall Thick.</div>
+          <div class="spec-value">1 +/- 0.1</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Cap Fitting</div>
+          <div class="spec-value">Push</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Label Type</div>
+          <div class="spec-value">IML, Label & Shrink Sleeve</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: 16px; margin-top: 40px;">
+        <a href="contact.html?product=TUBE-L-01" class="btn btn-primary" style="flex: 1;">REQUEST QUOTE</a>
+        <a href="#" class="btn btn-secondary" style="flex: 1;">CATALOG</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="container fade-up" style="padding-bottom: 100px;">
+    <h2 class="section-title">Related Products</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
+      <!-- Product -->
+      <div class="product-card" style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);">
+        <div style="height: 200px; background: var(--light); border-radius: var(--radius-sm); margin-bottom: 20px;"></div>
+        <div class="badge" style="font-size: 0.75rem; padding: 4px 10px;">Protein</div>
+        <h4>PPC 02</h4>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <a href="#" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
+          <a href="#" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        </div>
+      </div>
+      <!-- Product -->
+      <div class="product-card" style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);">
+        <div style="height: 200px; background: var(--light); border-radius: var(--radius-sm); margin-bottom: 20px;"></div>
+        <div class="badge" style="font-size: 0.75rem; padding: 4px 10px;">Protein</div>
+        <h4>PPC 01</h4>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <a href="#" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
+          <a href="#" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

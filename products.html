@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Parth Plasto Pack Pvt. Ltd.</title>
+  <meta name="description" content="Explore our comprehensive range of pharmaceutical and nutraceutical packaging products.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .page-header {
+      padding: 160px 0 80px;
+      background: var(--light);
+      text-align: center;
+    }
+    
+    .filters-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .search-bar {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 16px 24px;
+      padding-right: 50px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    
+    .search-bar i {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+    
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition-normal);
+      font-weight: 500;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      padding: 60px 0;
+    }
+    
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Loader -->
+  <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
+      </div>
+
+      <div class="loader-percentage">0%</div>
+
+      <div class="loader-progress">
+        <div class="loader-progress-fill"></div>
+      </div>
+      
+      <div class="loader-status">INITIALIZING EXPERIENCE</div>
+
+      <div class="loader-tagline">
+        <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
+        <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
+        <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
+      </div>
+      
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="quality.html">Quality</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary">Get Quote</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header fade-up">
+    <div class="container">
+      <div class="badge">PRODUCT CATEGORIES</div>
+      <h1 class="section-title">Packaging Solutions for Every Need</h1>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="filters-section fade-up">
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" id="productSearch" placeholder="Search products...">
+        <i class="fas fa-search"></i>
+      </div>
+      
+      <div class="filter-buttons" id="filterButtons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="protein">Protein Containers</button>
+        <button class="filter-btn" data-filter="hdpe">HDPE Containers</button>
+        <button class="filter-btn" data-filter="jars">Medicine Jars</button>
+        <button class="filter-btn" data-filter="caps">Caps & Closures</button>
+        <button class="filter-btn" data-filter="pet">PET Bottles</button>
+        <button class="filter-btn" data-filter="tubes">Effervescent Tubes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="container fade-up" style="padding-bottom: 100px;">
+    <div class="products-grid" id="productGrid">
+      <!-- Products will be generated by JS -->
+    </div>
+  </section>
+
+  <!-- Footer (same as index) -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

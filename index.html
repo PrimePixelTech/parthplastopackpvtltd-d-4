@@ -1,18 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parth Plastopack Pvt. Ltd. | B2B Catalog & RFQ Hub</title>
-    <meta name="description" content="Premium Manufacturers of Pharma & Nutraceutical Plastic Packaging. Discover our high-quality cleanroom containers, liquid bottles, tablet jars, and closures." />
-    <!-- Google Fonts Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-brand-gray text-brand-charcoal antialiased">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parth Plasto Pack Pvt. Ltd. | Pharma & Nutraceutical Packaging Manufacturer</title>
+  <meta name="description" content="Leading manufacturer of premium pharmaceutical and nutraceutical plastic packaging solutions including HDPE containers, PET bottles, medicine jars, protein powder containers, caps and closures.">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Parth Plasto Pack | Premium Packaging Solutions">
+  <meta property="og:description" content="High-quality, sterile, and compliant plastic packaging engineered for global pharmaceutical and nutraceutical standards.">
+  <meta property="og:type" content="website">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Specific styles for index.html */
+    .hero-section {
+      padding-top: 160px;
+      padding-bottom: 100px;
+      background: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero-title {
+      font-size: 4rem;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 40px;
+      align-items: center;
+    }
+    
+    .floating-images {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    
+    .stats-card {
+      background: var(--light);
+      border-radius: var(--radius-xl);
+      padding: 60px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    
+    .stat-label {
+      font-size: 1.125rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    
+    /* Grid Layouts */
+    .features-grid, .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .feature-card, .product-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-normal);
+      border: 1px solid var(--border);
+    }
+    
+    .feature-card:hover, .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    /* Marquee */
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      background: var(--light);
+      padding: 40px 0;
+    }
+    
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+    
+    .marquee-item {
+      display: inline-block;
+      padding: 0 40px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--gradient-primary);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 0;
+    }
+    
+    .cta-section .section-title {
+      color: var(--white);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Premium Loader -->
+  <div id="page-loader" role="status" aria-live="polite" aria-label="Loading Parth Plasto Pack website">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack">
+      </div>
+
+      <div class="loader-percentage">0%</div>
+
+      <div class="loader-progress">
+        <div class="loader-progress-fill"></div>
+      </div>
+      
+      <div class="loader-status">INITIALIZING EXPERIENCE</div>
+
+      <div class="loader-tagline">
+        <span class="tagline-base">PREMIUM PACKAGING SOLUTIONS</span>
+        <span class="tagline-fill">PREMIUM PACKAGING SOLUTIONS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-title"><img src="assets/images/PPPLOGO.webp" alt="Parth Plasto Pack"></a>
+        <span class="logo-subtitle">MFG. OF PHARMA & NUTRACEUTICAL PACKAGING</span>
+      </div>
+      
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="quality.html">Quality</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        <button class="icon-btn" aria-label="Call"><i class="fas fa-phone"></i></button>
+        <button class="icon-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+        <a href="contact.html" class="btn btn-primary">Get Quote</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content fade-up">
+      <div class="badge">ISO 15378 & GMP CERTIFIED CLEANROOM FACILITY</div>
+      <h1 class="hero-title">
+        Premium Pharma & <br>
+        <span class="text-gradient">Nutraceutical</span> Packaging Solutions
+      </h1>
+      <p class="section-desc" style="margin-left: 0;">
+        High-quality, sterile, and compliant plastic packaging engineered for global pharmaceutical and nutraceutical standards. Trusted by 1000+ brands.
+      </p>
+      <div class="hero-buttons">
+        <a href="products.html" class="btn btn-primary">Explore Products &rarr;</a>
+        <a href="contact.html" class="btn btn-secondary">Request Quote</a>
+        <a href="contact.html" class="btn btn-text"><i class="fas fa-play"></i> Contact Sales</a>
+      </div>
+    </div>
+    <div class="floating-images">
+      <!-- Placeholder for floating products. In a real scenario, use img tags with absolute positioning -->
+      <div class="float-anim" style="position: absolute; top: 20%; left: 20%; width: 100px; height: 100px; background: rgba(123,63,163,0.1); border-radius: 50%;"></div>
+      <div class="float-anim" style="position: absolute; top: 60%; left: 50%; width: 150px; height: 150px; background: rgba(197,31,58,0.1); border-radius: 50%; animation-delay: 1s;"></div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section fade-up" id="stats">
+    <div class="container">
+      <div class="stats-card">
+        <div class="stats-grid">
+          <div>
+            <div class="stat-number text-gradient"><span class="counter" data-target="25">0</span>+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-number text-gradient"><span class="counter" data-target="500">0</span>+</div>
+            <div class="stat-label">Products</div>
+          </div>
+          <div>
+            <div class="stat-number text-gradient"><span class="counter" data-target="1000">0</span>+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div>
+            <div class="stat-number text-gradient"><span class="counter" data-target="20">0</span>+</div>
+            <div class="stat-label">States Covered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="container fade-up" style="display: flex; gap: 60px; align-items: center; padding: 100px 5%;">
+    <div style="flex: 1; height: 500px; border-radius: var(--radius-xl); overflow: hidden; position: relative;">
+      <img src="assets/images/factoryy.webp" alt="Parth Plasto Pack Manufacturing Facility" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1;">
+      <div class="badge">ABOUT US</div>
+      <h2 class="section-title">Trusted Manufacturer of <span class="text-gradient">Premium Packaging</span></h2>
+      <p class="section-desc" style="margin-left: 0;">
+        Parth Plasto Pack Pvt. Ltd. is a leading manufacturer of high-end plastic packaging solutions for pharmaceutical, nutraceutical, and healthcare industries. 
+        With 25+ years experience in Ahmedabad, Gujarat, we deliver to domestic and international markets.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+        <div style="display: flex; gap: 12px;">
+          <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.5rem;"></i>
+          <div>
+            <h4>ISO Certified</h4>
+            <p style="font-size: 0.875rem; color: var(--muted);">ISO 15378 certified manufacturing with GMP compliance</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <i class="fas fa-check-circle" style="color: var(--green); font-size: 1.5rem;"></i>
+          <div>
+            <h4>Food Grade</h4>
+            <p style="font-size: 0.875rem; color: var(--muted);">100% virgin food-grade FDA compliant polymers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="container fade-up">
+    <div class="section-header">
+      <div class="badge">WHY CHOOSE US</div>
+      <h2 class="section-title">Built for Precision, Designed for Trust</h2>
+      <p class="section-desc">Every product is engineered with uncompromising quality, cutting-edge technology, and decades of pharmaceutical packaging expertise.</p>
+    </div>
+    
+    <div class="features-grid">
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Food Grade</h3>
+        <p style="color: var(--muted); margin-top: 10px;">100% virgin FDA-compliant food-grade polymers for safety</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-tint-slash" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Leak Proof</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Precision-threaded necks for airtight, leak-proof sealing</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-gem" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Premium Finish</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Crystal-clear finishes with UV protection coatings</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-industry" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Injection Moulding</h3>
+        <p style="color: var(--muted); margin-top: 10px;">State-of-the-art IBM technology for zero-defect production</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-wind" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Blow Moulding</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Advanced EBM for uniform wall thickness and strength</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-truck-fast" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Fast Delivery</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Pan-India logistics covering 20+ states</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-pencil-ruler" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Custom Design</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Tailored colors, embossing, labeling, and custom shapes</p>
+      </div>
+      <!-- Feature Card -->
+      <div class="feature-card">
+        <i class="fas fa-boxes" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Bulk Orders</h3>
+        <p style="color: var(--muted); margin-top: 10px;">Scalable production from 500 to 1M+ pieces per order</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Categories -->
+  <section class="container fade-up" style="background: var(--light); padding: 80px 5%; border-radius: var(--radius-xl);">
+    <div class="section-header">
+      <div class="badge">PRODUCT CATEGORIES</div>
+      <h2 class="section-title">Packaging Solutions for Every Need</h2>
+      <p class="section-desc">Explore our comprehensive range of pharmaceutical and nutraceutical packaging products designed for safety, compliance, and performance.</p>
+    </div>
+    
+    <div class="products-grid">
+      <!-- Category Card -->
+      <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 200px; background: #eaeaea; border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <p style="color: var(--primary); font-size: 0.875rem; font-weight: 600;">15+ Variants</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <h3>Protein Powder Containers</h3>
+          <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+        </div>
+      </div>
+      <!-- Category Card -->
+      <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 200px; background: #eaeaea; border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <p style="color: var(--primary); font-size: 0.875rem; font-weight: 600;">30+ Variants</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <h3>HDPE Containers</h3>
+          <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+        </div>
+      </div>
+      <!-- Category Card -->
+      <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 200px; background: #eaeaea; border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <p style="color: var(--primary); font-size: 0.875rem; font-weight: 600;">10+ Variants</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <h3>Medicine Jars</h3>
+          <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+        </div>
+      </div>
+      <!-- Category Card -->
+      <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 200px; background: #eaeaea; border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <p style="color: var(--primary); font-size: 0.875rem; font-weight: 600;">50+ Variants</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <h3>Plastic Caps & Closures</h3>
+          <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="products.html" class="btn btn-secondary">View All Categories</a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="container fade-up">
+    <div class="section-header">
+      <div class="badge">FEATURED PRODUCTS</div>
+      <h2 class="section-title">Premium Packaging</h2>
+      <p class="section-desc">Explore our most popular pharmaceutical and nutraceutical packaging solutions.</p>
+    </div>
+    
+    <div class="products-grid">
+      <!-- Product -->
+      <div class="product-card">
+        <div style="height: 250px; background: var(--light); border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <h3>TUBE-L-01</h3>
+        <ul style="font-size: 0.875rem; color: var(--muted); margin: 15px 0;">
+          <li><strong>Material:</strong> MATERIAL PP RELIANCE</li>
+          <li><strong>Volume:</strong> 88 +/- 02</li>
+          <li><strong>Cap:</strong> Push</li>
+        </ul>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
+          <a href="contact.html" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        </div>
+      </div>
+      
+      <!-- Product -->
+      <div class="product-card">
+        <div style="height: 250px; background: var(--light); border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <h3>PPC 02</h3>
+        <ul style="font-size: 0.875rem; color: var(--muted); margin: 15px 0;">
+          <li><strong>Material:</strong> Food Grade PP Plastic</li>
+          <li><strong>Volume:</strong> 795 +/- 20</li>
+          <li><strong>Cap:</strong> Push Fitting</li>
+        </ul>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
+          <a href="contact.html" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        </div>
+      </div>
+      
+      <!-- Product -->
+      <div class="product-card">
+        <div style="height: 250px; background: var(--light); border-radius: var(--radius-md); margin-bottom: 20px;"></div>
+        <h3>PPC 01</h3>
+        <ul style="font-size: 0.875rem; color: var(--muted); margin: 15px 0;">
+          <li><strong>Material:</strong> Food Grade PP Plastic</li>
+          <li><strong>Volume:</strong> 555 +/- 20</li>
+          <li><strong>Cap:</strong> 0.8 +/- 0.1</li>
+        </ul>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <a href="product-detail.html" class="btn btn-secondary" style="flex: 1; padding: 8px;">Details &rarr;</a>
+          <a href="contact.html" class="btn btn-primary" style="flex: 1; padding: 8px;">Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Brands Marquee -->
+  <section class="trusted-marquee-section fade-up" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="section-header text-center" style="margin-bottom: 40px;">
+      <div class="badge" style="background: rgba(116,55,155,0.05); color: var(--primary);">TRUSTED BY INDUSTRY LEADERS</div>
+      <h2 class="section-title">1000+ Brands Trust Our Packaging</h2>
+    </div>
+    
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <!-- Row 1 -->
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+        <!-- Duplicate for infinite scroll -->
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>FitBody Nutrition</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>PharmaTech Solutions</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+      </div>
+    </div>
+    
+    <div class="marquee-container marquee-reverse" style="margin-top: 20px;">
+      <div class="marquee-track-reverse">
+        <!-- Row 2 -->
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro Supplements</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span></div>
+        <!-- Duplicate for infinite scroll -->
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>NutriPro Supplements</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>MedPharm Industries</span></div>
+        <div class="marquee-item"><img src="assets/images/productss.webp" alt="Client"> <span>LifeScience Pharma</span></div>
+        <div class="marquee-item"><img src="assets/images/products.jpg" alt="Client"> <span>AyurVeda Corp</span></div>
+        <div class="marquee-item"><img src="assets/images/product-1.webp" alt="Client"> <span>WellnessFirst Ltd.</span></div>
+        <div class="marquee-item"><img src="assets/images/products.webp" alt="Client"> <span>GlobalHealth Inc</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section fade-up">
+    <div class="container">
+      <div class="badge" style="background: rgba(255,255,255,0.2); color: var(--white);">READY TO SCALE YOUR PACKAGING?</div>
+      <h2 class="section-title">Let's Build Your Custom Packaging<br>Solution Today</h2>
+      <p class="section-desc" style="color: rgba(255,255,255,0.9);">
+        Get competitive pricing, free samples, and expert consultation for your pharmaceutical and nutraceutical packaging needs.
+      </p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-secondary" style="color: var(--primary);">Get a Free Quote &rarr;</a>
+        <a href="tel:+919876543210" class="btn btn-primary" style="background: var(--dark);">Call Now</a>
+        <a href="#" class="btn btn-primary" style="background: transparent; border: 1px solid var(--white);">Download Catalog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 16px;">Parth Plasto Pack</h3>
+        <p>Dedicated manufacturers of premium plastic packaging for global pharmaceutical, healthcare, and nutraceutical brands. 25+ years of industrial excellence.</p>
+        <p>11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad - 382433</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="products.html">Products</a>
+          <a href="infrastructure.html">Infrastructure</a>
+          <a href="quality.html">Quality</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Our Products</h4>
+        <div class="footer-links">
+          <a href="products.html">Protein Powder Containers</a>
+          <a href="products.html">HDPE Containers</a>
+          <a href="products.html">Medicine Jars</a>
+          <a href="products.html">Plastic Caps & Closures</a>
+          <a href="products.html">PET Bottles</a>
+          <a href="products.html">Effervescent Tubes</a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <div class="footer-links" style="margin-bottom: 24px;">
+          <a href="mailto:sales@parthplastopack.com"><i class="fas fa-envelope" style="margin-right: 8px;"></i> sales@parthplastopack.com</a>
+          <a href="tel:+919876543210"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 98765 43210</a>
+          <a href="#"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Chat on WhatsApp</a>
+        </div>
+        
+        <form style="display: flex; gap: 8px;">
+          <input type="email" placeholder="Your Email Address" style="padding: 10px; border-radius: var(--radius-sm); border: none; flex: 1;">
+          <button type="submit" class="btn btn-primary" style="padding: 10px 16px;">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Parth Plasto Pack Pvt. Ltd. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js?v=2"></script>
+  <script src="js/animations.js?v=2"></script>
+</body>
 </html>

@@ -1,0 +1,139 @@
+.contact-head {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  background: transparent;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.form-section,
+.map-section {
+  flex: 1 1 400px;
+  padding: 40px;
+}
+
+.form-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0px 0px 5px var(--text-color);
+  outline: none;
+  border: 2px solid white;
+  transition: 0.5s;
+}
+input[type="text"]:focus {
+  border: 2px solid var(--text-color);
+}
+input[type="email"]:focus {
+  border: 2px solid var(--text-color);
+}
+input[type="tel"]:focus {
+  border: 2px solid var(--text-color);
+}
+textarea:focus {
+  border: 2px solid var(--text-color);
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background: var(--text-color);
+  color: white;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #144d5c;
+}
+
+.map-section h3 {
+  color: var(--text-color);
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.map-section p {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.social-icons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.social-icons a {
+  margin-right: 15px;
+  font-size: 30px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .form-section,
+  .map-section {
+    padding: 30px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 778px) {
+}
