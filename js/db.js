@@ -501,10 +501,75 @@ async function reorderProducts(orderedIds) {
    CATEGORIES CRUD
    ========================================================================== */
 
+function mapSupabaseToCategory(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    name: row.name,
+    slug: row.slug,
+    description: row.description || '',
+    image: row.image || '',
+    icon: row.icon || 'fa-solid fa-pills',
+    status: row.status || 'active',
+    order: row.order || 0
+  };
+}
+
+function mapCategoryToSupabase(c) {
+  return {
+    id: c.id,
+    name: c.name,
+    slug: c.slug,
+    description: c.description || '',
+    image: c.image || '',
+    icon: c.icon || 'fa-solid fa-pills',
+    status: c.status || 'active',
+    "order": c.order || 0
+  };
+}
+
 /**
  * Get all categories
  */
 async function getCategories(options = {}) {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try {
+      let query = supabase.from('categories').select('*');
+      if (options.status && options.status !== 'all') {
+        query = query.eq('status', options.status);
+      }
+      const { data, error } = await query;
+      if (!error && Array.isArray(data)) {
+        let categories = data.map(mapSupabaseToCategory);
+        
+        if (options.search) {
+          const s = options.search.toLowerCase().trim();
+          categories = categories.filter(c => 
+            (c.name && c.name.toLowerCase().includes(s)) ||
+            (c.description && c.description.toLowerCase().includes(s))
+          );
+        }
+        
+        categories.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        try {
+          const store = await getStore('categories', 'readwrite');
+          await new Promise((res) => {
+            const clearReq = store.clear();
+            clearReq.onsuccess = () => res();
+            clearReq.onerror = () => res();
+          });
+          categories.forEach(c => store.put(c));
+        } catch (e) {}
+
+        return categories;
+      }
+    } catch (err) {
+      console.warn('Supabase fetch error for categories, falling back to local store:', err);
+    }
+  }
+
   const store = await getStore('categories', 'readonly');
   return new Promise((resolve, reject) => {
     const request = store.getAll();
@@ -534,6 +599,16 @@ async function getCategories(options = {}) {
  * Get category by ID
  */
 async function getCategoryById(id) {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try {
+      const { data, error } = await supabase.from('categories').select('*').eq('id', id).single();
+      if (!error && data) {
+        return mapSupabaseToCategory(data);
+      }
+    } catch (e) {}
+  }
+
   const store = await getStore('categories', 'readonly');
   return new Promise((resolve, reject) => {
     const request = store.get(id);
@@ -554,7 +629,6 @@ async function getCategoryBySlug(slug) {
  * Add Category
  */
 async function addCategory(categoryData) {
-  const store = await getStore('categories', 'readwrite');
   const now = new Date().toISOString();
 
   const newCategory = {
@@ -570,6 +644,17 @@ async function addCategory(categoryData) {
     updatedAt: now
   };
 
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    const supabaseRecord = mapCategoryToSupabase(newCategory);
+    const { error } = await supabase.from('categories').insert([supabaseRecord]);
+    if (error) {
+      console.error('Supabase addCategory error:', error);
+      throw new Error(`Cloud Database Error: ${error.message}`);
+    }
+  }
+
+  const store = await getStore('categories', 'readwrite');
   return new Promise((resolve, reject) => {
     const request = store.add(newCategory);
     request.onsuccess = () => resolve(newCategory);
@@ -592,6 +677,16 @@ async function updateCategory(id, categoryData) {
     id: id,
     updatedAt: new Date().toISOString()
   };
+
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    const supabaseRecord = mapCategoryToSupabase(updatedCategory);
+    const { error } = await supabase.from('categories').update(supabaseRecord).eq('id', id);
+    if (error) {
+      console.error('Supabase updateCategory error:', error);
+      throw new Error(`Cloud Database Error: ${error.message}`);
+    }
+  }
 
   const store = await getStore('categories', 'readwrite');
   return new Promise((resolve, reject) => {
@@ -616,12 +711,23 @@ async function deleteCategory(id, targetMoveCategoryId = null) {
     for (const p of products) {
       p.categoryId = targetMoveCategoryId;
       p.updatedAt = new Date().toISOString();
+      
+      const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+      if (supabase) {
+        await supabase.from('products').update({ category_id: targetMoveCategoryId, updated_at: p.updatedAt }).eq('id', p.id);
+      }
+      
       await new Promise((resolve, reject) => {
         const req = productStore.put(p);
         req.onsuccess = resolve;
         req.onerror = reject;
       });
     }
+  }
+
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    await supabase.from('categories').delete().eq('id', id);
   }
 
   const store = await getStore('categories', 'readwrite');
@@ -1060,7 +1166,27 @@ async function seedInitialData(force = false) {
  * Clear all products completely from database
  */
 async function clearAllProducts() {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try { await supabase.from('products').delete().neq('id', '0'); } catch(e) {}
+  }
   const store = await getStore('products', 'readwrite');
+  return new Promise((resolve, reject) => {
+    const req = store.clear();
+    req.onsuccess = () => resolve(true);
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Clear all categories completely from database
+ */
+async function clearAllCategories() {
+  const supabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : null;
+  if (supabase) {
+    try { await supabase.from('categories').delete().neq('id', '0'); } catch(e) {}
+  }
+  const store = await getStore('categories', 'readwrite');
   return new Promise((resolve, reject) => {
     const req = store.clear();
     req.onsuccess = () => resolve(true);
@@ -1073,11 +1199,13 @@ async function clearAllProducts() {
  */
 async function resetDatabase() {
   await clearAllProducts();
+  await clearAllCategories();
   await seedInitialData(true);
   return true;
 }
 
 window.clearAllProducts = clearAllProducts;
+window.clearAllCategories = clearAllCategories;
 
 // Auto initialize on load
 if (typeof window !== 'undefined') {

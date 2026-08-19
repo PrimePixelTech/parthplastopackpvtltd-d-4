@@ -130,7 +130,7 @@
         </div>
 
         <div
-          style="padding-top: 16px; border-top: 1px solid var(--admin-border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          style="padding-top: 16px; border-top: 1px solid var(--admin-border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
           <div>
             <strong style="display: block; font-size: 0.95rem; color: var(--admin-text-main);">Clear All
               Products</strong>
@@ -140,6 +140,20 @@
           </div>
           <button type="button" class="btn-admin btn-danger-custom" id="btn-clear-all-products">
             <i class="fa-solid fa-trash-can"></i> Clear All Products
+          </button>
+        </div>
+
+        <div
+          style="padding-top: 16px; border-top: 1px solid var(--admin-border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong style="display: block; font-size: 0.95rem; color: var(--admin-text-main);">Clear All
+              Categories</strong>
+            <span style="font-size: 0.82rem; color: var(--admin-text-muted);">
+              Delete all categories. (Note: Only use this after clearing products, or make sure no products are using the deleted categories.)
+            </span>
+          </div>
+          <button type="button" class="btn-admin btn-danger-custom" id="btn-clear-all-categories">
+            <i class="fa-solid fa-trash-can"></i> Clear All Categories
           </button>
         </div>
       </div>
@@ -254,6 +268,22 @@
             onConfirm: async () => {
               await clearAllProducts();
               showToast('All products cleared! Only new products you upload will appear.', 'success');
+            }
+          });
+        };
+      }
+
+      const clearCatBtn = document.getElementById('btn-clear-all-categories');
+      if (clearCatBtn) {
+        clearCatBtn.onclick = () => {
+          showConfirmModal({
+            title: 'Clear All Categories',
+            message: 'Are you sure you want to delete all categories? The categories page will be completely empty.',
+            confirmText: 'Yes, Clear Categories',
+            type: 'danger',
+            onConfirm: async () => {
+              await clearAllCategories();
+              showToast('All categories cleared!', 'success');
             }
           });
         };
