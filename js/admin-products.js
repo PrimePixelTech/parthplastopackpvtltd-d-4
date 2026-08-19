@@ -214,6 +214,12 @@ function renderProductTable() {
           <button type="button" class="btn-action-icon" title="Edit" onclick="openEditProductModal('${p.id}')">
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
+          <button type="button" class="btn-action-icon" title="Move Up" onclick="moveProductOrder('${p.id}', -1)">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+          <button type="button" class="btn-action-icon" title="Move Down" onclick="moveProductOrder('${p.id}', 1)">
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
           <button type="button" class="btn-action-icon" title="Preview" onclick="previewProduct('${p.id}')">
             <i class="fa-solid fa-eye"></i>
           </button>
@@ -680,3 +686,33 @@ window.confirmDeleteProduct = confirmDeleteProduct;
 window.previewProduct = previewProduct;
 window.changePage = changePage;
 window.updateBulkActionVisibility = updateBulkActionVisibility;
+window.moveProductOrder = async function(id, direction) {
+  const index = allProducts.findIndex(p => p.id === id);
+  if (index === -1) return;
+  const targetIndex = index + direction;
+  if (targetIndex < 0 || targetIndex >= allProducts.length) return;
+  
+  // Force strict sequential ordering based on current visual list
+  allProducts.forEach((p, i) => {
+    p.order = i + 1;
+  });
+  
+  // Swap order values between the two target items
+  const currentItem = allProducts[index];
+  const targetItem = allProducts[targetIndex];
+  
+  const tempOrder = currentItem.order;
+  currentItem.order = targetItem.order;
+  targetItem.order = tempOrder;
+  
+  // Save the new strict sequence to the database
+  try {
+    await Promise.all(allProducts.map(p => updateProduct(p.id, { order: p.order })));
+    showToast('Product order updated', 'success');
+  } catch (err) {
+    console.error(err);
+    showToast('Error saving product order', 'error');
+  }
+  
+  await fetchAndRenderProducts();
+};
