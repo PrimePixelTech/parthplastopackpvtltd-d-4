@@ -565,7 +565,7 @@ async function addCategory(categoryData) {
     image: categoryData.image || 'assets/images/products/tube-trio.jpg',
     icon: categoryData.icon || 'fa-solid fa-pills',
     status: categoryData.status || 'active',
-    order: typeof categoryData.order === 'number' ? categoryData.order : Date.now(),
+    order: typeof categoryData.order === 'number' ? categoryData.order : 0,
     createdAt: now,
     updatedAt: now
   };
