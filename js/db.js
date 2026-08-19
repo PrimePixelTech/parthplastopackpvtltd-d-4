@@ -355,7 +355,7 @@ async function addProduct(productData) {
     features: Array.isArray(productData.features) ? productData.features : [],
     status: productData.status || 'active',
     featured: productData.featured === true || productData.featured === 'true',
-    order: typeof productData.order === 'number' ? productData.order : Date.now(),
+    order: typeof productData.order === 'number' ? productData.order : 0,
     createdAt: productData.createdAt || now,
     updatedAt: now
   };
