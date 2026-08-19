@@ -164,7 +164,7 @@ function mapProductToSupabase(p) {
     features: Array.isArray(p.features) ? p.features : [],
     status: p.status || 'active',
     featured: p.featured === true || p.featured === 'true',
-    order: typeof p.order === 'number' ? p.order : 0,
+    order: (typeof p.order === 'number' && p.order <= 2147483647) ? p.order : 0,
     created_at: p.createdAt || new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
