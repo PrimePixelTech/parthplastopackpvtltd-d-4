@@ -826,6 +826,31 @@ section {
   transform: scale(1.05);
 }
 
+.icon-btn[aria-label="Call"] i,
+.icon-btn[aria-label="Call"] {
+  color: #0d6efd;
+}
+
+.icon-btn[aria-label="WhatsApp"] i,
+.icon-btn[aria-label="WhatsApp"] {
+  color: #25D366;
+}
+
+.icon-btn[aria-label="Call"]:hover {
+  background: #0d6efd;
+  color: var(--white);
+}
+
+.icon-btn[aria-label="WhatsApp"]:hover {
+  background: #25D366;
+  color: var(--white);
+}
+
+.icon-btn[aria-label="Call"]:hover i,
+.icon-btn[aria-label="WhatsApp"]:hover i {
+  color: var(--white);
+}
+
 .mobile-menu-btn {
   display: none;
   font-size: 1.5rem;

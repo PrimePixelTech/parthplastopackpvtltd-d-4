@@ -322,9 +322,9 @@ function renderRelatedProducts(allProducts, currentProduct, categoryName) {
         <a href="product-detail.html?id=${rp.id}" class="btn-rel-details" onclick="event.stopPropagation();">
           Details &rarr;
         </a>
-        <button type="button" class="btn-rel-quote" onclick="event.stopPropagation(); openQuoteModal('${sanitizeHTML(rp.name)}');">
-          Quote
-        </button>
+        <a href="assets/catalogue.pdf" download="Parth_Plastopack_Catalogue.pdf" class="btn-rel-quote" onclick="event.stopPropagation();">
+          Catalogue
+        </a>
       </div>
     </div>
   `).join('');

@@ -201,9 +201,9 @@ function renderProductsGrid() {
             <a href="product-detail.html?id=${p.id}" class="btn-card-details" onclick="event.stopPropagation();">
               Details
             </a>
-            <button type="button" class="btn-card-quote" onclick="event.stopPropagation(); openQuoteModal('${sanitizeHTML(p.name)}');">
-              Quote
-            </button>
+            <a href="assets/catalogue.pdf" download="Parth_Plastopack_Catalogue.pdf" class="btn-card-quote" onclick="event.stopPropagation();">
+              Catalogue
+            </a>
           </div>
         </div>
       </div>
