@@ -3,7 +3,7 @@
     "id": "prod_eff_01",
     "name": "Effervescent Tablet Tube (100mm)",
     "slug": "effervescent-tablet-tube-100mm",
-    "sku": "EFF-TUBE-100",
+    "sku": "PPC1",
     "categoryId": "cat_effervescent",
     "categoryName": "EFFERVESCENT TABLET TUBE",
     "material": "Food Grade PP / PE",
@@ -14,16 +14,19 @@
     "shortDescription": "Airtight, moisture-resistant tube for effervescent vitamin & mineral tablets.",
     "description": "Precision-engineered polypropylene tube with desiccant stopper cap designed specifically for effervescent tablets. Ensures maximum barrier protection against humidity.",
     "primaryImage": "assets/images/products/tube-trio.jpg",
-    "images": ["assets/images/products/tube-trio.jpg"],
+    "images": [
+      "assets/images/products/tube-trio.jpg"
+    ],
     "status": "active",
     "featured": true,
-    "order": 1
+    "order": 1,
+    "modelNumber": "PPC1"
   },
   {
     "id": "prod_pow_01",
     "name": "Protein Powder Jar (1000ml)",
     "slug": "protein-powder-jar-1000ml",
-    "sku": "PPC-1000ML",
+    "sku": "PPC2",
     "categoryId": "cat_powder",
     "categoryName": "POWDER CONTAINER",
     "material": "High Density PP",
@@ -34,16 +37,19 @@
     "shortDescription": "Heavy-duty food-grade container with airtight screw cap for protein powders.",
     "description": "Industrial-grade 1000ml container suitable for nutraceuticals, gym supplements, and pharmaceutical powders.",
     "primaryImage": "assets/images/products/products.webp",
-    "images": ["assets/images/products/products.webp"],
+    "images": [
+      "assets/images/products/products.webp"
+    ],
     "status": "active",
     "featured": true,
-    "order": 2
+    "order": 2,
+    "modelNumber": "PPC2"
   },
   {
     "id": "prod_pet_01",
     "name": "PET Clear Tablet Bottle (250ml)",
     "slug": "pet-clear-tablet-bottle-250ml",
-    "sku": "PET-BOT-250",
+    "sku": "PPC3",
     "categoryId": "cat_pet_tablet",
     "categoryName": "PET TABLET CONTAINER",
     "material": "Clear PET",
@@ -54,16 +60,19 @@
     "shortDescription": "Crystal-clear PET bottle providing superior clarity and UV protection.",
     "description": "Pharma-compliant PET bottle for capsules, tablets, and dietary supplements.",
     "primaryImage": "assets/images/products/pet-bottle.jpg",
-    "images": ["assets/images/products/pet-bottle.jpg"],
+    "images": [
+      "assets/images/products/pet-bottle.jpg"
+    ],
     "status": "active",
     "featured": true,
-    "order": 3
+    "order": 3,
+    "modelNumber": "PPC3"
   },
   {
     "id": "prod_tab_01",
     "name": "HDPE Pharma Tablet Bottle (150ml)",
     "slug": "hdpe-pharma-tablet-bottle-150ml",
-    "sku": "HDPE-TAB-150",
+    "sku": "PPC4",
     "categoryId": "cat_tablet_container",
     "categoryName": "TABLET CONTAINER",
     "material": "Medical HDPE",
@@ -74,16 +83,19 @@
     "shortDescription": "US-FDA compliant HDPE container with tamper-evident seal neck.",
     "description": "High-density polyethylene container designed for pharmaceutical tablets and capsule packaging.",
     "primaryImage": "assets/images/products/tablet-container.jpg",
-    "images": ["assets/images/products/tablet-container.jpg"],
+    "images": [
+      "assets/images/products/tablet-container.jpg"
+    ],
     "status": "active",
     "featured": true,
-    "order": 4
+    "order": 4,
+    "modelNumber": "PPC4"
   },
   {
     "id": "prod_cap_01",
     "name": "Desiccant Stopper Cap (38mm)",
     "slug": "desiccant-stopper-cap-38mm",
-    "sku": "CAP-DES-38",
+    "sku": "PPC5",
     "categoryId": "cat_lids_caps",
     "categoryName": "CAPS & CLOSURES",
     "material": "PP with Silica Desiccant",
@@ -94,16 +106,19 @@
     "shortDescription": "Tamper-evident spiral stopper cap with integrated desiccant chamber.",
     "description": "Specialized cap with built-in silica gel chamber to absorb moisture and protect moisture-sensitive tablets.",
     "primaryImage": "assets/images/products/Cap.webp",
-    "images": ["assets/images/products/Cap.webp"],
+    "images": [
+      "assets/images/products/Cap.webp"
+    ],
     "status": "active",
     "featured": true,
-    "order": 5
+    "order": 5,
+    "modelNumber": "PPC5"
   },
   {
     "id": "prod_spn_01",
     "name": "Nutraceutical Measuring Scoop (10g)",
     "slug": "nutraceutical-measuring-scoop-10g",
-    "sku": "SCP-10G",
+    "sku": "PPC6",
     "categoryId": "cat_spoons",
     "categoryName": "MEASURING SPOONS",
     "material": "Food Grade PP",
@@ -114,9 +129,12 @@
     "shortDescription": "Accurate food-grade scoop for precise powder dosage.",
     "description": "Calibrated measuring scoop manufactured in Class 100k cleanroom for nutraceutical powder products.",
     "primaryImage": "assets/images/products/spoon.jpg",
-    "images": ["assets/images/products/spoon.jpg"],
+    "images": [
+      "assets/images/products/spoon.jpg"
+    ],
     "status": "active",
     "featured": true,
-    "order": 6
+    "order": 6,
+    "modelNumber": "PPC6"
   }
 ]

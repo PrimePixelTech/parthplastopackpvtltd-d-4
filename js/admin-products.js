@@ -182,7 +182,7 @@ function renderProductTable() {
   const pageProducts = allProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   tbody.innerHTML = pageProducts.map(p => `
-    <tr data-id="${p.id}">
+    <tr data-id="${p.id}" draggable="true" ondragstart="handleDragStart(event, '${p.id}')" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, '${p.id}')" ondragend="handleDragEnd(event)" style="cursor: grab;">
       <td style="width: 40px;">
         <input type="checkbox" class="product-row-checkbox" value="${p.id}" onchange="updateBulkActionVisibility()">
       </td>
@@ -715,4 +715,70 @@ window.moveProductOrder = async function(id, direction) {
   }
   
   await fetchAndRenderProducts();
+};
+
+// --- Drag and Drop Reordering ---
+let draggedProductId = null;
+
+window.handleDragStart = function(e, id) {
+  draggedProductId = id;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', id);
+  e.target.style.opacity = '0.5';
+};
+
+window.handleDragOver = function(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  const targetRow = e.target.closest('tr');
+  if (targetRow && targetRow.dataset.id !== draggedProductId) {
+    targetRow.style.borderTop = '2px solid var(--admin-purple-primary)';
+  }
+};
+
+window.handleDragLeave = function(e) {
+  const targetRow = e.target.closest('tr');
+  if (targetRow) {
+    targetRow.style.borderTop = '';
+  }
+};
+
+window.handleDrop = async function(e, targetId) {
+  e.preventDefault();
+  const targetRow = e.target.closest('tr');
+  if (targetRow) {
+    targetRow.style.borderTop = '';
+  }
+  
+  if (!draggedProductId || draggedProductId === targetId) return;
+
+  const sourceIndex = allProducts.findIndex(p => p.id === draggedProductId);
+  const targetIndex = allProducts.findIndex(p => p.id === targetId);
+
+  if (sourceIndex === -1 || targetIndex === -1) return;
+
+  // Move in array
+  const [movedItem] = allProducts.splice(sourceIndex, 1);
+  allProducts.splice(targetIndex, 0, movedItem);
+
+  // Update order
+  allProducts.forEach((p, i) => {
+    p.order = i + 1;
+  });
+
+  try {
+    await Promise.all(allProducts.map(p => updateProduct(p.id, { order: p.order })));
+    showToast('Product order updated', 'success');
+  } catch (err) {
+    console.error(err);
+    showToast('Error saving product order', 'error');
+  }
+
+  await fetchAndRenderProducts();
+};
+
+window.handleDragEnd = function(e) {
+  e.target.style.opacity = '1';
+  document.querySelectorAll('tr').forEach(el => el.style.borderTop = '');
+  draggedProductId = null;
 };
