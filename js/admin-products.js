@@ -14,7 +14,7 @@ let currentFilter = {
 };
 
 let currentPage = 1;
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 100;
 let imageGalleryManager = null;
 let currentEditingProductId = null;
 
