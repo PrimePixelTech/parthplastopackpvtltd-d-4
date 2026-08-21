@@ -48,8 +48,8 @@ function getSupabaseClient() {
     try {
       _supabaseInstance = supabase.createClient(url, key, {
         auth: {
-          persistSession: false,
-          autoRefreshToken: false
+          persistSession: true,
+          autoRefreshToken: true
         }
       });
       return _supabaseInstance;

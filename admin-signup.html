@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Parth Plastopack Admin Panel</title>
+  <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <style>
+    body.login-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: var(--admin-bg);
+      background-image: radial-gradient(circle at top right, rgba(123, 63, 163, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.05), transparent 40%);
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+      background-color: var(--admin-surface);
+      border-radius: var(--admin-radius-xl);
+      box-shadow: var(--admin-shadow-lg);
+      border: 1px solid var(--admin-border);
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: var(--admin-purple-light);
+      border-radius: var(--admin-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(123, 63, 163, 0.15);
+    }
+
+    .login-logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .login-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      font-size: 0.95rem;
+      color: var(--admin-text-muted);
+      margin-bottom: 30px;
+    }
+
+    .login-form {
+      text-align: left;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .login-form .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--admin-text-main);
+      margin-bottom: 8px;
+    }
+
+    .login-form .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius-md);
+      font-size: 0.95rem;
+      transition: all var(--transition-speed) ease;
+      background-color: var(--admin-surface-subtle);
+      color: var(--admin-text-main);
+    }
+
+    .login-form .form-control:focus {
+      border-color: var(--admin-purple-primary);
+      box-shadow: 0 0 0 4px rgba(123, 63, 163, 0.1);
+      outline: none;
+      background-color: var(--admin-surface);
+    }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 16px;
+      cursor: pointer;
+      color: var(--admin-text-muted);
+      transition: color var(--transition-speed) ease;
+    }
+
+    .toggle-password:hover {
+      color: var(--admin-purple-primary);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(123, 63, 163, 0.35);
+      margin-bottom: 24px;
+    }
+    
+    .switch-auth {
+      display: block;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--admin-text-muted);
+    }
+    
+    .switch-auth a {
+      color: var(--admin-purple-primary);
+      font-weight: 600;
+      transition: color var(--transition-speed) ease;
+    }
+    
+    .switch-auth a:hover {
+      color: var(--admin-purple-hover);
+    }
+  </style>
+</head>
+<body class="admin-body login-body">
+
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="assets/images/PPPLOGO.webp" alt="Logo" onerror="this.src='https://placehold.co/100x100/7b3fa3/ffffff?text=PPP'">
+    </div>
+    
+    <h1 class="login-title">Create an Account</h1>
+    <p class="login-subtitle">Register a new administrator account</p>
+
+    <form class="login-form" id="adminSignupForm">
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" id="email" class="form-control" placeholder="admin@parthplastopack.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" class="form-control" placeholder="••••••••" required style="padding-right: 40px;">
+          <i class="fa-regular fa-eye toggle-password" id="togglePasswordBtn" onclick="togglePasswordVisibility()"></i>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-admin btn-purple-custom btn-login" id="signupBtn">
+        Sign Up <i class="fa-solid fa-user-plus" style="margin-left: 8px;"></i>
+      </button>
+      
+      <div class="switch-auth">
+        Already have an account? <a href="admin-login.html">Sign In</a>
+      </div>
+    </form>
+
+    <script>
+      function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePasswordBtn');
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggleBtn.classList.remove('fa-eye');
+          toggleBtn.classList.add('fa-eye-slash');
+        } else {
+          passwordInput.type = 'password';
+          toggleBtn.classList.remove('fa-eye-slash');
+          toggleBtn.classList.add('fa-eye');
+        }
+      }
+
+      document.getElementById('adminSignupForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const supabaseClient = getSupabaseClient();
+        if (!supabaseClient) {
+          alert('Supabase client not initialized. Please configure js/supabase-config.js');
+          return;
+        }
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('signupBtn');
+        const originalText = btn.innerHTML;
+        
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Creating Account...';
+        btn.style.opacity = '0.8';
+        btn.disabled = true;
+
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: email,
+          password: password,
+        });
+        
+        if (error) {
+          btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ' + error.message;
+          btn.style.backgroundColor = 'var(--admin-red)';
+          
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.backgroundColor = '';
+            btn.style.opacity = '1';
+            btn.disabled = false;
+          }, 3000);
+          return;
+        }
+
+        // Success
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Account Created!';
+        btn.style.backgroundColor = 'var(--admin-green)';
+        
+        setTimeout(() => {
+          if (data && data.session) {
+            // If email confirmation is disabled in Supabase, we are auto-logged in!
+            window.location.href = 'admin.html';
+          } else {
+            // Email confirmation is required
+            alert("Account created! You MUST check your email and click the confirmation link before you can log in.");
+            window.location.href = 'admin-login.html';
+          }
+        }, 1000);
+      });
+    </script>
+    
+    <div style="margin-top: 32px; font-size: 0.85rem; color: var(--admin-text-subtle);">
+      &copy; 2026 Parth Plastopack Pvt. Ltd.
+    </div>
+  </div>
+
+</body>
+</html>

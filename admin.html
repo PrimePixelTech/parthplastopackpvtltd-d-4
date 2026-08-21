@@ -7,6 +7,28 @@
   <link rel="icon" type="image/webp" href="assets/images/PPPLOGO.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script>
+    // Protect admin page using Supabase Session
+    async function checkAuth() {
+      const supabase = getSupabaseClient();
+      if (!supabase) return;
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = 'admin-login.html';
+      }
+    }
+    checkAuth();
+    
+    async function logoutAdmin() {
+      const supabase = getSupabaseClient();
+      if (supabase) {
+        await supabase.auth.signOut();
+      }
+      window.location.href = 'admin-login.html';
+    }
+  </script>
 </head>
 <body class="admin-body">
   <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
@@ -87,11 +109,11 @@
           <span class="notification-dot"></span>
         </div>
 
-        <div class="admin-profile-pill">
+        <div class="admin-profile-pill" onclick="logoutAdmin()" title="Click to Logout" style="cursor: pointer;">
           <div class="profile-avatar">AD</div>
           <div class="profile-info">
             <span class="profile-name">Administrator</span>
-            <span class="profile-role">Store Manager</span>
+            <span class="profile-role">Logout</span>
           </div>
         </div>
       </div>
